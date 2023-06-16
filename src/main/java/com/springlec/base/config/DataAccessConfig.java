@@ -22,7 +22,7 @@ public class DataAccessConfig {
 				new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml") // 경로위치 달라지면 바꿔줘여됨
 				);
 		return sessionFactory.getObject();
-	} 
+	}
 	
 	// sql문장을 나눠주는 작업
 	@Bean
