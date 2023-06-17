@@ -13,7 +13,8 @@ public interface KKG_extraService {
 	public List<Date> DateList(Timestamp startday, Timestamp endday) throws Exception;
 	public List<String> dateListStr(List<Date> dateList) throws Exception;
 	List<Integer> dailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
-
+	List<Integer> dailyOrderList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
+	
 	
 	
 	

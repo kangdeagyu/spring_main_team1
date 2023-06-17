@@ -15,7 +15,7 @@
 
 <!-- 프로젝트내 js 파일  -->
 <script src="js/admin_kkg.js" type="text/javascript"></script>
-
+ 
 <!--  bootsstrap link -->
 
 <link href="css/admin_kkg.css" rel="stylesheet">
