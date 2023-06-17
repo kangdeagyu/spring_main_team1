@@ -6,7 +6,10 @@
 
 
 	<select id="dailyGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
-		SELECT ROW_NUMBER() OVER (ORDER BY DATE(odate)) AS No, SUM(oprice) AS sale, COUNT(*) AS ocount, DATE(odate) AS date from ordering where odate &gt;= '${startday}' AND odate &lt;='${endday}' group by date(odate)
+		SELECT  DATE(odate) AS date, SUM(oprice) AS sale, COUNT(*) AS ocount
+		FROM ordering 
+		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}
+		GROUP BY DATE(odate)
 	
 	
 	</select>
