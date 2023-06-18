@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KKG_productDao">
+
+<select id="getOutStocks">
+SELECT ROW_NUMBER() OVER (ORDER BY p.pstock) as No, p.pacategory as category, p.pid, p.pname, p.pstock 
+FROM product AS p  
+WHERE pstock &lt;= 10 AND pdeletedate is null 
+ORDER BY pstock
+</select>
+
+
+</mapper>

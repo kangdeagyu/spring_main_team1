@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.ChartDao_kkg">
+
+
+	<select id="dailyGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+		SELECT  DATE(odate) AS date, SUM(oprice) AS sale, COUNT(*) AS ocount
+		FROM ordering 
+		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}
+		GROUP BY DATE(odate)
+	
+	
+	</select>
+
+	<select id="monthlyGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY Date_format(odate,'%Y-%m')) AS No, sum(oprice) AS sale, count(*) AS ocount, Date_format(odate,'%Y-%m') AS month 
+		FROM ordering
+		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}
+		GROUP BY DATE_FORMATsd(odate,'%Y-%m')
+	
+	
+	</select>
+
+		<select id="dailyNsGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY Date(cinsertdate)) AS No, count(*) AS NScount,  cinsertdate AS date 
+		FROM customer
+		WHERE cinsertdate &gt;= #{startday} AND cinsertdate &lt;= #{endday}
+		GROUP BY date
+	
+	
+	</select>
+
+
+</mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.springlec.base.model.AdminExtra_Dto_kkg;
 import com.springlec.base.service.KKG_adminDao_Service;
 import com.springlec.base.service.KKG_extraService;
+import com.springlec.base.service.KKG_productDao_Service_Impl;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -22,25 +23,15 @@ public class KKG_controller {
 	KKG_adminDao_Service service ;
 	@Autowired
 	KKG_extraService exService;
+	@Autowired
+	KKG_productDao_Service_Impl proService;
 	
 	@RequestMapping("/adminHome")
 	public String list(HttpServletRequest request, Model model) throws Exception {
 		
-		
 		List<Timestamp> initTS = exService.initTimeStamp();
-		
-System.out.println("initTS 실행 확인 : " + initTS.get(0) + initTS.get(1));
-		
 		List<Date> dateList = exService.DateList(initTS.get(0),initTS.get(1));
-		
-System.out.println("dateList 제대로 받아왔을까? 이 위에 확인하자.");
-		
 		List<String> dateListStr= exService.dateListStr(dateList);
-		
-System.out.println("dateList 가 문제 없으면 DateListStr 문제도 없을거고 여기서부터가 문제임. dailyGraph");
-System.out.println("들어가는 두가지 TimeStamp 값 initTS 확인 : " + initTS.get(0) +" 그리고 "+ initTS.get(1));
-
-	
 		List<AdminExtra_Dto_kkg> ddrs = service.dailyGraph(initTS.get(0), initTS.get(1));
 		List<Integer> saleList = exService.dailySaleList(dateList, ddrs);
 		List<Integer> orderList = exService.dailyOrderList(dateList, ddrs);
@@ -52,16 +43,30 @@ System.out.println("들어가는 두가지 TimeStamp 값 initTS 확인 : " + ini
 		model.addAttribute("dailyOrder", orderList);
 //		
 //		
-//		model.addAttribute("MonthlyMonth", monthListStr);
-//		model.addAttribute("monthlyOrder", monthOrderList);
-//		model.addAttribute("monthlySale", monthSaleList);
-//		
-//		
-//		model.addAttribute("dailyNS", dailyNSList);
-//		
-//		
-//		model.addAttribute("OutofStocks", stocks);
-//		
+		List<Timestamp> initTS_mon = exService.initMonthTimestamp();
+		List<String> monthList = exService.getYearMonthList(initTS_mon.get(0), initTS_mon.get(1));
+		List<String> monthListStr = exService.monthTostring(monthList);
+		List<AdminExtra_Dto_kkg> mdrs =service.monthlyGraph(initTS_mon.get(0), initTS_mon.get(1));
+		List<Integer> monthSaleList = exService.getMonthlySaleList(monthList, mdrs);
+		List<Integer> monthOrderList = exService.getMonthlyOrderList(monthList, mdrs);
+		
+		model.addAttribute("MonthlyMonth", monthListStr);
+		model.addAttribute("monthlyOrder", monthOrderList);
+		model.addAttribute("monthlySale", monthSaleList);
+		
+		
+		List<AdminExtra_Dto_kkg> DNrs = service.dailyNSGraph(initTS_mon.get(0), initTS_mon.get(1));
+		List<Integer> dailyNSList = exService.getDailySaleList(dateList, DNrs);
+		
+		model.addAttribute("dailyNS", dailyNSList);
+		
+		
+		List<AdminExtra_Dto_kkg> stocks = proService.getOutStocks();
+		
+		
+	
+		model.addAttribute("OutofStocks", stocks);
+		
 		
 		return "adminHome";
 	}

@@ -23,6 +23,18 @@ public class KKG_adminDao_Service_Impl implements KKG_adminDao_Service {
 		System.out.println("Service_Impl startday :  "+startday);
 		return dao.dailyGraph(startday, endday);
 	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> monthlyGraph(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.monthlyGraph(startday, endday);
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> dailyNSGraph(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.dailyNSGraph(startday,endday);
+	}
 	
 	
 

@@ -3,6 +3,9 @@ package com.springlec.base.config;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,7 +84,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 			// Dto에 공용으로 쓰는 변수 하나만 추가하면 되겠지. int value 정도의 네이밍으로?
 			// 하지만 일단 반복해서 클래스 구성을 눈에 익히고, 연습해보기 위해, 모든 경우를 각각의 method로 만들어서 진행하였다.
 			@Override
-			public List<Integer> dailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) {
+			public List<Integer> dailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception {
 
 				return getDailySaleList(dateList, ddrs); // 하단은 method 03 참조
 			}
@@ -96,6 +99,88 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				
 				
 				return getDailyOrderList(dateList, ddrs);
+			}
+
+
+
+
+			@Override
+			public List<Timestamp> initMonthTimestamp() throws Exception {
+				// TODO Auto-generated method stub
+				
+				Date sqlDate = new Date(System.currentTimeMillis());
+				Timestamp endday = new Timestamp(sqlDate.getTime());
+				Calendar tempday = Calendar.getInstance();
+				tempday.setTime(endday);
+				tempday.add(Calendar.MONTH, -12);
+				tempday.set(Calendar.DAY_OF_MONTH, 1);
+				Timestamp startday = new Timestamp(tempday.getTimeInMillis());
+				
+				
+				return Arrays.asList(startday, endday) ;
+			
+				
+			}
+
+
+
+
+			@Override
+			public List<String> getYearMonthList(Timestamp startday, Timestamp endday) throws Exception {
+				// TODO Auto-generated method stub
+				
+				
+				
+				return null;
+			}
+
+
+
+
+			@Override
+			public List<String> monthTostring(List<String> getYearMonthList) throws Exception {
+				// TODO Auto-generated method stub
+				
+				List<String> monthListStr = new ArrayList<>();
+				
+		        for (String month : getYearMonthList) {
+		            monthListStr.add("'"+month+"'");
+		        }
+				
+				
+				return monthListStr;
+			}
+
+
+
+
+			@Override
+			public List<Integer> getMonthlySaleList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs)
+					throws Exception {
+				// TODO Auto-generated method stub
+				return getMonthlySaleList(monthListStr, mdrs);
+			}
+
+
+
+
+			@Override
+			public List<Integer> getMonthlyOrderList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs)
+					throws Exception {
+				// TODO Auto-generated method stub
+				return getMonthlyOrderList(monthListStr, mdrs);
+			}
+
+
+
+
+			@Override
+			public List<Integer> getDailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> DNrs) throws Exception {
+				// TODO Auto-generated method stub
+				
+				
+				
+				return getDailySaleList(dateList, DNrs);  //DTO 에 Date / SALE 로 저장하는 방식이 있어서 이렇게 써서 가져옴.
 			}
 		};
 
@@ -285,12 +370,132 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 		
 		
 		
-	}  //method03. orderList  
+	}  //method04. orderList  
+	
+	// -------------------------method05. 월별 리스트 만들-------------------------------------------
 	
 	
 	
+    public static List<String> getYearMonthList(Timestamp startday, Timestamp endday) {
+        List<String> yearMonthList = new ArrayList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startday);
+        
+        LocalDate startDate = startday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate = endday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        Period period = Period.between(startDate, endDate);
+        int numMonths = 1 + period.getYears() * 12 + period.getMonths();
+   
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+
+        // 현재 월부터 numMonths 개월 전까지 루프
+        for (int i = 0; i < numMonths; i++) {
+            Date currentDate = new Date(calendar.getTimeInMillis());
+            String yearMonth = dateFormat.format(currentDate);
+            
+            yearMonthList.add(yearMonth);
+
+            calendar.add(Calendar.MONTH, +1); // 이전 월로 이동
+        }
+
+        return yearMonthList;
+    }
 	
 	
+    // -------------------------method06. monthlySale 저장하기 메소드 시작-------------------------------------------
+	
+  	private List<Integer> getMonthlySaleList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs){
+  		
+          List<Integer> saleList = new ArrayList<>();
+
+   
+          
+          int j = 0;
+          int k = 0;
+          int len = monthListStr.size(); //실제 기간내 모든 기간이 
+          
+          
+
+          
+  		while (k < len) {
+
+  			try {
+  				// DB에서 가져온 목록에서 오늘 날짜의 날이 있는지 없는지 검증.
+  				String DB_month = mdrs.get(j).getMonth(); // DB 데이터의 날짜.
+  				String Real_month = monthListStr.get(k); // 실제 있어야 하는 날짜.
+
+  				if (!DB_month.equals(Real_month)) {
+  					saleList.add(0); // 날짜가 없으면 (같지 않으면) 0 더하기.
+  					k++;
+  				} else {
+  					saleList.add(mdrs.get(j).getSales()); // 날짜가 있으면
+  					j++;
+  					k++;
+  				}
+  			} catch (IndexOutOfBoundsException e) {
+  				saleList.add(0);
+  				// j++;
+  				k++;
+  			} // outofbound에러 처리 끝.
+  		} // daily sale을 위한 while 끝
+          
+  		
+  		
+  		return saleList;
+        
+  		
+  		
+  		
+  	}   // -------------------------monthlySale 저장하기 끝-------------------------------------------
+      
+  	
+      // -------------------------method07. monthlyOrder 저장하기 메소드 시작-------------------------------------------
+  	
+  	private List<Integer> getMonthlyOrderList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs){
+  		
+          List<Integer> orderList = new ArrayList<>();
+
+   
+          
+          int j = 0;
+          int k = 0;
+          int len = monthListStr.size(); //실제 기간내 모든 기간이 
+          
+          
+
+          
+  		while (k < len) {
+
+  			try {
+  				// DB에서 가져온 목록에서 오늘 날짜의 날이 있는지 없는지 검증.
+  				String DB_month = mdrs.get(j).getMonth(); // DB 데이터의 날짜.
+  				String Real_month = monthListStr.get(k); // 실제 있어야 하는 날짜.
+
+  				if (!DB_month.equals(Real_month)) {
+  					orderList.add(0); // 날짜가 없으면 (같지 않으면) 0 더하기.
+  					k++;
+  				} else {
+  					orderList.add(mdrs.get(j).getOrdercount()); // 날짜가 있으면
+  					j++;
+  					k++;
+  				}
+  			} catch (IndexOutOfBoundsException e) {
+  				orderList.add(0);
+  				// j++;
+  				k++;
+  			} // outofbound에러 처리 끝.
+  		} // daily sale을 위한 while 끝
+          
+  		
+  		
+  		return orderList;
+        
+  		
+  		
+  		
+  	}   // -------------------------monthlySale 저장하기 끝-------------------------------------------
 	
 	
 	

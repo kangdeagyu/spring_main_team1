@@ -20,4 +20,16 @@ public class ChartDao_kkg_Impl implements ChartDao_kkg {
 		return sqlSession.selectList(nameSpace+".dailyGraph");
 	}
 
+	@Override
+	public List<AdminExtra_Dto_kkg> monthlyGraph(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".monthlyGraph");
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> dailyNSGraph(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".dailyNsGraph");
+	}
+
 }

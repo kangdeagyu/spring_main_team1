@@ -14,9 +14,23 @@
 	
 	</select>
 
+	<select id="monthlyGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY Date_format(odate,'%Y-%m')) AS No, sum(oprice) AS sale, count(*) AS ocount, Date_format(odate,'%Y-%m') AS month 
+		FROM ordering
+		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}
+		GROUP BY DATE_FORMATsd(odate,'%Y-%m')
+	
+	
+	</select>
 
-
-
+		<select id="dailyNsGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY Date(cinsertdate)) AS No, count(*) AS NScount,  cinsertdate AS date 
+		FROM customer
+		WHERE cinsertdate &gt;= #{startday} AND cinsertdate &lt;= #{endday}
+		GROUP BY date
+	
+	
+	</select>
 
 
 </mapper>
