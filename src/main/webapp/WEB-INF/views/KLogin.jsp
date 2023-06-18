@@ -168,7 +168,7 @@
 	 	 <a href="joinView" class="text-dark">회원가입</a>
 	  </div>
 	  <div>
-	  	<a href="findId.do" class="text-dark">아이디</a> / <a href="findPw.do" class="text-dark">비밀번호 찾기</a>
+	  	<a href="findId" class="text-dark">아이디</a> / <a href="findPw" class="text-dark">비밀번호 찾기</a>
 	  </div>
 	</div>
 <hr/>

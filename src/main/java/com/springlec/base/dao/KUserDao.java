@@ -16,5 +16,9 @@ public interface KUserDao {
 			String caddress1, String caddress2) throws Exception;
 	// 유저 카카오 로그인
 	public KUserDto kakaoLogin(String cid) throws Exception;
+	// 유저 Id 찾기
+	public String findIdCheck(String cname, String cphone) throws Exception;
+	// 유저 Pw 찾기
+	public String findPwCheck(String cid, String cname) throws Exception;
 	
 }

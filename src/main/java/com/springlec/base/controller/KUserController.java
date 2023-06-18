@@ -100,6 +100,24 @@ public class KUserController {
 		return result;
 	}
 	
+	// 아이디 찾기
+	@RequestMapping("/pindIdview")
+	public String pindIdview(HttpServletRequest request, Model model) throws Exception{
+		String result = service.findIdCheck(request.getParameter("cname"), request.getParameter("cphone"));
+		model.addAttribute("id", result);
+		
+		return "KFindIdview";
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping("/pindPwView")
+	public String pindPwView(HttpServletRequest request, Model model) throws Exception{
+		String result = service.findPwCheck(request.getParameter("cid"), request.getParameter("cname"));
+		model.addAttribute("pw", result);
+		
+		return "KFindPwview";
+	}
+	
 	
 } // end
 

@@ -39,7 +39,7 @@
  	<div class="col-3">
 		<ul class="nav">
 		  <li class="nav-item">
-		    <a class="nav-link active" href="home.do">
+		    <a class="nav-link active" href="/">
 		      <!-- <img src="image/so7.png" alt="" width="80" height="40"> -->
 		      <h3 class="text-dark">Little and Precious</h3>
 		    </a>
@@ -49,7 +49,7 @@
 	 <div class="col-6">
 		<ul class="nav justify-content-center">
 			  <li class="nav-item">
-			    <a class="nav-link active" aria-current="page" href="home.do"><p class="text-dark">HOME</p></a>
+			    <a class="nav-link active" aria-current="page" href="/"><p class="text-dark">HOME</p></a>
 			  </li>
 			  <li class="nav-item">
 			    <a class="nav-link" href="CategoryView.do?num=0"><p class="text-dark">LAMP</p></a>

@@ -47,6 +47,20 @@ public class KUserDaoImpl implements KUserDao {
 		return sqlSession.selectOne(nameSpace + ".kakaoLogin");
 	}
 
+	// 유저 Id 찾기
+	@Override
+	public String findIdCheck(String cname, String cphone) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".findIdCheck");
+	}
+
+	// 유저 Pw 찾기
+	@Override
+	public String findPwCheck(String cid, String cname) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".findPwCheck");
+	}
+
 
 
 }

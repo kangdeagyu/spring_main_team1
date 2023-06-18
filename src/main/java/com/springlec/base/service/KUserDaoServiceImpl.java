@@ -98,6 +98,21 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		return result;
 	}
 
+	// 아이디 찾기
+	@Override
+	public String findIdCheck(String cname, String cphone) throws Exception {
+		// TODO Auto-generated method stub
+		String result = dao.findIdCheck(cname, cphone);
+		return result;
+	}
+
+	// 비밀번호 찾기
+	@Override
+	public String findPwCheck(String cid, String cname) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findPwCheck(cid, cname);
+	}
+
 
 
 }
