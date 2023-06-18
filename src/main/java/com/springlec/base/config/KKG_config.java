@@ -126,12 +126,12 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 
 			@Override
-			public List<String> getYearMonthList(Timestamp startday, Timestamp endday) throws Exception {
+			public List<String> YearMonthList(Timestamp startday, Timestamp endday) throws Exception {
 				// TODO Auto-generated method stub
 				
 				
 				
-				return null;
+				return getYearMonthList(startday, endday);
 			}
 
 
@@ -155,7 +155,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 
 			@Override
-			public List<Integer> getMonthlySaleList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs)
+			public List<Integer> MonthlySaleList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs)
 					throws Exception {
 				// TODO Auto-generated method stub
 				return getMonthlySaleList(monthListStr, mdrs);
@@ -165,7 +165,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 
 			@Override
-			public List<Integer> getMonthlyOrderList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs)
+			public List<Integer> MonthlyOrderList(List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs)
 					throws Exception {
 				// TODO Auto-generated method stub
 				return getMonthlyOrderList(monthListStr, mdrs);
@@ -175,7 +175,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 
 			@Override
-			public List<Integer> getDailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> DNrs) throws Exception {
+			public List<Integer> DailyNSList(List<Date> dateList, List<AdminExtra_Dto_kkg> DNrs) throws Exception {
 				// TODO Auto-generated method stub
 				
 				

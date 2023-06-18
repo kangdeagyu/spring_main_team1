@@ -44,11 +44,11 @@ public class KKG_controller {
 //		
 //		
 		List<Timestamp> initTS_mon = exService.initMonthTimestamp();
-		List<String> monthList = exService.getYearMonthList(initTS_mon.get(0), initTS_mon.get(1));
+		List<String> monthList = exService.YearMonthList(initTS_mon.get(0), initTS_mon.get(1));
 		List<String> monthListStr = exService.monthTostring(monthList);
 		List<AdminExtra_Dto_kkg> mdrs =service.monthlyGraph(initTS_mon.get(0), initTS_mon.get(1));
-		List<Integer> monthSaleList = exService.getMonthlySaleList(monthList, mdrs);
-		List<Integer> monthOrderList = exService.getMonthlyOrderList(monthList, mdrs);
+		List<Integer> monthSaleList = exService.MonthlySaleList(monthList, mdrs);
+		List<Integer> monthOrderList = exService.MonthlyOrderList(monthList, mdrs);
 		
 		model.addAttribute("MonthlyMonth", monthListStr);
 		model.addAttribute("monthlyOrder", monthOrderList);
@@ -56,7 +56,7 @@ public class KKG_controller {
 		
 		
 		List<AdminExtra_Dto_kkg> DNrs = service.dailyNSGraph(initTS_mon.get(0), initTS_mon.get(1));
-		List<Integer> dailyNSList = exService.getDailySaleList(dateList, DNrs);
+		List<Integer> dailyNSList = exService.DailyNSList(dateList, DNrs);
 		
 		model.addAttribute("dailyNS", dailyNSList);
 		

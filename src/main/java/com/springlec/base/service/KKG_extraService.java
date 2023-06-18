@@ -15,11 +15,11 @@ public interface KKG_extraService {
 	List<Integer> dailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
 	List<Integer> dailyOrderList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
 	List<Timestamp> initMonthTimestamp() throws Exception;
-	List<String> getYearMonthList(Timestamp startday,Timestamp  endday) throws Exception;
+	List<String> YearMonthList(Timestamp startday,Timestamp  endday) throws Exception;
 	List<String> monthTostring(List<String> getYearMonthList) throws Exception;
-	List<Integer> getMonthlySaleList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
-	List<Integer> getMonthlyOrderList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
-	List<Integer> getDailySaleList (List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
+	List<Integer> MonthlySaleList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
+	List<Integer> MonthlyOrderList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
+	List<Integer> DailyNSList (List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
 	
 	
 	
