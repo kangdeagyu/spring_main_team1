@@ -67,7 +67,7 @@
 
 <!--e94ea7cf7a4161d305da7590513621dc  -->
 
-<link href="login.css" rel="stylesheet">
+<link href="css/KLogin.css" rel="stylesheet">
 </head>
 
 
@@ -199,7 +199,7 @@
     		  const username = this.username;
     		  const password = this.password;
 
-    		  axios.post('login.go', null, {
+    		  axios.post('loginCheck', null, {
     		    params: {
     		      username: username,
     		      password: password
@@ -208,22 +208,21 @@
     		  .then(response => {
     		    // 로그인 성공 시 처리
     		    console.log(response.data);
-    		    if(response.data == "mdraw"){
+				if(response.data == "mdraw"){
     		    	 alert("탈퇴한 회원입니다.")
     		    }else if(response.data == "admin"){
     		    	alert("관리자 입니다.")
     		    	window.location.href = 'adminHome.do';  
+    		    }else if(response.data == "error"){
+    		    	alert("아이디와 비밀번호를 확인해주세요!")
     		    }else{
 	    		    alert("로그인 성공")
-	    		    window.location.href = 'home.do';    		    	
-    		    }
-    		 
-    	         
+	    		    window.location.href = '/';    	 	
+    		    }  
     	      
     		  })
     		  .catch(error => {
     		    // 로그인 실패 시 처리
-    		    this.errorMessage = error.response.data.message;
     		    alert("아이디와 비밀번호를 확인해주세요!")
     		  });
     		}
