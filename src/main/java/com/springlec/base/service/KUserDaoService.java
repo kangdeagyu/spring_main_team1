@@ -2,7 +2,7 @@ package com.springlec.base.service;
 
 import java.util.List;
 
-import com.springlec.base.dao.KUserDao;
+
 import com.springlec.base.model.KUserDto;
 
 public interface KUserDaoService {

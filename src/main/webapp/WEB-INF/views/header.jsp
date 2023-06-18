@@ -90,7 +90,7 @@
 			    </a>
 		    </li>
 			<li class="nav-item">	<!-- 장바구니 이동 -->
-			    <a class="nav-link" href="cart.do" onclick="return userCheck()">
+			    <a class="nav-link" href="KUserCartView" onclick="return userCheck()">
 			   	 <img src="image/so9.png" alt="" width="30" height="24">
 			    </a>
 		    </li>

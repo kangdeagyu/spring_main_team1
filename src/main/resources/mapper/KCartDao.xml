@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KCartDao">
+
+	<select id="userCart" resultType="com.springlec.base.model.KCartDto">
+		SELECT p.pid, b.bid, p.pname, p.pfilename, p.pcontent, p.pprice, b.bqty 
+		FROM product p, basket b WHERE b.b_pid = p.pid and b.b_cid = #{cid}
+	</select>
+	
+
+</mapper>
