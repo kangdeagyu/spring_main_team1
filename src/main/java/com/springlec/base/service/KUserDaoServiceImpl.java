@@ -43,4 +43,12 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		return result;
 	}
 
+	@Override
+	public int joinUser(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
+			String cpostnum, String caddress1, String caddress2) throws Exception {
+		// TODO Auto-generated method stub
+		int result = dao.joinUser(cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2);
+		return result;
+	}
+
 }

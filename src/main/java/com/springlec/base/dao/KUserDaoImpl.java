@@ -20,8 +20,14 @@ public class KUserDaoImpl implements KUserDao {
 	@Override
 	public int emailCheck(String cid) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(cid);
 		return sqlSession.selectOne(nameSpace + ".emailCheck");
+	}
+
+	@Override
+	public int joinUser(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
+			String cpostnum, String caddress1, String caddress2) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(nameSpace + ".joinUser");
 	}
 
 }

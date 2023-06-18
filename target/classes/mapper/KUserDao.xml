@@ -13,5 +13,11 @@
 	<select id="emailCheck">
 		select count(cid) from customer where cid = #{cid}
 	</select>	
+	
+	<!-- 회원가입 -->
+	<insert id="joinUser">
+		INSERT INTO customer (cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2, cinsertdate) 
+		VALUES (#{cid},#{cpassword},#{cname},#{cphone},#{cbirthdate},#{cgender},#{cpostnum},#{caddress1},#{caddress2},now())
+	</insert>
 
 </mapper>

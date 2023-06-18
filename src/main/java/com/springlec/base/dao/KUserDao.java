@@ -8,4 +8,7 @@ public interface KUserDao {
 	public KUserDto userCheck(String username, String password) throws Exception;
 	// 회원가입 이메일 중복체크
 	public int emailCheck(String cid) throws Exception;
+	// 회원가입
+	public int joinUser(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender, String cpostnum,
+			String caddress1, String caddress2) throws Exception;
 }

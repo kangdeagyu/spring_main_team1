@@ -272,6 +272,7 @@ function checkVerification(){
 		alert("인증번호가 일치하지 않습니다. 다시 입력해 주세요")
 	}else{
 		alert("인증번호가 일치합니다.")
+		document.getElementById("verificationDiv").style.display = "none";
 		verificationCodeCheck = true;
 	}
 	
@@ -414,13 +415,13 @@ function submitForm() {
 	  const cbirth = form.cbirth.value;
 
 	  var xhr = new XMLHttpRequest();
-	  xhr.open("POST", "joinDB.jn", true);
+	  xhr.open("POST", "joinUser", true);
 	  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	  xhr.onreadystatechange = function() {
 	    if (xhr.readyState === XMLHttpRequest.DONE) {
 	      if (xhr.status === 200) {
 	        alert("회원가입을 축하드립니다. 로그인을 해주세요!");
-	        window.location.href = "login.jsp";
+	        window.location.href = "loginView";
 	      } else {
 	        alert("회원가입 오류");
 	        form.cid.select();

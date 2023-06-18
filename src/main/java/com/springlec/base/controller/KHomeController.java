@@ -18,19 +18,19 @@ public class KHomeController {
 
 	@Autowired
 	KHomeDaoService service;
-	
+	// 메인 페이지
 	@RequestMapping("/")
 	public String list(Model model) throws Exception{
 		List<KHomeDto> listHomeDao = service.listHomeDao();
 		model.addAttribute("list", listHomeDao);
 		return "KHome" ;
 	}
-	
+	// 로그인 페이지
 	@RequestMapping("loginView")
 	public String loginView() throws Exception{
 		return "KLogin";
 	}
-	
+	// 로그아웃
 	@RequestMapping("logout")
 	public String HomeView(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
