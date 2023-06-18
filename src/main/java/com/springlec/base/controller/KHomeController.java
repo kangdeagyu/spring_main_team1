@@ -20,8 +20,12 @@ public class KHomeController {
 	public String list(Model model) throws Exception{
 		List<KHomeDto> listHomeDao = service.listHomeDao();
 		model.addAttribute("list", listHomeDao);
-		return "home" ;
+		return "KHome" ;
 	}
 	
+	@RequestMapping("loginView")
+	public String loginView() throws Exception{
+		return "KLogin";
+	}
 	
 }
