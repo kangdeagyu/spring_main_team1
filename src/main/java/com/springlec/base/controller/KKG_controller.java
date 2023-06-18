@@ -29,57 +29,44 @@ public class KKG_controller {
 	@RequestMapping("/adminHome")
 	public String list(HttpServletRequest request, Model model) throws Exception {
 		
-		List<Timestamp> initTS = exService.initTimeStamp();
-		List<Date> dateList = exService.DateList(initTS.get(0),initTS.get(1));
-		List<String> dateListStr= exService.dateListStr(dateList);
-		List<AdminExtra_Dto_kkg> ddrs = service.dailyGraph(initTS.get(0), initTS.get(1));
-		List<Integer> saleList = exService.dailySaleList(dateList, ddrs);
-		List<Integer> orderList = exService.dailyOrderList(dateList, ddrs);
 		
-	
 		
+		// 골라쓸 날짜 데이터들 미리 만들어 두기 
+		// 일일날짜 리스트
+		List<Timestamp> initTS = exService.initTimeStamp();  					// 최근 2주일 날짜를 뽑기위한 14일전 날짜와 오늘 날짜로 이루어진 리스트
+		List<Date> dateList = exService.DateList(initTS.get(0),initTS.get(1)); 	// 두개 날짜 사이의 모든 날짜를 저장한 리스
+		List<String> dateListStr= exService.dateListStr(dateList);				// JSP로 보내서 chart.js에 주려면 String 형식이 사고 안나고 좋음. 이것을 위한 문자열리스트 형식의 날짜리스트
+		
+		//월날짜 리스트
+		List<Timestamp> initTS_mon = exService.initMonthTimestamp();							// 오늘이 속한 달과, 12개월전의 날짜로 이루어진 리스트. 
+		List<String> monthList = exService.YearMonthList(initTS_mon.get(0), initTS_mon.get(1)); // 그 사이 모든 달이 들어가있는 월리스트
+		List<String> monthListStr = exService.monthTostring(monthList);							// 위의 월리스트를 그냥보내면 자꾸 문제 발생해서, ' ' 붙인 형태의 새로운 월목록리스트.
+		
+		
+		//일별 차트 그리기 위한 데이터 셋팅하기
+		List<AdminExtra_Dto_kkg> ddrs = service.dailyGraph(initTS.get(0), initTS.get(1));		//sql에서 일별 매출/ 주문건수 검색해옴
+		List<Integer> saleList = exService.dailySaleList(dateList, ddrs);						//JSP로 보내기전에 LIST 형식으로 매출 데이터 저장함. 그래프에 넣을떄 편하기 위함.
+		List<Integer> orderList = exService.dailyOrderList(dateList, ddrs);						//JSP로 보내기 전에 LIST 형식으로 주문건수 데이터 저장함. 그래프에 넣을떄 편하기위함.
 		model.addAttribute("dailyDate", dateListStr);
 		model.addAttribute("dailySale", saleList);
 		model.addAttribute("dailyOrder", orderList);
-//		
-//		
-		List<Timestamp> initTS_mon = exService.initMonthTimestamp();
-		List<String> monthList = exService.YearMonthList(initTS_mon.get(0), initTS_mon.get(1));
-		List<String> monthListStr = exService.monthTostring(monthList);
 		
-System.out.println("시작일 : " + initTS_mon.get(0));
-System.out.println("최종일 : " + initTS_mon.get(1));
+		//월별 차트 그리기 위한 데이터 셋팅하기. (상세설명은 일별 데이터와 유사하기에 생략.)
 		List<AdminExtra_Dto_kkg> mdrs =service.monthlyGraph(initTS_mon.get(0), initTS_mon.get(1));
-System.out.println("가져온 mdrs의 month : " + mdrs.get(0).getMonth());
-System.out.println("*************************************************************");
-System.out.println("*************************************************************");
-System.out.println("*************************************************************");
-System.out.println("*************************************************************");
 		List<Integer> monthSaleList = exService.MonthlySaleList(monthList, mdrs);
-System.out.println("monthSaleList 의 1번째 값 : " + monthSaleList.get(0));
-		
 		List<Integer> monthOrderList = exService.MonthlyOrderList(monthList, mdrs);
-System.out.println("monthOrderList 의 1번째 값 : " + monthOrderList.get(0));
-		
 		model.addAttribute("monthlyMonth", monthListStr);
 		model.addAttribute("monthlyOrder", monthOrderList);
 		model.addAttribute("monthlySale", monthSaleList);
 		
 		
+		//신규 가입자수를 그리기 위한 데이터 셋팅하기
 		List<AdminExtra_Dto_kkg> DNrs = service.dailyNSGraph(initTS.get(0), initTS.get(1));
-System.out.println("DNrs 의 날짜 값 : " + DNrs.get(0).getDate());
 		List<Integer> dailyNSList = exService.DailyNSList(dateList, DNrs);
-		
-		
-		
-		
 		model.addAttribute("dailyNS", dailyNSList);
 		
-		
+		//제고 부족한 상품들을 보기 위한 데이터 셋팅하기
 		List<AdminExtra_Dto_kkg> stocks = proService.getOutStocks();
-		
-		
-	
 		model.addAttribute("OutofStocks", stocks);
 		
 		
@@ -90,22 +77,4 @@ System.out.println("DNrs 의 날짜 값 : " + DNrs.get(0).getDate());
 
 }
 
-/* 
-        // 가져온 데이터들 request 에 셋팅하기
-        
-        //일별데이터
-        request.setAttribute("dailyDate", dateListStr);
-        request.setAttribute("dailySale", saleList);
-        request.setAttribute("dailyOrder", orderList);
 
-        //월별데이터
-        request.setAttribute("monthlyMonth", monthListStr);
-        request.setAttribute("monthlyOrder", monthOrderList);
-        request.setAttribute("monthlySale", monthSaleList);
-        
-        //신규가입자 daily
-        request.setAttribute("dailyNS", dailyNSList);
-        
-        request.setAttribute("OutofStocks", stocks);*
- 
- */
