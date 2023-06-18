@@ -207,7 +207,7 @@
     		    	 alert("탈퇴한 회원입니다.")
     		    }else if(response.data == "admin"){
     		    	alert("관리자 입니다.")
-    		    	window.location.href = 'adminHome.do';  
+    		    	/* window.location.href = 'adminHome.do';  */ 
     		    }else if(response.data == "error"){
     		    	alert("아이디와 비밀번호를 확인해주세요!")
     		    }else{

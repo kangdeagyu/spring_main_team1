@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springlec.base.dao.KUserDao;
+import com.springlec.base.model.KAdminDto;
 import com.springlec.base.model.KUserDto;
 
 import jakarta.servlet.http.HttpSession;
@@ -34,6 +35,28 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		
 		return result;
 	}
+	
+	// 관리자 체크
+	@Override
+	public String adminCheck(String username, String password) throws Exception {
+		// TODO Auto-generated method stub
+		KAdminDto dto = dao.adminCheck(username, password);
+		String result = "error";
+	
+		if(dto != null) {
+			String adeletedate = dto.getAdeletedate();
+			
+			if(adeletedate != null) {
+				result = "mdraw";
+			}else {
+				result = "admin";
+			}
+		}
+		
+		return result;
+	}
+	
+	
 
 	// 이메일 체크
 	@Override
@@ -74,5 +97,7 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		
 		return result;
 	}
+
+
 
 }

@@ -2,6 +2,7 @@ package com.springlec.base.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.springlec.base.model.KAdminDto;
 import com.springlec.base.model.KUserDto;
 
 public class KUserDaoImpl implements KUserDao {
@@ -15,6 +16,14 @@ public class KUserDaoImpl implements KUserDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".userCheck");
 	}
+	
+	// 관리자 로그인 체크
+	@Override
+	public KAdminDto adminCheck(String username, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".adminCheck");
+	}
+	
 
 	// 회원가입 이메일 체크
 	@Override
@@ -37,5 +46,7 @@ public class KUserDaoImpl implements KUserDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".kakaoLogin");
 	}
+
+
 
 }

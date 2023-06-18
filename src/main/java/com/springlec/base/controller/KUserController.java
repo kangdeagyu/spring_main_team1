@@ -17,16 +17,25 @@ public class KUserController {
 	@Autowired
 	KUserDaoService service;
 	
-	// 로그인 체크 유저파트
+	// 로그인 체크 유저, 관리자
 	@RequestMapping("/loginCheck")
 	@ResponseBody
 	public String userCheck(HttpServletRequest request) throws Exception{
-		
 		HttpSession session = request.getSession(true);
-		String result = service.userCheck(request.getParameter("username"),request.getParameter("password"));
-		if(!result.equals("error") && !result.equals("mdraw")) {
-			session.setAttribute("cid", request.getParameter("username"));
-			session.setAttribute("name", result);			
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String result = null;
+		
+		if(username.startsWith("admin")) {
+			result = service.adminCheck(username, password);
+			
+		}else {
+			
+			result = service.userCheck(username, password);
+			if(!result.equals("error") && !result.equals("mdraw")) {
+				session.setAttribute("cid", username);
+				session.setAttribute("name", result);			
+			}
 		}
 		
 		return result;
