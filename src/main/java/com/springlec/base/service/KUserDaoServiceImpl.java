@@ -121,12 +121,24 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		// TODO Auto-generated method stub
 		return dao.userList(cid);
 	}
-
+	// 회원 정보 수정
 	@Override
 	public int userUpdate(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
 			String cpostnum, String caddress1, String caddress2) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.userUpdate(cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2);
+	}
+	// 회원 비밀번호 변경
+	@Override
+	public int userPwChange(String cid, String password, String newpassword) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.userPwChange(cid, password, newpassword);
+	}
+	// 회원 탈퇴
+	@Override
+	public void userDraw(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.userDraw(cid);
 	}
 
 

@@ -41,10 +41,10 @@
       <nav>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="mypageview.do">회원정보 수정</a>
+            <a class="nav-link" href="KMypageView">회원정보 수정</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="PwChange.jsp">비밀번호 변경</a>
+            <a class="nav-link" href="PwChangeView">비밀번호 변경</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="myreview.do?cid=${cid}">나의 리뷰</a>
@@ -350,14 +350,14 @@ function memberDraw() {
   const email = form.cid.value;
   
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "memberDraw.dw", true); 
+  xhr.open("POST", "userDraw", true); 
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           alert("회원 탈퇴 되었습니다.");
-          window.location.href = "logout.do";
+          window.location.href = "logout";
         } else {
           alert("회원탈퇴 오류");
         }

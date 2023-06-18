@@ -45,6 +45,12 @@
 		update customer set cname = #{cname}, cphone = #{cphone}, cbirthdate = #{cbirthdate}, cgender = #{cgender},
 		 cpostnum = #{cpostnum}, caddress1 = #{caddress1}, caddress2 = #{caddress2} where cid = #{cid}
 	</update>
-	
-	
+	<!-- 비밀번호 변경 -->
+	<update id="userPwChange">
+		update customer set cpassword = #{newpassword} where cid = #{cid} and cpassword = #{password}
+	</update>
+	<!-- 비밀번호 변경 -->
+	<update id="userDraw">
+		update customer set cdeletedate = now() where cid = #{cid}
+	</update>	
 </mapper>

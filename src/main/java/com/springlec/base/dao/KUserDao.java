@@ -27,5 +27,9 @@ public interface KUserDao {
 	// 회원 정보 수정
 	public int userUpdate(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender, String cpostnum,
 			String caddress1, String caddress2) throws Exception;
+	// 회원 비밀번호 변경
+	public int userPwChange(String cid, String password, String newpassword) throws Exception;
+	// 회원 탈퇴
+	public void userDraw(String cid) throws Exception;
 	
 }

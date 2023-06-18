@@ -47,7 +47,12 @@ public class KHomeController {
 	public String findPw() throws Exception{
 		return "KFindpw";
 	}
-
+	
+	// 비밀번호 변경 페이지
+	@RequestMapping("/PwChangeView")
+	public String PwChangeView() throws Exception{
+		return "PwChange";
+	}
 	
 	
 

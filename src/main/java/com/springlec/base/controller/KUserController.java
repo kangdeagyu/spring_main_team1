@@ -157,5 +157,32 @@ public class KUserController {
 		
 	}
 	
+	// 비밀번호 변경
+	@RequestMapping("/pwChange")
+	@ResponseBody
+	public int pwChange(HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession(true);
+		String cid = (String)session.getAttribute("cid");
+		String password = request.getParameter("password");
+		String newpassword = request.getParameter("newpassword");
+		
+		int result = service.userPwChange(cid, password, newpassword);
+		return result;
+	}
+	
+	// 회원탈퇴
+	@RequestMapping("/userDraw")
+	@ResponseBody
+	public void userDraw(HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession(true);
+		String cid = (String)session.getAttribute("cid");
+
+		service.userDraw(cid);
+
+	}	
+	
+	
+	
+	
 } // end
 

@@ -63,17 +63,33 @@ public class KUserDaoImpl implements KUserDao {
 		return sqlSession.selectOne(nameSpace + ".findPwCheck");
 	}
 
+	// 회원정보
 	@Override
 	public List<KUserDto> userList(String cid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".userList");
 	}
 
+	// 회원정보 수정
 	@Override
 	public int userUpdate(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
 			String cpostnum, String caddress1, String caddress2) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(nameSpace + ".userUpdate");
+	}
+	
+	// 회원 비밀번호 변경
+	@Override
+	public int userPwChange(String cid, String password, String newpassword) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(nameSpace + ".userPwChange");
+	}
+
+	// 회원 탈퇴
+	@Override
+	public void userDraw(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".userDraw");
 	}
 
 
