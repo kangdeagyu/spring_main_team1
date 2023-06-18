@@ -73,7 +73,23 @@ public class KUserController {
 	    return result;
 		
 	}
-	
+	// 카카오 로그인
+	@RequestMapping("/kakaoLogin")
+	@ResponseBody
+	public String kakaoCheck(HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession(true);
+		String result = service.kakaoLogin(request.getParameter("cid"));
+		
+		if(result.equals("success")) {
+			session.setAttribute("cid", request.getParameter("cid"));
+			session.setAttribute("name", request.getParameter("cname"));	
+		}else if(result.equals("join")) {
+    		session.setAttribute("jid", request.getParameter("cid"));
+    		session.setAttribute("jname", request.getParameter("cname"));
+		}
+		
+		return result;
+	}
 	
 	
 } // end

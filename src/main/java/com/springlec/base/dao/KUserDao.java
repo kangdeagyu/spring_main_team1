@@ -11,4 +11,7 @@ public interface KUserDao {
 	// 회원가입
 	public int joinUser(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender, String cpostnum,
 			String caddress1, String caddress2) throws Exception;
+	// 유저 카카오 로그인
+	public KUserDto kakaoLogin(String cid) throws Exception;
+	
 }

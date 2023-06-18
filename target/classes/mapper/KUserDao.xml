@@ -19,5 +19,8 @@
 		INSERT INTO customer (cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2, cinsertdate) 
 		VALUES (#{cid},#{cpassword},#{cname},#{cphone},#{cbirthdate},#{cgender},#{cpostnum},#{caddress1},#{caddress2},now())
 	</insert>
-
+	<!-- 카카오 유저 로그인 체크 -->
+	<select id="kakaoLogin" resultType="com.springlec.base.model.KUserDto">
+		SELECT cid, cpassword, cdeletedate FROM customer WHERE cid = #{cid}
+	</select>
 </mapper>

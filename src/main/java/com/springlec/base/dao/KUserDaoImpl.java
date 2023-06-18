@@ -23,11 +23,19 @@ public class KUserDaoImpl implements KUserDao {
 		return sqlSession.selectOne(nameSpace + ".emailCheck");
 	}
 
+	// 회원가입
 	@Override
 	public int joinUser(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
 			String cpostnum, String caddress1, String caddress2) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(nameSpace + ".joinUser");
+	}
+
+	// 카카오 로그인
+	@Override
+	public KUserDto kakaoLogin(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".kakaoLogin");
 	}
 
 }

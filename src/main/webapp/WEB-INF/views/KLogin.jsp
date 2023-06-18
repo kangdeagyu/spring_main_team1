@@ -91,23 +91,18 @@
 						var nickname = response.properties.nickname; // 닉네임 가져오기
 						var kakaoAccount = response.kakao_account;
 						var email = kakaoAccount.email; // 카카오 계정 이메일 가져오기
-						var gender = kakaoAccount.gender; // 성별 가져오기
-						var birthday = kakaoAccount.birthday; // 생일 가져오기
 
 						// 가져온 정보 활용
 						console.log("닉네임: " + nickname);
 						console.log("카카오 계정 이메일: " + email);
-						console.log("성별: " + gender);
-						console.log("생일: " + birthday);
 
 						// 이메일을 서버로 전송하여 데이터베이스에 있는지 확인
 						
-						axios.post('kalogin.kao', null, {
+						axios.post('kakaoLogin', null, {
 								params: {
 									cid: email,
 									cname: nickname,
-									cgender: gender,
-									cbirthday: birthday
+
 								}
 							})
 							.then(response => {
@@ -115,12 +110,12 @@
 								console.log(response.data);
 								if(response.data == "join"){
 									alert("등록되어 있는 회원정보가 없습니다. 회원가입을 해주세요");
-									window.location.href = 'join.jsp?kakao=1'; 
+									window.location.href = 'joinView?kakao=1'; 
 								}else if(response.data == "mdraw"){
 									alert("탈퇴한 회원입니다.");
 								}else{
 									alert("로그인 성공");
-									window.location.href = 'home.do'; 
+									window.location.href = '/'; 
 								}
 								
 							})
