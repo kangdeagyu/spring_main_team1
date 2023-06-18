@@ -20,4 +20,12 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 		return dao.productList();
 	}
 
+
+	@Override
+	public List<PJH_ProductDto> search1(String list, String query) throws Exception {
+		// TODO Auto-generated method stub
+		query = '%'+query+'%';
+		return dao.search1(list, query);
+	}
+
 }

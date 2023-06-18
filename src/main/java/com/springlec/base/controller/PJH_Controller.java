@@ -26,6 +26,12 @@ public class PJH_Controller {
 		return "Admin_ProductList_pjh";
 	}
 	
+	@RequestMapping("/productQuery.do")
+	public String search(HttpServletRequest requst ,Model model) throws Exception{
+		List<PJH_ProductDto> list = service.search1(requst.getParameter("list"), requst.getParameter("query"));
+		model.addAttribute("list", list);
+		return "Admin_ProductList_pjh";
+	}
 	
 	
 	

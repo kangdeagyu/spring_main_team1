@@ -12,7 +12,7 @@ FROM product p JOIN category c ON p.pcategory = c.c_num WHERE p.pdeletedate IS N
 
 <select id="search1" resultType="com.springlec.base.model.PJH_ProductDto">
 SELECT pfilename, pid, pprice, pname, pcategory, pcontent, pstock, pcontentfilename1, pcontentfilename2 FROM product
-WHERE #{list} LIKE #{query} AND pdeletedate IS NULL
+WHERE ${list} LIKE #{query} AND pdeletedate IS NULL
 </select>
 
 <select id="search2">
