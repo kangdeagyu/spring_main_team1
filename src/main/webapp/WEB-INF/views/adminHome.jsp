@@ -139,10 +139,10 @@
 									<c:forEach items="${OutofStocks}" var="product">
 										<tr>
 										<td>${product.seq}</td>
-										<td>${product.categoryId}</td>
+										<td>${product.category}</td>
 										<td>${product.pid}</td>
 										<td>${product.pname}</td>
-										<td>${product.pstock}</td>
+										<td>${product.stock}</td>
 										</tr>
 									</c:forEach>
 
@@ -164,32 +164,32 @@
  							<div>
 								<p>받아온 data 검증하기 위한 파트</p>
 								<p>
-									날짜 :${requestScope.dailyDate} <input type="hidden"
+									출력될 날짜 :${requestScope.dailyDate} <input type="hidden"
 										id="dailyDate" value="${requestScope.dailyDate}">
 								</p>
 								<p>
-									주문 :${requestScope.dailyOrder} <input type="hidden"
+									일별 결재 건수 :${requestScope.dailyOrder} <input type="hidden"
 										id="dailyOrder" value="${requestScope.dailyOrder}">
 								</p>
 								<p>
-									매출 :${requestScope.dailySale} <input type="hidden"
+									날자별 매출 :${requestScope.dailySale} <input type="hidden"
 										id="dailySale" value="${requestScope.dailySale}">
 								</p>
 								<p>
-									신규 :${requestScope.dailyNS} <input type="hidden" id="dailyNS"
+									신규가입자 수 :${requestScope.dailyNS} <input type="hidden" id="dailyNS"
 										value="${requestScope.dailyNS}">
 								</p>
 
 								<p>
-									월별 :${requestScope.monthlyMonth} <input type="hidden"
+									출력될 날짜(월) :${requestScope.monthlyMonth} <input type="hidden"
 										id="monthlyMonth" value="${requestScope.monthlyMonth}">
 								</p>
 								<p>
-									주문 :${requestScope.monthlyOrder} <input type="hidden"
+									월별 결재 건수 :${requestScope.monthlyOrder} <input type="hidden"
 										id="MonthlyOrder" value="${requestScope.monthlyOrder}">
 								</p>
 								<p>
-									매출 :${requestScope.monthlySale} <input type="hidden"
+									월별 매출 :${requestScope.monthlySale} <input type="hidden"
 										id="MonthlySale" value="${requestScope.monthlySale}">
 								</p>
 							</div> 

@@ -179,7 +179,6 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				// TODO Auto-generated method stub
 				
 				
-				
 				return getDailySaleList(dateList, DNrs);  //DTO 에 Date / SALE 로 저장하는 방식이 있어서 이렇게 써서 가져옴.
 			}
 		};
@@ -268,7 +267,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 				if (dtf.format(DB_date.toLocalDate()).equals(dtf.format(Real_date.toLocalDate()))) {
 
-					saleList.add(ddrs.get(j).getSales()); // 날짜가 있으면
+					saleList.add(ddrs.get(j).getCount()); // 날짜가 있으면
 
 					j++;
 					k++;
@@ -341,7 +340,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 			if(dtf.format(DB_date.toLocalDate()).equals(dtf.format(Real_date.toLocalDate()))) {
 				
-				OrderList.add(ddrs.get(j).getOrdercount()); // 날짜가 있으면
+				OrderList.add(ddrs.get(j).getCount()); // 날짜가 있으면
 
 				j++;
 				k++;
@@ -430,7 +429,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
   					saleList.add(0); // 날짜가 없으면 (같지 않으면) 0 더하기.
   					k++;
   				} else {
-  					saleList.add(mdrs.get(j).getSales()); // 날짜가 있으면
+  					saleList.add(mdrs.get(j).getSale()); // 날짜가 있으면
   					j++;
   					k++;
   				}
@@ -477,7 +476,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
   					orderList.add(0); // 날짜가 없으면 (같지 않으면) 0 더하기.
   					k++;
   				} else {
-  					orderList.add(mdrs.get(j).getOrdercount()); // 날짜가 있으면
+  					orderList.add(mdrs.get(j).getCount()); // 날짜가 있으면
   					j++;
   					k++;
   				}

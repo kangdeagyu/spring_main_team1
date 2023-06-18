@@ -46,17 +46,32 @@ public class KKG_controller {
 		List<Timestamp> initTS_mon = exService.initMonthTimestamp();
 		List<String> monthList = exService.YearMonthList(initTS_mon.get(0), initTS_mon.get(1));
 		List<String> monthListStr = exService.monthTostring(monthList);
-		List<AdminExtra_Dto_kkg> mdrs =service.monthlyGraph(initTS_mon.get(0), initTS_mon.get(1));
-		List<Integer> monthSaleList = exService.MonthlySaleList(monthList, mdrs);
-		List<Integer> monthOrderList = exService.MonthlyOrderList(monthList, mdrs);
 		
-		model.addAttribute("MonthlyMonth", monthListStr);
+System.out.println("시작일 : " + initTS_mon.get(0));
+System.out.println("최종일 : " + initTS_mon.get(1));
+		List<AdminExtra_Dto_kkg> mdrs =service.monthlyGraph(initTS_mon.get(0), initTS_mon.get(1));
+System.out.println("가져온 mdrs의 month : " + mdrs.get(0).getMonth());
+System.out.println("*************************************************************");
+System.out.println("*************************************************************");
+System.out.println("*************************************************************");
+System.out.println("*************************************************************");
+		List<Integer> monthSaleList = exService.MonthlySaleList(monthList, mdrs);
+System.out.println("monthSaleList 의 1번째 값 : " + monthSaleList.get(0));
+		
+		List<Integer> monthOrderList = exService.MonthlyOrderList(monthList, mdrs);
+System.out.println("monthOrderList 의 1번째 값 : " + monthOrderList.get(0));
+		
+		model.addAttribute("monthlyMonth", monthListStr);
 		model.addAttribute("monthlyOrder", monthOrderList);
 		model.addAttribute("monthlySale", monthSaleList);
 		
 		
-		List<AdminExtra_Dto_kkg> DNrs = service.dailyNSGraph(initTS_mon.get(0), initTS_mon.get(1));
+		List<AdminExtra_Dto_kkg> DNrs = service.dailyNSGraph(initTS.get(0), initTS.get(1));
+System.out.println("DNrs 의 날짜 값 : " + DNrs.get(0).getDate());
 		List<Integer> dailyNSList = exService.DailyNSList(dateList, DNrs);
+		
+		
+		
 		
 		model.addAttribute("dailyNS", dailyNSList);
 		

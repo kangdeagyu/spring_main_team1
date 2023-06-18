@@ -6,7 +6,7 @@
 
 
 	<select id="dailyGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
-		SELECT  DATE(odate) AS date, SUM(oprice) AS sale, COUNT(*) AS ocount
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE(odate)) AS No,   DATE(odate) AS date, SUM(oprice) AS sale, COUNT(*) AS count
 		FROM ordering 
 		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}
 		GROUP BY DATE(odate)
@@ -15,21 +15,20 @@
 	</select>
 
 	<select id="monthlyGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
-		SELECT ROW_NUMBER() OVER (ORDER BY Date_format(odate,'%Y-%m')) AS No, sum(oprice) AS sale, count(*) AS ocount, Date_format(odate,'%Y-%m') AS month 
-		FROM ordering
-		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}
-		GROUP BY DATE_FORMATsd(odate,'%Y-%m')
-	
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(odate,'%Y-%m')) AS No, DATE_FORMAT(odate,'%Y-%m') AS month, SUM(oprice) AS sale, count(*) AS count 
+		FROM ordering 
+		WHERE odate &gt;= #{startday} AND odate &lt;= #{endday}  
+		GROUP BY month 
+		ORDER BY month 
 	
 	</select>
 
-		<select id="dailyNsGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
-		SELECT ROW_NUMBER() OVER (ORDER BY Date(cinsertdate)) AS No, count(*) AS NScount,  cinsertdate AS date 
+	<select id="dailyNSGraph" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE(cinsertdate)) AS No,  DATE(cinsertdate) AS date, count(*) AS count 
 		FROM customer
 		WHERE cinsertdate &gt;= #{startday} AND cinsertdate &lt;= #{endday}
 		GROUP BY date
-	
-	
+
 	</select>
 
 

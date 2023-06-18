@@ -11,6 +11,6 @@ public interface ChartDao_kkg {
 
 	
 	public List<AdminExtra_Dto_kkg> dailyGraph(@Param("startday") Timestamp startday, @Param("endday")Timestamp endday) throws Exception;
-	public List<AdminExtra_Dto_kkg> monthlyGraph(Timestamp startday, Timestamp endday) throws Exception;
-	public List<AdminExtra_Dto_kkg> dailyNSGraph(Timestamp startday, Timestamp endday) throws Exception;
+	public List<AdminExtra_Dto_kkg> monthlyGraph(@Param("startday") Timestamp startday, @Param("endday")Timestamp endday) throws Exception;
+	public List<AdminExtra_Dto_kkg> dailyNSGraph(@Param("startday") Timestamp startday, @Param("endday")Timestamp endday) throws Exception;
 }
