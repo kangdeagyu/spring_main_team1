@@ -35,4 +35,12 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		return result;
 	}
 
+	// 이메일 체크
+	@Override
+	public int emailCheck(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		int result = dao.emailCheck(cid);
+		return result;
+	}
+
 }

@@ -126,7 +126,7 @@ function userCheck() {
     // 카카오 로그아웃 처리
     Kakao.Auth.logout(function() {
 // 로그아웃이 성공한 후에 서버의 로그아웃 처리를 진행
-      window.location.href = 'logout.do';
+      window.location.href = 'logout';
       alert("로그아웃되었습니다. 편안한 하루 되세요!") 
     });
   }

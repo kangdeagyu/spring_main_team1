@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.springlec.base.model.KHomeDto;
 import com.springlec.base.service.KHomeDaoService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class KHomeController {
 
@@ -27,6 +30,14 @@ public class KHomeController {
 	public String loginView() throws Exception{
 		return "KLogin";
 	}
+	
+	@RequestMapping("logout")
+	public String HomeView(HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession(true);
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	
 
 }

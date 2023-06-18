@@ -32,4 +32,23 @@ public class KUserController {
 		return result;
 		
 	}
-}
+	
+	// 회원가입 창
+	@RequestMapping("/joinView")
+	public String joinView() throws Exception{
+		return "KJoin";
+	}
+	
+	// 이메일 중복 체크
+	@RequestMapping("/emailCheck")
+	@ResponseBody
+	public int emailCheck(HttpServletRequest request) throws Exception{
+		int result = service.emailCheck(request.getParameter("email"));
+		return result;
+	}
+	
+
+	
+	
+} // end
+

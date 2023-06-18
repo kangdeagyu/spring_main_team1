@@ -4,9 +4,14 @@
 
 <mapper namespace="com.springlec.base.dao.KUserDao">
 
+	<!-- 유저 로그인 체크 -->
 	<select id="userCheck" resultType="com.springlec.base.model.KUserDto">
 		SELECT cname, cdeletedate FROM customer WHERE cid = #{username} and cpassword = #{password}
 	</select>
 	
+	<!-- 회원가입 이메일 중복체크  -->
+	<select id="emailCheck">
+		select count(cid) from customer where cid = #{cid}
+	</select>	
 
 </mapper>

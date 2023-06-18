@@ -170,7 +170,7 @@
 <hr/>
 	<div class="d-flex justify-content-between">
 	  <div>
-	 	 <a href="join.do" class="text-dark">회원가입</a>
+	 	 <a href="joinView" class="text-dark">회원가입</a>
 	  </div>
 	  <div>
 	  	<a href="findId.do" class="text-dark">아이디</a> / <a href="findPw.do" class="text-dark">비밀번호 찾기</a>
