@@ -26,18 +26,31 @@ public class KHomeController {
 		return "KHome" ;
 	}
 	// 로그인 페이지
-	@RequestMapping("loginView")
+	@RequestMapping("/loginView")
 	public String loginView() throws Exception{
 		return "KLogin";
 	}
 	// 로그아웃
-	@RequestMapping("logout")
+	@RequestMapping("/logout")
 	public String HomeView(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
 		session.invalidate();
 		return "redirect:/";
 	}
+	// 아이디찾기 페이지
+	@RequestMapping("/findId")
+	public String findId() throws Exception{
+		return "KFindId";
+	}
+	// 비밀번호찾기 페이지
+	@RequestMapping("/findPw")
+	public String findPw() throws Exception{
+		return "KFindpw";
+	}
+
 	
+	
+
 	
 
 }

@@ -1,9 +1,12 @@
 package com.springlec.base.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springlec.base.dao.KUserDao;
+import com.springlec.base.model.KAdminDto;
 import com.springlec.base.model.KUserDto;
 
 import jakarta.servlet.http.HttpSession;
@@ -34,6 +37,28 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		
 		return result;
 	}
+	
+	// 관리자 체크
+	@Override
+	public String adminCheck(String username, String password) throws Exception {
+		// TODO Auto-generated method stub
+		KAdminDto dto = dao.adminCheck(username, password);
+		String result = "error";
+	
+		if(dto != null) {
+			String adeletedate = dto.getAdeletedate();
+			
+			if(adeletedate != null) {
+				result = "mdraw";
+			}else {
+				result = "admin";
+			}
+		}
+		
+		return result;
+	}
+	
+	
 
 	// 이메일 체크
 	@Override
@@ -74,5 +99,36 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		
 		return result;
 	}
+
+	// 아이디 찾기
+	@Override
+	public String findIdCheck(String cname, String cphone) throws Exception {
+		// TODO Auto-generated method stub
+		String result = dao.findIdCheck(cname, cphone);
+		return result;
+	}
+
+	// 비밀번호 찾기
+	@Override
+	public String findPwCheck(String cid, String cname) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.findPwCheck(cid, cname);
+	}
+
+	// 회원 정보 불러오기
+	@Override
+	public List<KUserDto> userList(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.userList(cid);
+	}
+
+	@Override
+	public int userUpdate(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
+			String cpostnum, String caddress1, String caddress2) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.userUpdate(cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2);
+	}
+
+
 
 }
