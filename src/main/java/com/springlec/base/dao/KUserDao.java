@@ -24,5 +24,8 @@ public interface KUserDao {
 	public String findPwCheck(String cid, String cname) throws Exception;
 	// 회원 정보 불러오기 (mypage)
 	public List<KUserDto> userList(String cid) throws Exception;
+	// 회원 정보 수정
+	public int userUpdate(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender, String cpostnum,
+			String caddress1, String caddress2) throws Exception;
 	
 }

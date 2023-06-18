@@ -122,6 +122,13 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 		return dao.userList(cid);
 	}
 
+	@Override
+	public int userUpdate(String cid, String cpassword, String cname, String cphone, String cbirthdate, int cgender,
+			String cpostnum, String caddress1, String caddress2) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.userUpdate(cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2);
+	}
+
 
 
 }

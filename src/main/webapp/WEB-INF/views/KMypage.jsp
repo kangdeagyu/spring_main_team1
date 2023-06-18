@@ -314,13 +314,13 @@ function submitForm() {
 	  const cbirth = form.cbirthdate.value;
 
 	  var xhr = new XMLHttpRequest();
-	  xhr.open("POST", "member.mb", true);
+	  xhr.open("POST", "userModify", true);
 	  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	  xhr.onreadystatechange = function() {
 	    if (xhr.readyState === XMLHttpRequest.DONE) {
 	      if (xhr.status === 200) {
 	        alert("회원정보가 수정되었습니다.");
-	        window.location.href = "mypageview.do";
+	        window.location.href = "KMypageView";
 	      } else {
 	        alert("회원정보 수정 오류");
 	        form.cid.select();

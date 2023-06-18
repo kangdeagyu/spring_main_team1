@@ -130,5 +130,32 @@ public class KUserController {
 		return "KMypage";
 	}
 	
+	// 회원정보 수정
+	@RequestMapping("/userModify")
+	@ResponseBody
+	public int userUpdate(HttpServletRequest request) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String cid = request.getParameter("email");
+		String cpassword = request.getParameter("password");
+		String cname = request.getParameter("name");
+		String cphone = request.getParameter("phone");
+		String cbirth = request.getParameter("cbirth");
+		String cgender = request.getParameter("genderInputs");
+		String cpostnum = request.getParameter("cpostnum");
+		String caddress1 = request.getParameter("caddress1");
+		String caddress2 = request.getParameter("caddress2");
+		int gender = 0;
+		
+		if(cgender.equals("male")) {
+			gender = 1;
+		}else {
+			gender = 0;
+		}
+
+		int result = service.userUpdate(cid, cpassword, cname, cphone, cbirth, gender, cpostnum, caddress1, caddress2);
+	    return result;
+		
+	}
+	
 } // end
 

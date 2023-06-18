@@ -40,5 +40,11 @@
 	<select id="userList" resultType="com.springlec.base.model.KUserDto">
 		select cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2 from customer where cid = #{cid}
 	</select>
+	<!-- 회원 정보 수정 -->
+	<update id="userUpdate">
+		update customer set cname = #{cname}, cphone = #{cphone}, cbirthdate = #{cbirthdate}, cgender = #{cgender},
+		 cpostnum = #{cpostnum}, caddress1 = #{caddress1}, caddress2 = #{caddress2} where cid = #{cid}
+	</update>
+	
 	
 </mapper>
