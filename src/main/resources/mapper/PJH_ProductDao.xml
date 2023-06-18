@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.PJH_ProductDao">
+
+<select id="productList" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT p.pfilename, p.pname, p.pprice, p.pid, p.pstock, p.pcontent, p.pcontentfilename1, p.pcontentfilename2, c.c_name
+FROM product p JOIN category c ON p.pcategory = c.c_num WHERE p.pdeletedate IS NULL
+</select>
+
+
+<select id="search1" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pfilename, pid, pprice, pname, pcategory, pcontent, pstock, pcontentfilename1, pcontentfilename2 FROM product
+WHERE #{list} LIKE #{query} AND pdeletedate IS NULL
+</select>
+
+<select id="search2">
+SELECT pfilename, pid, pprice, pname,pstock, pcategory, pcontent, pcontentfilename1, pcontentfilename2 FROM product
+WHERE pname LIKE #{pname} AND pdeletedate IS NULL";
+</select>
+
+
+<insert id="saveProduct1">
+INSERT INTO product (pname, pprice, pstock, pfilename, pcategory, pcontent, pcontentfilename1, pcontentfilename2, pinsertdate)
+VALUES (#{pname}, #{pprice}, #{pstock} #{pfilename}, #{pcategory}, #{pcontent}, #{newFileName1}, #{newFileName2}, now())
+</insert>
+
+<update id="saveProduct2">
+UPDATE product SET pfilename = #{pid}+'_'+#{newFileName}, pcontentfilename1='content1_'+#{pid} + '_' + #{newFileName1}, 
+pcontentfilename2='content2_'+#{pid} + '_' + #{newFileName2} WHERE pid = #{pid}
+</update>
+
+
+<insert id="saveProduct3">
+INSERT INTO make (product_pid, admin_aid, mdate) VALUES (#{pid}, 'admin', now())";
+</insert>
+
+<select id="getUpdatedFileName" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pfilename FROM product ORDER BY pid DESC LIMIT 1
+</select>
+
+<select id="getUpdatedContentFileName1" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pcontentfilename1 FROM product ORDER BY pid DESC LIMIT 1
+</select>
+
+<select id="getUpdatedContentFileName2" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pcontentfilename2 FROM product ORDER BY pid DESC LIMIT 1
+</select>
+
+<select id="getModifyFileName" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pfilename FROM product WHERE pid = ?
+</select>
+
+<update id="delete">
+update product set pdeletedate= now() where pid = #{pid}
+</update>
+
+<update id="modify">
+update product set pname=#{pname}, pfilename=#{pfilename}, pcontent=#{pcontent}, pcontentfilename1=#{pcontentfilename1}, 
+pcontentfilename2=#{pcontentfilename1}, pstock=#{pstock}, pprice=#{pprice} where pid= #{pid}
+</update>
+
+<update id="modify2">
+INSERT INTO inbound (i_aid, i_pid, iqty, idate) VALUES ('admin', #{pid}, #{modifiedQty}, now())
+</update>
+
+<select id="modify3" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pstock FROM product WHERE pid = #{pid}
+</select>
+
+<select id="informationlist" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT p.pfilename, p.pname, p.pprice, p.pid, c.c_name 
+FROM product p JOIN category c ON p.pcategory = c.c_num
+</select>
+
+
+<select id="getProductInfo" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pid, pname, pprice, pcontent FROM product WHERE pid = #{pid}
+</select>
+
+
+
+</mapper>
