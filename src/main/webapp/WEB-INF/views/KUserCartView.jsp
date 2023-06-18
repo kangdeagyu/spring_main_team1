@@ -256,10 +256,10 @@ function calculateTotalPrice() {
 	  handleSelectAllCheckbox(this);
 	});
 	
-	// 데이터 보내기
+	// 선택 상품삭제
 	function sendSelectedBids() {
 	  var selectedBidsString = selectedBids.join(",");
-	  var url = "selectiondelete.bi?selectedBids=" + encodeURIComponent(selectedBidsString);
+	  var url = "selectiondelete?selectedBids=" + encodeURIComponent(selectedBidsString);
 		
 	  if(selectedBids.length == 0){  
 		  alert("상품을 선택해주세요"); 
@@ -272,7 +272,7 @@ function calculateTotalPrice() {
 	    if (xhr.readyState === XMLHttpRequest.DONE) {
 	      if (xhr.status === 200) {
 	        console.log('선택된 bids를 서버로 전송했습니다.');
-	        window.location.href = "cart.do";
+	        window.location.href = "KUserCartView";
 	      } else {
 	        console.error('서버로의 요청이 실패했습니다.');
 	      }
@@ -332,13 +332,13 @@ function qtyChange(){
 	  var quantity = input.value; 
 	 
  	  var xhr = new XMLHttpRequest();
-	  xhr.open("POST", "qtych.change", true);
+	  xhr.open("POST", "qtyChangeView", true);
 	  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	  xhr.onreadystatechange = function() {
 	    if (xhr.readyState === XMLHttpRequest.DONE) {
 	      if (xhr.status === 200) {
 	        alert("수량이 변경되었습니다.");
-	        window.location.href = "cart.do";
+	        window.location.href = "KUserCartView";
 	      } else {
 	        alert("수량변경오류");
 	      }
