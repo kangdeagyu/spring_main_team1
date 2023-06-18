@@ -1,5 +1,7 @@
 package com.springlec.base.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.springlec.base.model.KAdminDto;
@@ -59,6 +61,12 @@ public class KUserDaoImpl implements KUserDao {
 	public String findPwCheck(String cid, String cname) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".findPwCheck");
+	}
+
+	@Override
+	public List<KUserDto> userList(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".userList");
 	}
 
 

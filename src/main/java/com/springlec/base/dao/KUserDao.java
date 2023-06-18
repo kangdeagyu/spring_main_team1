@@ -1,5 +1,7 @@
 package com.springlec.base.dao;
 
+import java.util.List;
+
 import com.springlec.base.model.KAdminDto;
 import com.springlec.base.model.KUserDto;
 
@@ -20,5 +22,7 @@ public interface KUserDao {
 	public String findIdCheck(String cname, String cphone) throws Exception;
 	// 유저 Pw 찾기
 	public String findPwCheck(String cid, String cname) throws Exception;
+	// 회원 정보 불러오기 (mypage)
+	public List<KUserDto> userList(String cid) throws Exception;
 	
 }

@@ -74,7 +74,7 @@
 		<ul class="nav justify-content-end">
 			<c:if test="${cid != null }">
 				<li class="nav-item">
-				   	<a class="nav-link" href="mypageview.do"><p class="text-dark" >${name }님</p></a>
+				   	<a class="nav-link" href="KMypageView"><p class="text-dark" >${name }님</p></a>
 				<li class="nav-item">
 				   	 <a class="nav-link" href="#" onclick="logoutAndKakaoLogout();"><p class="text-dark">로그아웃</p></a>
 			    </li>
@@ -85,7 +85,7 @@
 			    </li>
 			</c:if>
 			<li class="nav-item">	<!-- 마이 페이지 이동 -->
-			    <a class="nav-link" href="mypageview.do" onclick="return userCheck()">
+			    <a class="nav-link" href="KMypageView" onclick="return userCheck()">
 			   	 <img src="image/so04.png" alt="" width="30" height="24">
 			    </a>
 		    </li>

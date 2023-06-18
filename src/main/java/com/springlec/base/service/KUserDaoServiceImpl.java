@@ -1,5 +1,7 @@
 package com.springlec.base.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -111,6 +113,13 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 	public String findPwCheck(String cid, String cname) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.findPwCheck(cid, cname);
+	}
+
+	// 회원 정보 불러오기
+	@Override
+	public List<KUserDto> userList(String cid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.userList(cid);
 	}
 
 

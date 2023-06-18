@@ -47,6 +47,7 @@ public class KHomeController {
 	public String findPw() throws Exception{
 		return "KFindpw";
 	}
+
 	
 	
 

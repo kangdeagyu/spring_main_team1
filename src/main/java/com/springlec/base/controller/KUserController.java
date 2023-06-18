@@ -1,11 +1,14 @@
 package com.springlec.base.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.springlec.base.model.KUserDto;
 import com.springlec.base.service.KUserDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -117,7 +120,15 @@ public class KUserController {
 		
 		return "KFindPwview";
 	}
-	
+	// 마이 페이지
+	@RequestMapping("KMypageView")
+	public String KMypageView(HttpServletRequest request, Model model) throws Exception{
+		HttpSession session = request.getSession(true);
+		List<KUserDto> userList = service.userList((String)session.getAttribute("cid"));
+		
+		model.addAttribute("list", userList);
+		return "KMypage";
+	}
 	
 } // end
 

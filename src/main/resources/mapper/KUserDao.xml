@@ -36,6 +36,9 @@
 	<select id="findPwCheck">
 		select cpassword from customer where cid = #{cid} and cname = #{cname}
 	</select>
-	
+	<!-- 회원 정보불러오기 -->
+	<select id="userList" resultType="com.springlec.base.model.KUserDto">
+		select cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2 from customer where cid = #{cid}
+	</select>
 	
 </mapper>
