@@ -32,7 +32,7 @@ public class KUserDto {
 	}
 
 	// userCheck 확인
-	
+
 	public KUserDto(String cname, String cdeletedate) {
 		super();
 		this.cname = cname;

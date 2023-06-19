@@ -19,9 +19,9 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 	
 	// 회원 체크
 	@Override
-	public String userCheck(String username, String password) throws Exception {
+	public String userCheck(String cid, String cpassword) throws Exception {
 		// TODO Auto-generated method stub
-		KUserDto dto = dao.userCheck(username, password);
+		KUserDto dto = dao.userCheck(cid, cpassword);
 		String result = "error";
 		
 		if(dto != null) {
@@ -40,9 +40,9 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 	
 	// 관리자 체크
 	@Override
-	public String adminCheck(String username, String password) throws Exception {
+	public String adminCheck(String cid, String cpassword) throws Exception {
 		// TODO Auto-generated method stub
-		KAdminDto dto = dao.adminCheck(username, password);
+		KAdminDto dto = dao.adminCheck(cid, cpassword);
 		String result = "error";
 	
 		if(dto != null) {

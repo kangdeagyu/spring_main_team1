@@ -8,9 +8,9 @@ import com.springlec.base.model.KUserDto;
 public interface KUserDaoService {
 
 	// 유저 로그인 체크
-	public String userCheck(String username, String password) throws Exception;
+	public String userCheck(String cid, String cpassword) throws Exception;
 	// 관리자 로그인 체크
-	public String adminCheck(String username, String password) throws Exception;
+	public String adminCheck(String cid, String cpassword) throws Exception;
 	// 회원가입 이메일 중복체크
 	public int emailCheck(String cid) throws Exception;
 	// 회원가입

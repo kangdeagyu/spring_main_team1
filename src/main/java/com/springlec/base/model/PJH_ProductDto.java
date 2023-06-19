@@ -34,13 +34,6 @@ public class PJH_ProductDto {
 	}
 
 
-	
-
-
-	
-
-
-
 
 
 	public PJH_ProductDto(int pid, String pname, String pfilename, String pcontent, String pcontentfilename1,
