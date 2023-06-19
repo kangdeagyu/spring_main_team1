@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.springlec.base.model.KCartDto;
+import com.springlec.base.model.KCartOrderDto;
 
 public class KCartDaoImpl implements KCartDao {
 
@@ -30,6 +31,13 @@ public class KCartDaoImpl implements KCartDao {
 	public int selectionDelete(int bid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(nameSpace + ".selectionDelete");
+	}
+
+	// 장바구니 -> 구매 페이지	
+	@Override
+	public List<KCartOrderDto> cartOrder(int bid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".cartOrder");
 	}
 
 }

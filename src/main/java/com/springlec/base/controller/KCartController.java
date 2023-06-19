@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springlec.base.model.KCartDto;
+import com.springlec.base.model.KCartOrderDto;
+import com.springlec.base.model.KUserDto;
 import com.springlec.base.service.KCartDaoService;
+import com.springlec.base.service.KUserDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +22,8 @@ public class KCartController {
 
 	@Autowired
 	KCartDaoService service;
+	@Autowired
+	KUserDaoService userDaoService;
 	
 	// 장바구니
 	@RequestMapping("/KUserCartView")
@@ -44,6 +49,25 @@ public class KCartController {
 	public int selectiondelete(HttpServletRequest request) throws Exception{
 		int result = service.selectionDelete(request.getParameterValues("selectedBids"));
 		return result;
+	}
+	
+	// 장바구니 -> 구매페이지
+	@RequestMapping("/selectionOrder")
+	@ResponseBody
+	public void selectionOrder(HttpServletRequest request) throws Exception{
+		HttpSession session = request.getSession(true);
+		List<KCartOrderDto> cartOrder = service.cartOrder(request.getParameterValues("selectedBids"));
+		List<KUserDto> userList = userDaoService.userList((String)session.getAttribute("cid"));
+		
+		session.setAttribute("orderList", cartOrder);
+		session.setAttribute("userlist", userList);
+
+	}
+	
+	// 구매페이지
+	@RequestMapping("/KCartOrderView")
+	public String KCartOrderView() {
+		return "KCartOrderView";
 	}
 	
 	

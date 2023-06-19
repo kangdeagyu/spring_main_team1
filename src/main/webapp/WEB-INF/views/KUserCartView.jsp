@@ -120,7 +120,7 @@
     <div class="container">
         <figure class="text-center">
   		  <button type="button" onclick="sendOrder()">주문하기</button><br/><br/>
-  		  <a href="home.do">계속 쇼핑하기</a>
+  		  <a href="/">계속 쇼핑하기</a>
     	</figure>
     </div>
     
@@ -201,7 +201,6 @@ if (bidInput) {
 	  updateDisplayedValues();
 	}
 
-	// 전체 선택한 
 // 전체 선택한 항목 계산
 function calculateTotalPrice() {
 	  var checkboxes = document.querySelectorAll('td input[name="selectedItems"]');
@@ -288,16 +287,8 @@ function sendOrder() {
 	  if (selectedBids.length === 0) {
 	    alert("상품을 선택해주세요");
 	  } else {
-	    var url = "selectionOrder.od";
-	    var params = "selectedBids=";
-	    
-	    for (var i = 0; i < selectedBids.length; i++) {
-	      params += encodeURIComponent(selectedBids[i]);
-	      
-	      if (i !== selectedBids.length - 1) {
-	        params += "&selectedBids=";
-	      }
-	    }
+		var selectedBidsString = selectedBids.join(",");
+		var url = "selectionOrder?selectedBids=" + encodeURIComponent(selectedBidsString);
 	    
 	    var xhr = new XMLHttpRequest();
 	    xhr.open('POST', url, true);
@@ -306,14 +297,14 @@ function sendOrder() {
 	      if (xhr.readyState === 4) {
 	        if (xhr.status === 200) {
 	          alert("상품을 주문 하시겠습니까?");
-	          window.location.href = "cartorder.do";
+	          window.location.href = "KCartOrderView";
 	        } else {
 	          alert("주문 오류");
 	        }
 	      }
 	    };
 	
-	    xhr.send(params);
+	    xhr.send();
 	  }
 }
 

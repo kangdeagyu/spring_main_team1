@@ -16,5 +16,10 @@
 	<delete id="selectionDelete">
 		DELETE FROM basket WHERE bid = #{bid}
 	</delete>
+	<!-- 장바구니 -> 구매페이지  -->
+	<select id="cartOrder" resultType="com.springlec.base.model.KCartOrderDto">
+		SELECT b.b_cid, b.b_pid, b.bqty, p.pprice, p.pfilename, p.pname, p.pcontent FROM basket b, product p 
+		WHERE b.b_pid = p.pid AND b.bid = #{bid}
+	</select>	
 	
 </mapper>
