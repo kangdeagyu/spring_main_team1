@@ -4,7 +4,7 @@
 
 <mapper namespace="com.springlec.base.dao.KKG_productDao">
 
-<select id="getOutStocks">
+<select id="getOutStocks" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
 SELECT ROW_NUMBER() OVER (ORDER BY p.pstock) AS seq, p.pcategory AS category, p.pid AS pid, p.pname AS pname, p.pstock AS stock 
 FROM product AS p  
 WHERE pstock &lt;= 10 AND pdeletedate is null 

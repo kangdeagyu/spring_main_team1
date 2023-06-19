@@ -9,7 +9,7 @@ import com.springlec.base.dao.KKG_productDao;
 import com.springlec.base.model.AdminExtra_Dto_kkg;
 
 @Service
-public class KKG_productDao_Service_Impl implements KKG_porductDao_Service {
+public class KKG_productDao_Service_Impl implements KKG_productDao_Service {
 
 	@Autowired
 	KKG_productDao dao;

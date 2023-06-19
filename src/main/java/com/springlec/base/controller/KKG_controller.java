@@ -1,7 +1,9 @@
 package com.springlec.base.controller;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springlec.base.model.AdminExtra_Dto_kkg;
+import com.springlec.base.service.KKG_UserDao_Service;
 import com.springlec.base.service.KKG_adminDao_Service;
 import com.springlec.base.service.KKG_extraService;
-import com.springlec.base.service.KKG_productDao_Service_Impl;
+import com.springlec.base.service.KKG_productDao_Service;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -24,9 +28,11 @@ public class KKG_controller {
 	@Autowired
 	KKG_extraService exService;
 	@Autowired
-	KKG_productDao_Service_Impl proService;
+	KKG_productDao_Service proService;
+	@Autowired
+	KKG_UserDao_Service userService;
 	
-	@RequestMapping("/adminHome")
+	@RequestMapping("/adminHome.do")
 	public String list(HttpServletRequest request, Model model) throws Exception {
 		
 		
@@ -72,6 +78,86 @@ public class KKG_controller {
 		
 		return "adminHome";
 	}
+	
+	
+	@RequestMapping("/AUserlist.do")
+	public String AUserlist(HttpServletRequest request, Model model) throws Exception {
+		
+		
+		// page	번호와 start day 및 end day 의 확정.
+		// userlist.jsp 를 최초로 오픈할때는 기본값을 입력함.
+		// 그 이후로는 열려있던 pagenum 및 startdate/enddate를  param으로 받아서 출력함. (수정된것은 수정된대로 param으로 입력해줌)
+
+		int pageNum = 1;
+		Timestamp startday = null;
+		Timestamp endday=null;
+		
+		
+		if (request.getParameter("pageNum") == null ) {
+			pageNum = 1;
+			List<Timestamp> initTS = exService.initTimeStamp();  					// 최근 2주일 날짜를 뽑기위한 14일전 날짜와 오늘 날짜로 이루어진 리스트
+			startday = initTS.get(0);
+			endday = initTS.get(1);
+			
+		}else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			System.out.println("parameter에 들어간 startDate : " + request.getParameter("startDate"));
+			startday = exService.getTimestampFromParameterDate(request.getParameter("startDate"));
+			endday = exService.getTimestampFromParameterDate(request.getParameter("endDate"));
+			
+		}
+		
+		
+		
+		// chart에 보여줄 날짜를 List 형식으로 만들어서 보내줌.
+		List<Date> dateList = exService.DateList(startday,endday); 	// 두개 날짜 사이의 모든 날짜를 저장한 리스
+		List<String> dateListStr= exService.dateListStr(dateList);				// JSP로 보내서 chart.js에 주려면 String 형식이 사고 안나고 좋음. 이것을 위한 문자열리스트 형식의 날짜리스트
+		model.addAttribute("dailyDate", dateListStr);
+		model.addAttribute("dateList", dateList);
+		
+		
+		
+		//sql에서 신규 일별 신규 가입자 수 가져오고, 비어있는 날짜들은 0으로 채워서 INteger 리스트로 가져오기
+		List<AdminExtra_Dto_kkg> DNrs = service.dailyNSGraph(startday, endday);
+		List<Integer>dailyNSList = exService.DailyNSList(dateList, DNrs); // 
+
+		model.addAttribute("dailyNS", dailyNSList);
+		
+		
+		//회원 목록을 가져오기 위한 작업.
+		List<AdminExtra_Dto_kkg> userList = userService.getUserList(pageNum);
+		model.addAttribute("userList", userList);
+
+		
+		
+		//유저목록의 최대페이지 및 전체 유저회원수 가져오기
+		List<AdminExtra_Dto_kkg> chnum = userService.getUserCount();
+		model.addAttribute("maxPage",chnum.get(0).getMaxpage()); // 최대 페이지수
+		model.addAttribute("usernum",chnum.get(0).getCustNum()); // 회원 목록
+		
+
+		
+		return "adminUserlist";
+	}
+	
+	
+	@RequestMapping("/SaleManage.do")
+	public String saleManage() throws Exception{
+		
+		return "adminSalemanage";
+	}
+	
+	@RequestMapping("/Ordermanage.do")
+	public String ordermanage() throws Exception{
+		
+		return "adminOrderlist";
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 

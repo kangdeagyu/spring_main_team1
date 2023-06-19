@@ -30,9 +30,7 @@ public class KKG_config {
 			// 최초 실행시에는 최근 2주간의 날짜를 보여주어야 한다.
 			// 오늘을 endday, 14일전을 startday로 만든다.
 			@Override
-			public List<Timestamp> initTimeStamp(){
-				
-				
+			public List<Timestamp> initTimeStamp(){	
 				Date sqlDate = new Date(System.currentTimeMillis());
 				Timestamp endday = new Timestamp(sqlDate.getTime());
 				Calendar tempday = Calendar.getInstance();
@@ -41,12 +39,9 @@ public class KKG_config {
 				Timestamp startday = new Timestamp(tempday.getTimeInMillis());
 				
 				return Arrays.asList(startday, endday);
-				
 			}
 			
 
-			
-			
 			// 두 날짜 사이의 모든 날짜를 List<Date>로 만든다.
 			// 만든 이 List<Date>는 DB에서 매출/주문/회원수 등의 자료를 가져와서, 비교할때 쓸 리스트이다.
 			// 비교하는 이유는 특정한 날에 해당 데이터가 없으면 ArrrayList <Dto>에서 빠져 있을 것이기 때문이다.
@@ -180,6 +175,16 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				
 				
 				return getDailySaleList(dateList, DNrs);  //DTO 에 Date / SALE 로 저장하는 방식이 있어서 이렇게 써서 가져옴.
+			}
+
+
+			@Override
+			public Timestamp getTimestampFromParameterDate(String date) throws Exception {
+				// TODO Auto-generated method stub
+				SimpleDateFormat tempFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
+				
+				return new Timestamp(tempFormat.parse(date + " 00:00:00").getTime());
 			}
 		};
 
@@ -341,7 +346,6 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 			if(dtf.format(DB_date.toLocalDate()).equals(dtf.format(Real_date.toLocalDate()))) {
 				
 				OrderList.add(ddrs.get(j).getCount()); // 날짜가 있으면
-
 				j++;
 				k++;
 			}
@@ -361,13 +365,8 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				k++;
 			} // outofbound에러 처리 끝.
 		} // daily sale을 위한 while 끝
-        
-		
 		
 		return OrderList;
-      
-		
-		
 		
 	}  //method04. orderList  
 	

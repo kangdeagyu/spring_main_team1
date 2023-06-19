@@ -20,7 +20,7 @@ public interface KKG_extraService {
 	List<Integer> MonthlySaleList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
 	List<Integer> MonthlyOrderList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
 	List<Integer> DailyNSList (List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
-	
+	Timestamp getTimestampFromParameterDate(String date) throws Exception;
 	
 	
 }

@@ -164,10 +164,13 @@
 					</div>
 					<hr>
 
-					<%-- 검증을 위한 파트.	<div>
+<%-- 					 	<div>
+				<p>검증을 위한 파트.</p>
 				
 				<p>데이터 확인 하는 파트</p>
 				<p>저장된 페이지 번호 :  ${userList[0].pageNum}</p>
+				
+				
 				<p>저장된 시작 날 :${dateList[0]}</p>
 				
 				<p>저장된 마지말  : ${dateList[fn:length(dateList)-1]} </p>
@@ -175,8 +178,8 @@
 				
 				<hr>
 				
-				</div>
---%>
+				</div> --%>
+
 					<div>
 						<h2>회원 목록</h2>
 					</div>
@@ -229,10 +232,8 @@
 						<div align="center">
 							<form action="AUserlist.do" name="page" method="get">
 								<c:set var="count" value="${maxPage}" />
-								<input type="hidden" name="startDate" id="startDate"
-									value="${dateList[0]}"> <input type="hidden"
-									name="endDate" id="endDate"
-									value="${dateList[fn:length(dateList)-1]}">
+								<input type="hidden" name="startDate" id="startDate" value="${dateList[0]}">
+								 <input type="hidden" name="endDate" id="endDate" value="${dateList[fn:length(dateList)-1]}">
 								<c:forEach begin="1" end="${count}" var="i">
 									<input type="submit" name="pageNum" value='${i}'>  &nbsp; 
 						</c:forEach>
