@@ -76,5 +76,24 @@ public class PJH_Controller {
 	    }
 		return "redirect:APlist.do";
 	}
+	@RequestMapping("/deleteProduct.do")
+	public String delete(@RequestParam("pid") int[] pidArray,Model model) throws Exception{
+		service.delete(pidArray);
+		return "redirect:APlist.do";
+	}
 	
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}//END

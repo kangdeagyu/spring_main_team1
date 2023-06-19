@@ -123,5 +123,11 @@ public class PJH_ProductDao_Impl implements PJH_ProductDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".modify", params);
 	}
+	
+	@Override
+	public void delete(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace+".delete");
+	}
 
 }

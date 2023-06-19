@@ -14,5 +14,5 @@ public interface PJH_ProductDao_Service {
 	public List<PJH_ProductDto> search1(String list, String query) throws Exception;
 	public void saveProduct1(String pname, int pprice, int pstock, MultipartFile file, int pcategory, String pcontent, MultipartFile file1, MultipartFile file2, String uploadPath) throws Exception;
 	public void modify(String pname, int pprice, int pstock, MultipartFile pfilename, String pcontent, MultipartFile pcontentfilename1, MultipartFile pcontentfilename2, int pid, String uploadPath) throws Exception;
-	
+	public void delete(int[] pidArray) throws Exception;
 }

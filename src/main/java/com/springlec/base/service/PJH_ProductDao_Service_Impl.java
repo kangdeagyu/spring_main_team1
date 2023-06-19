@@ -101,6 +101,14 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 		
 	}
 
+
+	@Override
+	public void delete(int[] pidArray) throws Exception {
+	    for (int pid : pidArray) {
+	        dao.delete(pid);
+	    }
+	}
+
 	
 
 
