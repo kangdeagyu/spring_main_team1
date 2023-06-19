@@ -80,7 +80,6 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 			// 하지만 일단 반복해서 클래스 구성을 눈에 익히고, 연습해보기 위해, 모든 경우를 각각의 method로 만들어서 진행하였다.
 			@Override
 			public List<Integer> dailySaleList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception {
-
 				return getDailySaleList(dateList, ddrs); // 하단은 method 03 참조
 			}
 
@@ -107,8 +106,8 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				Timestamp endday = new Timestamp(sqlDate.getTime());
 				Calendar tempday = Calendar.getInstance();
 				tempday.setTime(endday);
-				tempday.add(Calendar.MONTH, -12);
 				tempday.set(Calendar.DAY_OF_MONTH, 1);
+				tempday.add(Calendar.MONTH, -12);
 				Timestamp startday = new Timestamp(tempday.getTimeInMillis());
 				
 				
@@ -272,7 +271,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 
 				if (dtf.format(DB_date.toLocalDate()).equals(dtf.format(Real_date.toLocalDate()))) {
 
-					saleList.add(ddrs.get(j).getCount()); // 날짜가 있으면
+					saleList.add(ddrs.get(j).getSale()); // 날짜가 있으면
 
 					j++;
 					k++;
