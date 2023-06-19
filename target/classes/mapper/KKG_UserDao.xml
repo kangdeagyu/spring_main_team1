@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KKG_UserDao">
+
+<select id="getUserList" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
+
+SELECT * FROM (
+
+
+SELECT #{pageNum} AS pageNum, cid, cname, cphone, cbirthdate, cgender, CONCAT(cpostnum, caddress1, caddress2) as address,DATE(cinsertdate) as cinsertdate, ROW_NUMBER() OVER (ORDER BY DATE(cinsertdate)) AS seq FROM customer
+
+
+WHERE cdeletedate IS NULL
+)
+
+AS SUBQUERY WHERE seq &lt;=#{pageNum}*5 and seq &gt; (#{pageNum}-1)*5
+
+
+
+</select>
+
+
+
+
+<select id="getUserCount">
+
+SELECT FLOOR(COUNT(*)/5)+1 AS maxpage, COUNT(*) as custNum from customer
+
+
+
+
+
+</select>
+
+
+
+</mapper>

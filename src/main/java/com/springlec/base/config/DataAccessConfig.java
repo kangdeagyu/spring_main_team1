@@ -20,7 +20,7 @@ public class DataAccessConfig {
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setMapperLocations(
 				new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml") // 경로위치 달라지면 바꿔줘여됨
-				);
+				); 
 		return sessionFactory.getObject();
 	}
 	

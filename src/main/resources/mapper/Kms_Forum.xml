@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.Kms_Forum_Dao">
+
+<select id="list" resultType="com.springlec.base.model.Kms_Forum_Dto">
+SELECT f.*,p.pname,c.cname FROM forum f,product p, customer c WHERE p.pid = f.f_pid and c.cid = f.f_cid 
+and ftype = #{ftype} and fdeletedate is null order by fref desc,freforder
+</select>
+
+<insert id="forumwrite">
+insert into forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)
+ select #{f_cid},'admin', #{f_pid}, 1 , max(fref) + 1, 0,0, 0,#{ftitle},#{fcontent},now(),0,0 from forum
+</insert>
+
+<select id="forumview" resultType="com.springlec.base.model.Kms_Forum_Dto">
+select f.*, p.pname from forum f, product p where p.pid = f.f_pid and f.fid = #{fid}
+</select>
+
+</mapper>
