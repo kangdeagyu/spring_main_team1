@@ -38,10 +38,10 @@ public class Kms_Forum_Controller {
 		return "ForumView";
 	}
 	
-	@RequestMapping("/forumview")
-	public String commentlist(HttpServletRequest request, Model model) throws Exception{
-		List<Kms_Forum_Dto> commentlist = service.commentlist(Integer.parseInt(request.getParameter("fid")));
-		model.addAttribute("commentlist",commentlist);
-		return "FormView";
-	}
+//	@RequestMapping("/forumview")
+//	public String commentlist(HttpServletRequest request, Model model) throws Exception{
+//		List<Kms_Forum_Dto> commentlist = service.commentlist(Integer.parseInt(request.getParameter("fid")));
+//		model.addAttribute("commentlist",commentlist);
+//		return "FormView";
+//	}
 }
