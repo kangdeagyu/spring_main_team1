@@ -4,7 +4,6 @@
 
 
 function DoublebarChart(context, xlabel, ylabel_01, ylabel_02) {
-
 	const datas = {
 		labels: xlabel,
 		datasets: [
@@ -305,6 +304,7 @@ function SingleLineChart(context, xlabels, y01, ydatas_01) {
 
 // 두개 데이터차트를 한 화면에 보여주는 함수.
 function DoubleLineChart(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
+	console.log(xlabel+"값 들어왔다")
 
 
 

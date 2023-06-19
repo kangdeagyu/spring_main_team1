@@ -185,6 +185,58 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				
 				return new Timestamp(tempFormat.parse(date + " 00:00:00").getTime());
 			}
+
+			@Override
+			public Timestamp getTimestampFromParameterDate2(String date) throws Exception {
+				// TODO Auto-generated method stub
+				SimpleDateFormat tempFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
+				
+				return new Timestamp(tempFormat.parse(date + " 23:59:59").getTime());
+			}
+			
+			
+
+			@Override
+			public List<String> getCategoryName(List<AdminExtra_Dto_kkg> categoryDtos) {
+				// TODO Auto-generated method stub
+				return CategoryName(categoryDtos);
+			}
+
+
+			@Override
+			public List<Integer> getOrders(List<AdminExtra_Dto_kkg> categoryDtos) {
+				// TODO Auto-generated method stub
+				return gorders(categoryDtos);
+			}
+
+
+			@Override
+			public List<Integer> getSales(List<AdminExtra_Dto_kkg> categoryDtos) {
+				// TODO Auto-generated method stub
+				return gsales(categoryDtos);
+			}
+
+
+			@Override
+			public List<String> getPname(List<AdminExtra_Dto_kkg> maxOrdersDtos) {
+				// TODO Auto-generated method stub
+				return gpname(maxOrdersDtos);
+			}
+
+
+			@Override
+			public List<Timestamp> wholeTimeStamp() throws Exception {
+				// TODO Auto-generated method stub
+				
+				
+				
+				Timestamp startDay = Timestamp.valueOf("1900-01-01 00:00:00");
+				Timestamp endDay = Timestamp.valueOf(LocalDate.now().plusDays(1).atStartOfDay());
+
+				
+				return Arrays.asList(startDay, endDay);
+			}
 		};
 
 	}
@@ -494,7 +546,59 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
   		
   	}   // -------------------------monthlySale 저장하기 끝-------------------------------------------
 	
+	// ------------method 08 : 가져온 dto 리스트에서 카테고리 이름만 빼서 배열로 반환하기 -----------
+	private List<String> CategoryName(List<AdminExtra_Dto_kkg> dtos) {
+		List<String> categoryNames = new ArrayList<>();
+
+		for (int i = 0; i < dtos.size(); i++) {
+			categoryNames.add("'"+dtos.get(i).getCategoryName()+"'");
+
+		}
+
+		return categoryNames;
+
+	}// ----------------- method 08 끝
+
+	// ---------------method 09 : 가져온 dto 에서 orders 빼오기.
+
+	private List<Integer> gorders(List<AdminExtra_Dto_kkg> dtos) {
+		List<Integer> Orders = new ArrayList<>();
+
+		for (int i = 0; i < dtos.size(); i++) {
+			Orders.add(dtos.get(i).getOrders());
+
+		}
+
+		return Orders;
+
+	}// ----------------method 09 끝
+
+	// ---------------method 10 : 가져온 dto 에서 Sales 빼오기.
+
+	private List<Integer> gsales(List<AdminExtra_Dto_kkg> dtos) {
+		List<Integer> Sales = new ArrayList<>();
+
+		for (int i = 0; i < dtos.size(); i++) {
+			Sales.add(dtos.get(i).getSale());
+
+		}
+
+		return Sales;
+
+	}// ----------------method 10 끝
 	
 	
+	// ------------method 11: 가져온 dto 리스트에서 상품 이름만 빼서 배열로 반환하기 -----------
+	private List<String> gpname(List<AdminExtra_Dto_kkg> maxOrdersDtos) {
+		List<String> productName = new ArrayList<>();
+
+		for (int i = 0; i < maxOrdersDtos.size(); i++) {
+			productName.add("'" + maxOrdersDtos.get(i).getPname() + "'");
+
+		}
+
+		return productName;
+
+	}// ----------------- method 11 끝
 
 } // end game

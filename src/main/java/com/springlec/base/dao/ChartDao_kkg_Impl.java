@@ -32,4 +32,28 @@ public class ChartDao_kkg_Impl implements ChartDao_kkg {
 		return sqlSession.selectList(nameSpace+".dailyNsGraph");
 	}
 
+	@Override
+	public List<AdminExtra_Dto_kkg> categoryChart(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".categoryChart");
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> genderChart(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".genderCharts");
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> maxOrders(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".maxOrders");
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> maxSales(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".maxSales");
+	}
+
 }

@@ -21,6 +21,11 @@ public interface KKG_extraService {
 	List<Integer> MonthlyOrderList (List<String> monthListStr, List<AdminExtra_Dto_kkg> mdrs) throws Exception;
 	List<Integer> DailyNSList (List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) throws Exception;
 	Timestamp getTimestampFromParameterDate(String date) throws Exception;
-	
+	List<String> getCategoryName(List<AdminExtra_Dto_kkg> categoryDtos);
+	List<Integer> getOrders(List<AdminExtra_Dto_kkg> categoryDtos);
+	List<Integer> getSales(List<AdminExtra_Dto_kkg> categoryDtos);
+	List<String> getPname(List<AdminExtra_Dto_kkg> maxOrdersDtos);
+	List<Timestamp> wholeTimeStamp()throws Exception;;
+	Timestamp getTimestampFromParameterDate2(String date) throws Exception;
 	
 }

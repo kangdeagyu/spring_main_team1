@@ -119,11 +119,9 @@
 						<div>
 
 							<form action="Salemanage.do" name="date" method="post">
-								<input type="text" name="startDate" id="startDate"
-									placeholder="시작일" autocomplete="off"> <input
-									type="text" name="endDate" id="endDate" placeholder="종료일"
-									autocomplete="off"> <input type="button" value="확 인"
-									onclick="checkDate()">
+								<input type="text" name="startDate" id="startDate" placeholder="시작일" autocomplete="off">
+								<input type="text" name="endDate" id="endDate" placeholder="종료일" 	autocomplete="off">
+								<input type="button" value="확 인" onclick="checkDate()">
 							</form>
 
 						</div>
@@ -318,8 +316,8 @@
 
 	<script>
 	
- 	 	DoubleLineChart(document.getElementById('dailychart'),${requestScope.dateList},'매출액',${requestScope.dailySales},'결재건',${requestScope.dailyOrders});  
-		DoubleLineChart(document.getElementById('monthlychart'), ${requestScope.monthList}, '매출액' ,${requestScope.monthlySales},'결재건',${requestScope.monthlyOrders});
+	DoubleLineChart(document.getElementById('dailychart'),${requestScope.dateList},'매출액',${requestScope.dailySales},'결재건',${requestScope.dailyOrders});  
+	DoubleLineChart(document.getElementById('monthlychart'), ${requestScope.monthList}, '매출액' ,${requestScope.monthlySales},'결재건',${requestScope.monthlyOrders});
     	PieChart("카테고리별 매출 비중 분석",document.getElementById('categorychart_sale'),${requestScope.categoryList},${requestScope.categorySales} );
 		SingleBarChart(document.getElementById('categorychart_order'),${requestScope.categoryList},'판매량',${requestScope.categoryOrders})		;  
 		

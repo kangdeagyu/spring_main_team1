@@ -32,6 +32,15 @@ public class AdminExtra_Dto_kkg {
 	// coustructor
 	
 	
+	int catogoryId;
+	String categoryName;
+	int orders;
+	String genderName;
+	
+	
+	
+	// No, categoryNum, categoryName, qty, sale
+	
 	public AdminExtra_Dto_kkg() {
 		
 	}
@@ -51,6 +60,90 @@ public class AdminExtra_Dto_kkg {
 	
 	
 	
+
+	public AdminExtra_Dto_kkg(int sale, String pname) {
+		super();
+		this.sale = sale;
+		this.pname = pname;
+	}
+
+
+
+
+
+
+
+
+	public AdminExtra_Dto_kkg(String pname, int orders) {
+		super();
+		this.pname = pname;
+		this.orders = orders;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public AdminExtra_Dto_kkg(String genderName, int seq, int orders, int sale) {
+		super();
+		this.genderName = genderName;
+		this.seq = seq;
+		this.orders = orders;
+		this.sale = sale;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public AdminExtra_Dto_kkg(int seq, int catogoryId, String categoryName, int orders, int sale) {
+		super();
+		this.seq = seq;
+		this.catogoryId = catogoryId;
+		this.categoryName = categoryName;
+		this.orders = orders;
+		this.sale = sale;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public AdminExtra_Dto_kkg(int seq, String category, String pid, String pname, String stock) {
 		super();
@@ -266,6 +359,46 @@ public class AdminExtra_Dto_kkg {
 
 	public int getCount() {
 		return count;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getGenderName() {
+		return genderName;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setGenderName(String genderName) {
+		this.genderName = genderName;
 	}
 
 
@@ -926,6 +1059,126 @@ public class AdminExtra_Dto_kkg {
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public int getCatogoryId() {
+		return catogoryId;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setCatogoryId(int catogoryId) {
+		this.catogoryId = catogoryId;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public int getOrders() {
+		return orders;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setOrders(int orders) {
+		this.orders = orders;
 	}
 
 

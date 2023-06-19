@@ -37,6 +37,30 @@ public class KKG_adminDao_Service_Impl implements KKG_adminDao_Service {
 		// TODO Auto-generated method stub
 		return dao.dailyNSGraph(startday,endday);
 	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> categoryChart(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.categoryChart(startday,endday);
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> genderChart(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.genderChart(startday,endday);
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> maxOrdersChart(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.maxOrders(startday,endday);
+	}
+
+	@Override
+	public List<AdminExtra_Dto_kkg> maxSalesChart(Timestamp startday, Timestamp endday) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.maxSales(startday,endday);
+	}
 	
 	
 

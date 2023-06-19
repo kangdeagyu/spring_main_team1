@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KKG_OrderDao">
+
+	<select id="getOrderList_Default" resultType="com.springlec.base.model.Admin_Order_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE(o.odate)) AS No,  o.oid, o.o_pid, p.pname, o.oqty, o.oprice, o.o_cid, c.cname, CONCAT(c.cpostnum,' ', c.caddress1, c.caddress2) as caddress, c.cphone, o.odate
+		FROM product AS p, ordering AS o, customer AS c 
+		WHERE p.pid=o.o_pid AND c.cid=o.o_cid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
+		
+	
+	
+	</select>
+	
+	<select id="getOrderList_Hope" resultType="com.springlec.base.model.Admin_Order_Dto_kkg">
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE(o.odate)) AS No,  o.oid, o.o_pid, p.pname, o.oqty, o.oprice, o.o_cid, c.cname, CONCAT(c.cpostnum,' ', c.caddress1, c.caddress2) as caddress, c.cphone, o.odate 
+		FROM product AS p, ordering AS o, customer AS c 
+		WHERE p.pid=o.o_pid AND c.cid=o.o_cid AND c.cid = #{cid} AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}  
+	
+	
+	</select>
+
+
+
+</mapper>
+
+
+
