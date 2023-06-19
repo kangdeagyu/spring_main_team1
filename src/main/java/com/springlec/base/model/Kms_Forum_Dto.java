@@ -25,6 +25,8 @@ public class Kms_Forum_Dto {
 	String cname;
 	int totalFanswernum;
 	
+	String content;
+	
 	public Kms_Forum_Dto() {
 		// TODO Auto-generated constructor stub
 	}
@@ -33,7 +35,7 @@ public class Kms_Forum_Dto {
 
 	public Kms_Forum_Dto(int fid, String f_cid, String f_aid, int f_pid, int ftype, int fref, int freforder, int fstep,
 			String ftitle, String fcontent, Timestamp finsertdate, Timestamp fdeletedate, int fmotherid, int fanswernum,
-			int fsteporder, String pname, String cname, int totalFanswernum) {
+			int fsteporder, String pname, String cname, int totalFanswernum, String content) {
 		super();
 		this.fid = fid;
 		this.f_cid = f_cid;
@@ -53,6 +55,19 @@ public class Kms_Forum_Dto {
 		this.pname = pname;
 		this.cname = cname;
 		this.totalFanswernum = totalFanswernum;
+		this.content = content;
+	}
+
+
+
+	public String getContent() {
+		return content;
+	}
+
+
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 

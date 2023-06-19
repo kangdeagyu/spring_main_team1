@@ -38,4 +38,28 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 		return dao.commentlist(fid);
 	}
 
+	@Override
+	public void commentAction(String f_cid, int f_pid, String ftitle, int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.commentAction(f_cid, f_pid, ftitle, fid);
+	}
+
+	@Override
+	public void commentDelete(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.commentDelete(fid);
+	}
+
+	@Override
+	public List<Kms_Forum_Dto> forumSearch(int ftype, String content) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.forumSearch(ftype, content);
+	}
+
+	@Override
+	public void QnAwrite(String f_cid, int f_pid, String ftitle, String fcontent) throws Exception {
+		// TODO Auto-generated method stub
+		dao.QnAwrite(f_cid, f_pid, ftitle, fcontent);
+	}
+
 }
