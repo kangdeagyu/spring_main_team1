@@ -32,8 +32,16 @@ public class Kms_Forum_Controller {
 	}
 	
 	@RequestMapping("/forumview")
-	public String forumview(HttpServletRequest request, Model moel) throws Exception{
+	public String forumview(HttpServletRequest request, Model model) throws Exception{
 		Kms_Forum_Dto forumview = service.forumview(Integer.parseInt(request.getParameter("fid")));
+		model.addAttribute("forumview",forumview);
 		return "ForumView";
+	}
+	
+	@RequestMapping("/forumview")
+	public String commentlist(HttpServletRequest request, Model model) throws Exception{
+		List<Kms_Forum_Dto> commentlist = service.commentlist(Integer.parseInt(request.getParameter("fid")));
+		model.addAttribute("commentlist",commentlist);
+		return "FormView";
 	}
 }

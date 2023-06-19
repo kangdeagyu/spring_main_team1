@@ -25,5 +25,10 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".forumview");
 	}
+	@Override
+	public List<Kms_Forum_Dto> commentlist(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".commentlist");
+	}
 	
 }

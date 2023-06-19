@@ -30,4 +30,10 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Dao {
 		return dao.forumview(fid);
 	}
 
+	@Override
+	public List<Kms_Forum_Dto> commentlist(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.commentlist(fid);
+	}
+
 }

@@ -5,17 +5,22 @@
 <mapper namespace="com.springlec.base.dao.Kms_Forum_Dao">
 
 <select id="list" resultType="com.springlec.base.model.Kms_Forum_Dto">
-SELECT f.*,p.pname,c.cname FROM forum f,product p, customer c WHERE p.pid = f.f_pid and c.cid = f.f_cid 
-and ftype = #{ftype} and fdeletedate is null order by fref desc,freforder
+SELECT f.*,p.pname,c.cname FROM forum f,product p, customer c WHERE p.pid = f.f_pid AND c.cid = f.f_cid 
+AND ftype = #{ftype} AND fdeletedate IS NULL ORDER BY fref DESC,freforder
 </select>
 
 <insert id="forumwrite">
-insert into forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)
- select #{f_cid},'admin', #{f_pid}, 1 , max(fref) + 1, 0,0, 0,#{ftitle},#{fcontent},now(),0,0 from forum
+INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)
+ SELECT #{f_cid},'admin', #{f_pid}, 1 , max(fref) + 1, 0,0, 0,#{ftitle},#{fcontent},NOW(),0,0 FROM forum
 </insert>
 
 <select id="forumview" resultType="com.springlec.base.model.Kms_Forum_Dto">
-select f.*, p.pname from forum f, product p where p.pid = f.f_pid and f.fid = #{fid}
+SELECT f.*, p.pname FROM forum f, product p WHERE p.pid = f.f_pid AND f.fid = #{fid}
+</select>
+
+<select id="commentlist" resultType="com.springlec.base.model.Kms_Forum_Dto">
+SELECT f.*, c.cname FROM forum f, customer c WHERE f.f_cid = c.cid AND ftype = 3 AND fmotherid = #{fid} ORDER BY fref DESC,freforder,fsteporder,fstep
+
 </select>
 
 </mapper>
