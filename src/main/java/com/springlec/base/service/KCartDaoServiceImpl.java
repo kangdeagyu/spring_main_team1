@@ -44,22 +44,6 @@ public class KCartDaoServiceImpl implements KCartDaoService {
 	   return result;
 	}
 
-	// 장바구니에서 구매 페이지로 보내기
-	@Override
-	public List<KCartOrderDto> cartOrder(String[] bids) throws Exception {
-	    List<KCartOrderDto> list = new ArrayList<KCartOrderDto>(); // 결과 리스트 초기화
-
-	    for (String bid : bids) {
-	        String[] bidValues = bid.split(","); // 쉼표로 구분된 값을 분리
-	        for (String value : bidValues) {
-	            int intBid = Integer.parseInt(value.trim()); 
-	            List<KCartOrderDto> result = dao.cartOrder(intBid); // dao.cartOrder 호출하여 결과 받기
-	            list.addAll(result); // 결과를 list에 추가
-	        }
-	    }
-
-	    return list;
-	}
 
 
 }

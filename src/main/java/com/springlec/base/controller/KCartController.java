@@ -12,6 +12,7 @@ import com.springlec.base.model.KCartDto;
 import com.springlec.base.model.KCartOrderDto;
 import com.springlec.base.model.KUserDto;
 import com.springlec.base.service.KCartDaoService;
+import com.springlec.base.service.KCartOrderService;
 import com.springlec.base.service.KUserDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +25,8 @@ public class KCartController {
 	KCartDaoService service;
 	@Autowired
 	KUserDaoService userDaoService;
+	@Autowired
+	KCartOrderService cartOrderService;
 	
 	// 장바구니
 	@RequestMapping("/KUserCartView")
@@ -56,7 +59,7 @@ public class KCartController {
 	@ResponseBody
 	public void selectionOrder(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
-		List<KCartOrderDto> cartOrder = service.cartOrder(request.getParameterValues("selectedBids"));
+		List<KCartOrderDto> cartOrder = cartOrderService.cartOrder(request.getParameterValues("selectedBids"));
 		List<KUserDto> userList = userDaoService.userList((String)session.getAttribute("cid"));
 		
 		session.setAttribute("orderList", cartOrder);
