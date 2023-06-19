@@ -3,10 +3,12 @@ package com.springlec.base.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springlec.base.dao.Kms_Forum_Dao;
 import com.springlec.base.model.Kms_Forum_Dto;
 
+@Service
 public class Kms_Forum_ServiceImpl implements Kms_Forum_Dao {
 	
 	@Autowired
