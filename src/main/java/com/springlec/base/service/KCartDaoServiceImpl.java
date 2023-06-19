@@ -44,7 +44,7 @@ public class KCartDaoServiceImpl implements KCartDaoService {
 	   return result;
 	}
 
-
+	// 장바구니에서 구매 페이지로 보내기
 	@Override
 	public List<KCartOrderDto> cartOrder(String[] bids) throws Exception {
 	    List<KCartOrderDto> list = new ArrayList<KCartOrderDto>(); // 결과 리스트 초기화
