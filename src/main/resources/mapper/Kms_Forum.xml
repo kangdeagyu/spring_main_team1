@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.Kms_Forum_Dao">
+
+<select id="List">
+SELECT f.*,p.pname,c.cname FROM forum f,product p, customer c WHERE p.pid = f.f_pid and c.cid = f.f_cid and ftype = #{ftype} and fdeletedate is null order by fref desc,freforder
+</select>
+
+
+</mapper>
