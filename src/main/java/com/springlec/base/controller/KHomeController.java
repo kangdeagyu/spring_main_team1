@@ -25,6 +25,26 @@ public class KHomeController {
 		model.addAttribute("list", listHomeDao);
 		return "KHome" ;
 	}
+	
+	// 카테고리 상품 리스트
+	@RequestMapping("/CategoryView")
+	public String CategoryView(HttpServletRequest request, Model model) throws Exception{
+		int c_cnum = Integer.parseInt(request.getParameter("num"));
+		String view = null;
+		
+		if(c_cnum == 0) {
+			view = "KLampView";
+		}else if(c_cnum == 1) {
+			view = "KMinatureView";
+		}else {
+			view = "KChairView";
+		}
+		
+		List<KHomeDto> categoryList = service.cacategoryList(c_cnum);
+		model.addAttribute("list", categoryList);
+		return view;
+	}
+	
 	// 로그인 페이지
 	@RequestMapping("/loginView")
 	public String loginView() throws Exception{

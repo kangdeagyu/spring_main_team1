@@ -52,13 +52,13 @@
 			    <a class="nav-link active" aria-current="page" href="/"><p class="text-dark">HOME</p></a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="CategoryView.do?num=0"><p class="text-dark">LAMP</p></a>
+			    <a class="nav-link" href="CategoryView?num=0"><p class="text-dark">LAMP</p></a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="CategoryView.do?num=1"><p class="text-dark">MINIATURE</p></a>
+			    <a class="nav-link" href="CategoryView?num=1"><p class="text-dark">MINIATURE</p></a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link" href="CategoryView.do?num=2"><p class="text-dark">CHAIR</p></a>
+			    <a class="nav-link" href="CategoryView?num=2"><p class="text-dark">CHAIR</p></a>
 			  </li>
 			  <li class="nav-item">
 			 	 <c:set var="ftype" value="${param.ftype}" />

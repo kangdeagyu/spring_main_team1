@@ -13,11 +13,18 @@ public class KHomeDaoServiceImpl implements KHomeDaoService {
 
 	@Autowired
 	KHomeDao dao;
-	
+	// 상품 전체
 	@Override
 	public List<KHomeDto> listHomeDao() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listHomeDao();
+	}
+
+	// 상품 카테고리 별
+	@Override
+	public List<KHomeDto> cacategoryList(int c_cnum) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.cacategoryList(c_cnum);
 	}
 
 }

@@ -4,9 +4,14 @@
 
 <mapper namespace="com.springlec.base.dao.KHomeDao">
 
+	<!-- 상품 전체 -->
 	<select id="listHomeDao" resultType="com.springlec.base.model.KHomeDto">
 		SELECT p.pid, p.pname, p.pfilename, p.pcontent, p.pprice, c.c_name FROM product p, category c WHERE p.pcategory = c.c_num
 	</select>
 	
+	<!-- 카테고리 별 -->
+	<select id="cacategoryList" resultType="com.springlec.base.model.KHomeDto">
+		SELECT p.pid, p.pname, p.pfilename, p.pcontent, p.pprice, c.c_name FROM product p, category c WHERE p.pcategory = c.c_num and c.c_num = #{c_cnum}
+	</select>
 
 </mapper>
