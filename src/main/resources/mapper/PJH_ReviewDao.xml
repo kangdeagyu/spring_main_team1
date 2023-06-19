@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.PJH_ReviewDao">
+
+<select id="reviewList" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT f.fid, f.f_cid, f.f_pid, f.finsertdate, c.cname, p.pname, p.pfilename, p.pprice, f.fcontent, f.ftitle, p.pcontent, p.pcategory
+FROM forum f, product p, customer c WHERE f.f_cid=c.cid AND f.f_pid=p.pid AND f.ftype=1 AND f.fdeletedate IS NULL
+</select>
+
+<insert id="checkcommentAction">
+insert into forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, ftitle, fcontent, finsertdate, fmotherid, fanswernum)
+select 'dummy','admin', #{f_pid}, 3 , max(fref) + 1, 0, 0, #{ftitle}, #{ftitle}, now(),#{fid},0 from forum
+</insert>
+
+
+
+
+
+</mapper>
