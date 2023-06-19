@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KOrderDao">
+
+	<!-- 상품 구매  -->
+	<insert id="orderProduct">
+		INSERT INTO ordering (customer_cid, product_pid, oqty, oprice, opostnum, oaddress1, oaddress2, omemo, opaytype, odelivery, odate) 
+		VALUES (#{cid}, #{pid}, #{qty}, #{price}, #{postnum}, #{address1}, #{addess2}, #{memo}, #{paytype}, 0, now())
+	</insert>
+	
+
+</mapper>
