@@ -118,5 +118,10 @@ public class PJH_ProductDao_Impl implements PJH_ProductDao {
 		 sqlSession.insert(nameSpace + ".saveProduct1", params);
 		
 	}
+	@Override
+	public void modify(Map<String, Object> params) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".modify", params);
+	}
 
 }

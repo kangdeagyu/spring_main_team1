@@ -62,8 +62,19 @@ public class PJH_Controller {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	    return "Admin_ProductAdd_pjh";
+	    return "redirect:APlist.do";
 	}
 	
+	// 상품 수정
+	@RequestMapping("/editProduct.do")
+	public String editProduct(HttpServletRequest request ,@RequestParam("pname") String pname, @RequestParam("pprice") int pprice, @RequestParam("pid") int pid, @RequestParam("pstock") int pstock, @RequestParam("pfilename") MultipartFile pfilename, @RequestParam("pcontent") String pcontent, @RequestParam("pcontentfilename1") MultipartFile pcontentfilename1, @RequestParam("pcontentfilename2") MultipartFile pcontentfilename2, Model model) throws Exception{
+		try {
+	        String uploadPath = request.getServletContext().getRealPath("/image/");
+	        service.modify(pname, pprice, pstock, pfilename, pcontent, pcontentfilename1, pcontentfilename2, pid, uploadPath);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return "redirect:APlist.do";
+	}
 	
 }

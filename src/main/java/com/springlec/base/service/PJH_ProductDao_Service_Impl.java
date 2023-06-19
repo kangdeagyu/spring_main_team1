@@ -81,6 +81,26 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	    return originalFileName;
 	}
 
+
+	@Override
+	public void modify(String pname, int pprice, int pstock, MultipartFile pfilename, String pcontent,
+			MultipartFile pcontentfilename1, MultipartFile pcontentfilename2, int pid, String uploadPath) throws Exception {
+		String fileName = saveFile(pfilename, uploadPath);
+	    String newFileName1 = saveFile(pcontentfilename1, uploadPath);
+	    String newFileName2 = saveFile(pcontentfilename2, uploadPath);
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("pname", pname);
+	    params.put("pprice", pprice);
+	    params.put("pstock", pstock);
+	    params.put("pfilename", fileName);
+	    params.put("pcontent", pcontent);
+	    params.put("pcontentfilename1", newFileName1);
+	    params.put("pcontentfilename2", newFileName2);
+	    params.put("pid", pid);
+	    dao.modify(params);
+		
+	}
+
 	
 
 
