@@ -24,4 +24,16 @@ public class Kms_Forum_Controller {
 		model.addAttribute("list",list);
 		return "Kms_WriteList";
 	}
+	
+	@RequestMapping("/writeforum")
+	public String writeforum(HttpServletRequest request, Model model) throws Exception{
+		service.writeforum(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), request.getParameter("ftitle"), request.getParameter("fcontent"));
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/forumview")
+	public String forumview(HttpServletRequest request, Model moel) throws Exception{
+		Kms_Forum_Dto forumview = service.forumview(Integer.parseInt(request.getParameter("fid")));
+		return "ForumView";
+	}
 }

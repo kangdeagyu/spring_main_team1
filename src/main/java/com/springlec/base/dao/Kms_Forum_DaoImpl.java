@@ -15,5 +15,15 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".list");
 	}
+	@Override
+	public void writeforum(String f_cid, int f_pid, String ftitle, String fcontent) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".writeforum");
+	}
+	@Override
+	public Kms_Forum_Dto forumview(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".forumview");
+	}
 	
 }
