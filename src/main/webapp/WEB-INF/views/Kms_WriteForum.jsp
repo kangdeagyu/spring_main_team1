@@ -29,7 +29,7 @@
 <h1>리뷰 작성</h1>
 <form action="forumwrite.do" method="post" onsubmit="return validateForumWriteForm()">
 		<input type="hidden" name="f_cid" value="${cid }">
-		<input type="hidden" name="ftype" value="1">
+		
     <table>
         <tr>
             <td>제목</td>

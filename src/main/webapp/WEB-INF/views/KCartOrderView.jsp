@@ -56,7 +56,7 @@
 
 
    <div class="col-md-6">
-    <form action="userOrderProduct" name="orderForm" id="orderForm" method="post" onsubmit="return check()">
+    <form action="orderProduct.do" name="orderForm" id="orderForm" method="post" onsubmit="return check()">
       <h3>주문자 정보</h3>
       <c:forEach items="${userlist}" var="dto">
         <c:set var="name" value="${dto.cname }"></c:set>

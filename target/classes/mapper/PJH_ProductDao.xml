@@ -23,14 +23,30 @@ WHERE pname LIKE #{pname} AND pdeletedate IS NULL";
 
 <insert id="saveProduct1">
 INSERT INTO product (pname, pprice, pstock, pfilename, pcategory, pcontent, pcontentfilename1, pcontentfilename2, pinsertdate)
-VALUES (#{pname}, #{pprice}, #{pstock}, #{file}, #{pcategory}, #{pcontent}, #{file1}, #{file2}, now())
+VALUES (#{pname}, #{pprice}, #{pstock} #{pfilename}, #{pcategory}, #{pcontent}, #{newFileName1}, #{newFileName2}, now())
 </insert>
+
+<update id="saveProduct2">
+UPDATE product SET pfilename = #{pid}+'_'+#{newFileName}, pcontentfilename1='content1_'+#{pid} + '_' + #{newFileName1}, 
+pcontentfilename2='content2_'+#{pid} + '_' + #{newFileName2} WHERE pid = #{pid}
+</update>
 
 
 <insert id="saveProduct3">
 INSERT INTO make (product_pid, admin_aid, mdate) VALUES (#{pid}, 'admin', now())";
 </insert>
 
+<select id="getUpdatedFileName" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pfilename FROM product ORDER BY pid DESC LIMIT 1
+</select>
+
+<select id="getUpdatedContentFileName1" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pcontentfilename1 FROM product ORDER BY pid DESC LIMIT 1
+</select>
+
+<select id="getUpdatedContentFileName2" resultType="com.springlec.base.model.PJH_ProductDto">
+SELECT pcontentfilename2 FROM product ORDER BY pid DESC LIMIT 1
+</select>
 
 <select id="getModifyFileName" resultType="com.springlec.base.model.PJH_ProductDto">
 SELECT pfilename FROM product WHERE pid = ?

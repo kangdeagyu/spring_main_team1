@@ -58,8 +58,8 @@
 <main>
     <table border="1">
         <tr>
-            <th>주문 정보</th>
-            <th>주문 내역 </th>
+            <th>상품 정보</th>
+            <th>수량</th>
             <th>주문 금액</th>
             <th>주문 날짜</th>
             <th>배송 상태</th>
@@ -72,22 +72,8 @@
 		<c:forEach items="${Olist}" var="dto" varStatus="status">
 				
 			  <tr>
-			   	<td><form action="Kms_OrderingView.jsp">
-				   		<input type="hidden" name="oid" value="${dto.oid}">
-	                    <input type="hidden" name="pname" value="${dto.pname}">
-	                    <input type="hidden" name="cname" value="${dto.cname}">
-	                    <input type="hidden" name="oqty" value="${dto.oqty}">
-	                    <input type="hidden" name="oprice" value="${dto.oprice}">
-				   		<input type="hidden" name="opostnum" value="${dto.opostnum}">
-	                    <input type="hidden" name="oaddress1" value="${dto.oaddress1}">
-	                    <input type="hidden" name="oaddress2" value="${dto.oaddress2}">
-	                    <input type="hidden" name="omemo" value="${dto.omemo}">
-	                    <input type="hidden" name="opaytype" value="${dto.opaytype}">
-	                    <input type="hidden" name="odelivery" value="${dto.odelivery}">
-	                    <input type="hidden" name="odate" value="${dto.odate}">
-	                    <input type="submit" value="주문정보">
-			   	</form></td>
-			    <td>${dto.pname} X ${dto.oqty}</td>
+			    <td>${dto.pname}</td>
+			    <td>${dto.oqty}</td>
 			    <td>${dto.oprice}</td>
 			    <td>${dto.odate}</td>
 			    <td>
@@ -96,7 +82,7 @@
           			<c:when test="${dto.odelivery == 1}">배송 중</c:when>
 		          	<c:when test="${dto.odelivery == 2}">배송 완료</c:when>
 		          	<c:when test="${dto.odelivery == 3}">배송 완료</c:when>
-		          	<c:otherwise>환불</c:otherwise>
+		          	<c:otherwise>작성완료</c:otherwise>
 		        </c:choose></td>
 		        <td>
 		        	<c:choose>
@@ -105,7 +91,7 @@
 			        </c:when>
 			        <c:otherwise>
             <c:if test="${dto.odelivery == 2}">
-                <form action="Kms_WriteForum.jsp">
+                <form action="Reviewforumwrite.do">
                     <input type="hidden" name="oid" value="${dto.oid}">
                     <input type="hidden" name="f_pid" value="${dto.product_pid}">
                     <input type="hidden" name="pname" value="${dto.pname}">

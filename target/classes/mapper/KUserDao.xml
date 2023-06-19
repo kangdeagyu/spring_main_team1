@@ -5,13 +5,13 @@
 <mapper namespace="com.springlec.base.dao.KUserDao">
 
 	<!-- 유저 로그인 체크 -->
-	<select id="userCheck" resultType="com.springlec.base.model.KUserDtotest">
-		SELECT cname, cdeletedate FROM customer WHERE cid = #{cid} and cpassword = #{cpassword}
+	<select id="userCheck" resultType="com.springlec.base.model.KUserDto">
+		SELECT cname, cdeletedate FROM customer WHERE cid = #{username} and cpassword = #{password}
 	</select>
 	
 	<!-- 관리자 로그인 체크 -->
 	<select id="adminCheck" resultType="com.springlec.base.model.KAdminDto">
-		select aid, adeletedate from admin where aid = #{cid} and apw = #{cpassword}
+		select aid, adeletedate from admin where aid = #{username} and apw = #{password}
 	</select>
 	
 	<!-- 회원가입 이메일 중복체크  -->

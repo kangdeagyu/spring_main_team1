@@ -1,3 +1,4 @@
+<%@ page import="com.javalec.bbs.dao.Admin_Product_Dao"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.io.File"%>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>

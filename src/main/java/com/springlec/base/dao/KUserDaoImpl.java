@@ -14,14 +14,14 @@ public class KUserDaoImpl implements KUserDao {
 
 	// 유저 로그인 체크
 	@Override
-	public KUserDto userCheck(String cid, String cpassword) throws Exception {
+	public KUserDto userCheck(String username, String password) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".userCheck");
 	}
 	
 	// 관리자 로그인 체크
 	@Override
-	public KAdminDto adminCheck(String cid, String cpassword) throws Exception {
+	public KAdminDto adminCheck(String username, String password) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".adminCheck");
 	}
