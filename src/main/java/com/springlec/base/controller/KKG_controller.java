@@ -38,7 +38,7 @@ public class KKG_controller {
 	@Autowired
 	KKG_OrderDao_Service orderSerivce;
 	
-	
+	 
 	@RequestMapping("/adminHome.do")
 	public String list(HttpServletRequest request, Model model) throws Exception {
 		
