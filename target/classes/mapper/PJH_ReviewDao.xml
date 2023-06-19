@@ -14,8 +14,17 @@ insert into forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, ftitle, f
 select 'dummy','admin', #{f_pid}, 3 , max(fref) + 1, 0, 0, #{ftitle}, #{ftitle}, now(),#{fid},0 from forum
 </insert>
 
+<update id="deleteReview">
+UPDATE forum SET fdeletedate= now() WHERE fid = #{fid}
+</update>
+
+<select id="forumView" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT f.*, p.pname FROM forum f, product p WHERE p.pid = f.f_pid and f.fid = #{fid}
+</select>
 
 
-
+<select id="commentList" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT f.*, c.cname FROM forum f, customer c WHERE f.f_cid = c.cid AND ftype = 3 AND fmotherid = #{fid} ORDER BY fref desc,freforder,fsteporder,fstep
+</select>
 
 </mapper>

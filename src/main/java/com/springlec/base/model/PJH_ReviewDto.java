@@ -26,6 +26,14 @@ public class PJH_ReviewDto {
 	int pcategory;
 	String t_name;
 	String categoryName;
+	int totalFanswernum;
+	int fanswernum;
+	int fsteporder;
+	int fref;
+	Timestamp fdeletedate;	
+	
+	
+	
 	
 	//Constructor
 	
@@ -36,7 +44,7 @@ public class PJH_ReviewDto {
 	public PJH_ReviewDto(int fid, String f_cid, String f_aid, int f_pid, int ftype, int freforder, int fstep,
 			String ftitle, String fcontent, int fmotherid, Timestamp finsertdate, String cid, String cname,
 			String pname, String pfilename, int pprice, String pcontent, int pcategory, String t_name,
-			String categoryName) {
+			String categoryName, int totalFanswernum, int fanswernum, int fsteporder, int fref, Timestamp fdeletedate) {
 		super();
 		this.fid = fid;
 		this.f_cid = f_cid;
@@ -58,11 +66,18 @@ public class PJH_ReviewDto {
 		this.pcategory = pcategory;
 		this.t_name = t_name;
 		this.categoryName = categoryName;
+		this.totalFanswernum = totalFanswernum;
+		this.fanswernum = fanswernum;
+		this.fsteporder = fsteporder;
+		this.fref = fref;
+		this.fdeletedate = fdeletedate;
 	}
 
-	
-	
-	
+
+
+
+
+
 	// Method
 	public int getFid() {
 		return fid;
@@ -223,6 +238,59 @@ public class PJH_ReviewDto {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+
+	public int getTotalFanswernum() {
+		return totalFanswernum;
+	}
+
+	public void setTotalFanswernum(int totalFanswernum) {
+		this.totalFanswernum = totalFanswernum;
+	}
+
+	public int getFanswernum() {
+		return fanswernum;
+	}
+
+	public void setFanswernum(int fanswernum) {
+		this.fanswernum = fanswernum;
+	}
+
+	public int getFsteporder() {
+		return fsteporder;
+	}
+
+	public void setFsteporder(int fsteporder) {
+		this.fsteporder = fsteporder;
+	}
+
+	public int getFref() {
+		return fref;
+	}
+
+	public void setFref(int fref) {
+		this.fref = fref;
+	}
+
+	public Timestamp getFdeletedate() {
+		return fdeletedate;
+	}
+
+	public void setFdeletedate(Timestamp fdeletedate) {
+		this.fdeletedate = fdeletedate;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
