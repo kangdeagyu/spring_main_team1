@@ -17,8 +17,12 @@ public class KUserDto {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+		
+
 	public KUserDto(String cid, String cpassword, String cname, String cphone, String cbirthdate, String cgender,
-			String cpostnum, String caddress1, String caddress2) {
+			String cpostnum, String caddress1, String caddress2, String cdeletedate) {
 		super();
 		this.cid = cid;
 		this.cpassword = cpassword;
@@ -29,17 +33,12 @@ public class KUserDto {
 		this.cpostnum = cpostnum;
 		this.caddress1 = caddress1;
 		this.caddress2 = caddress2;
-	}
-
-	// userCheck 확인
-
-	public KUserDto(String cname, String cdeletedate) {
-		super();
-		this.cname = cname;
 		this.cdeletedate = cdeletedate;
 	}
-	
-	
+
+
+
+
 
 	public String getCdeletedate() {
 		return cdeletedate;

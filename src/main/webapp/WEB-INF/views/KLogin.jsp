@@ -162,6 +162,7 @@
 	
 	    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
 	  </form>
+</div>
 <hr/>
 	<div class="d-flex justify-content-between">
 	  <div>
@@ -176,7 +177,7 @@
 	   <img src="image/so8.png" alt="" class="w-100 btn btn-lg">
 	</a>
 
-</div>
+
 </main>
 
 

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.springlec.base.model.KAdminDto;
 import com.springlec.base.model.KUserDto;
 import com.springlec.base.service.KUserDaoService;
 
@@ -23,21 +24,36 @@ public class KUserController {
 	// 로그인 체크 유저, 관리자
 	@RequestMapping("/loginCheck")
 	@ResponseBody
-	public String userCheck(HttpServletRequest request) throws Exception{
+	public String userChecked(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
 		String cid = request.getParameter("cid");
 		String cpassword = request.getParameter("cpassword");
-		String result = null;
+		String result = "error";
 		
 		if(cid.startsWith("admin")) {
-			result = service.adminCheck(cid, cpassword);
-			
+			KAdminDto dto  = service.adminCheck(cid, cpassword);
+			if(dto != null) {
+				String adeletedate = dto.getAdeletedate();
+				
+				if(adeletedate != null) {
+					result = "mdraw";
+				}else {
+					result = "admin";
+				}
+			}
 		}else {
-			
-			result = service.userCheck(cid, cpassword);
-			if(!result.equals("error") && !result.equals("mdraw")) {
-				session.setAttribute("cid", cid);
-				session.setAttribute("name", result);			
+			KUserDto dto = service.userCheck(cid, cpassword);
+			if(dto != null) {
+				String cname = dto.getCname();
+				String cdeletedate = dto.getCdeletedate();
+				
+				if(cdeletedate != null) {
+					result = "mdraw";
+				}else {
+					result = cname;
+					session.setAttribute("cid", cid);
+					session.setAttribute("name", result);	
+				}
 			}
 		}
 		

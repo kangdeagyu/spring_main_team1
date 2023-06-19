@@ -3,7 +3,7 @@ package com.springlec.base.model;
 public class KCartOrderDto {
 
 	String cid;
-	int pid;
+	int b_pid;
 	int bqty;
 	int pprice;
     String pfilename;
@@ -14,10 +14,10 @@ public class KCartOrderDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public KCartOrderDto(String cid, int pid, int bqty, int pprice, String pfilename, String pname, String pcontent) {
+	public KCartOrderDto(String cid, int b_pid, int bqty, int pprice, String pfilename, String pname, String pcontent) {
 		super();
 		this.cid = cid;
-		this.pid = pid;
+		this.b_pid = b_pid;
 		this.bqty = bqty;
 		this.pprice = pprice;
 		this.pfilename = pfilename;
@@ -33,12 +33,22 @@ public class KCartOrderDto {
 		this.cid = cid;
 	}
 
-	public int getPid() {
-		return pid;
+
+
+	public int getB_pid() {
+		return b_pid;
 	}
 
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setB_pid(int b_pid) {
+		this.b_pid = b_pid;
+	}
+
+	public int getPprice() {
+		return pprice;
+	}
+
+	public void setPprice(int pprice) {
+		this.pprice = pprice;
 	}
 
 	public int getBqty() {

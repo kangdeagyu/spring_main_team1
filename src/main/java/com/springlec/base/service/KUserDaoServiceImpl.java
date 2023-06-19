@@ -9,7 +9,7 @@ import com.springlec.base.dao.KUserDao;
 import com.springlec.base.model.KAdminDto;
 import com.springlec.base.model.KUserDto;
 
-import jakarta.servlet.http.HttpSession;
+
 
 @Service
 public class KUserDaoServiceImpl implements KUserDaoService {
@@ -19,43 +19,18 @@ public class KUserDaoServiceImpl implements KUserDaoService {
 	
 	// 회원 체크
 	@Override
-	public String userCheck(String cid, String cpassword) throws Exception {
-		// TODO Auto-generated method stub
-		KUserDto dto = dao.userCheck(cid, cpassword);
-		String result = "error";
-		
-		if(dto != null) {
-			String cname = dto.getCname();
-			String cdeletedate = dto.getCdeletedate();
-			
-			if(cdeletedate != null) {
-				result = "mdraw";
-			}else {
-				result = cname;
-			}
-		}
-		
-		return result;
+	public KUserDto userCheck(String cid, String cpassword) throws Exception {
+		// TODO Auto-generated method stub		 
+		return dao.userCheck(cid, cpassword);
 	}
 	
 	// 관리자 체크
 	@Override
-	public String adminCheck(String cid, String cpassword) throws Exception {
+	public KAdminDto adminCheck(String cid, String cpassword) throws Exception {
 		// TODO Auto-generated method stub
 		KAdminDto dto = dao.adminCheck(cid, cpassword);
-		String result = "error";
-	
-		if(dto != null) {
-			String adeletedate = dto.getAdeletedate();
-			
-			if(adeletedate != null) {
-				result = "mdraw";
-			}else {
-				result = "admin";
-			}
-		}
 		
-		return result;
+		return dto;
 	}
 	
 	

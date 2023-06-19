@@ -9,10 +9,25 @@ public class KOrderDaoImpl implements KOrderDao {
 	
 	// 상품 구매
 	@Override
-	public void orderProduct(String cid, String[] pid, String[] qty, String[] price, String postnum, String address1,
-			String addess2, String memo, String paytype) throws Exception {
+	public void orderProduct(String cid, int pid, int qty, int price, String postnum, String address1,
+			String addess2, String memo, String paytype) {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".orderProduct");
 	}
+	// 장바구니 삭제
+	@Override
+	public void cartDeleteProduct(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".cartDeleteProduct");
+	}
+	
+	// 상품 재고량 변경
+	@Override
+	public void prodcutQtyModify(int pid, int qty) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".prodcutQtyModify");
+	}
+	
+	
 
 }

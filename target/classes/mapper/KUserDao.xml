@@ -5,13 +5,13 @@
 <mapper namespace="com.springlec.base.dao.KUserDao">
 
 	<!-- 유저 로그인 체크 -->
-	<select id="userCheck" resultType="com.springlec.base.model.KUserDto">
+	<select id="userCheck" resultType="com.springlec.base.model.KUserDto" parameterType="map">
 		SELECT cname, cdeletedate FROM customer WHERE cid = #{cid} and cpassword = #{cpassword}
 	</select>
 	
 	<!-- 관리자 로그인 체크 -->
-	<select id="adminCheck" resultType="com.springlec.base.model.KAdminDto">
-		select aid, adeletedate from admin where aid = #{cid} and apw = #{cpassword}
+	<select id="adminCheck" resultType="com.springlec.base.model.KAdminDto" parameterType="map">
+		SELECT aid, adeletedate FROM admin WHERE aid = #{cid} and apw = #{cpassword}
 	</select>
 	
 	<!-- 회원가입 이메일 중복체크  -->
@@ -22,7 +22,7 @@
 	<!-- 회원가입 -->
 	<insert id="joinUser">
 		INSERT INTO customer (cid, cpassword, cname, cphone, cbirthdate, cgender, cpostnum, caddress1, caddress2, cinsertdate) 
-		VALUES (#{cid},#{cpassword},#{cname},#{cphone},#{cbirthdate},#{cgender},#{cpostnum},#{caddress1},#{caddress2},now())
+		VALUES (#{cid}, #{cpassword}, #{cname}, #{cphone}, #{cbirthdate}, #{cgender}, #{cpostnum}, #{caddress1}, #{caddress2}, now())
 	</insert>
 	<!-- 카카오 유저 로그인 체크 -->
 	<select id="kakaoLogin" resultType="com.springlec.base.model.KUserDto">

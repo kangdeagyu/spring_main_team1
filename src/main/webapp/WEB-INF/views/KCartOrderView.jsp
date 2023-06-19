@@ -90,7 +90,7 @@
       <h3>주문 요약</h3>
       <c:set var="totalprice" value="0"></c:set>
       <c:forEach items="${orderList}" var="dto" varStatus="status">	
-        <input type="hidden" name="pid[]" value="${dto.pid }">
+        <input type="hidden" name="pid[]" value="${dto.b_pid }">
         <input type="hidden" name="qty[]" value="${dto.bqty }">
         <input type="hidden" name="price[]" value="${dto.pprice }">
         <c:set var="subtotal" value="${dto.pprice * dto.bqty}"></c:set>
