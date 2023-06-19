@@ -25,18 +25,18 @@ public class KUserController {
 	@ResponseBody
 	public String userCheck(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String cid = request.getParameter("cid");
+		String cpassword = request.getParameter("cpassword");
 		String result = null;
 		
-		if(username.startsWith("admin")) {
-			result = service.adminCheck(username, password);
+		if(cid.startsWith("admin")) {
+			result = service.adminCheck(cid, cpassword);
 			
 		}else {
 			
-			result = service.userCheck(username, password);
+			result = service.userCheck(cid, cpassword);
 			if(!result.equals("error") && !result.equals("mdraw")) {
-				session.setAttribute("cid", username);
+				session.setAttribute("cid", cid);
 				session.setAttribute("name", result);			
 			}
 		}

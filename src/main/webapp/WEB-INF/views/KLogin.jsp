@@ -196,8 +196,8 @@
 
     		  axios.post('loginCheck', null, {
     		    params: {
-    		      username: username,
-    		      password: password
+    		      cid: username,
+    		      cpassword: password
     		    }
     		  })
     		  .then(response => {
