@@ -45,6 +45,14 @@ public class KHomeController {
 		return view;
 	}
 	
+	// 검색
+	@RequestMapping("/searchList")
+	public String searchList(HttpServletRequest request, Model model) throws Exception{
+		List<KHomeDto> searchlist = service.searchList(request.getParameter("search"));
+		model.addAttribute("searchlist", searchlist);
+		return "KSearchView";
+	}
+	
 	// 로그인 페이지
 	@RequestMapping("/loginView")
 	public String loginView() throws Exception{

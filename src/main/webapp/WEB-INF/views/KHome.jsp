@@ -88,7 +88,7 @@
 
  <div class="container">
   <label>전체 상품</label><br/>
- 		<form action="search.do" method="post">
+ 		<form action="searchList" method="post">
 		 	<input type="search" name="search">
 		 	<input type="submit" value="검색" >
 		 </form> 

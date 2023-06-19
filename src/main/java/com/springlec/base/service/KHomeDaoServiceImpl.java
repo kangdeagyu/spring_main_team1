@@ -27,4 +27,11 @@ public class KHomeDaoServiceImpl implements KHomeDaoService {
 		return dao.cacategoryList(c_cnum);
 	}
 
+	@Override
+	public List<KHomeDto> searchList(String search) throws Exception {
+		// TODO Auto-generated method stub
+		search = "%" + search + "%";
+		return dao.searchList(search);
+	}
+
 }

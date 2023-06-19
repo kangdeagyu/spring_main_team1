@@ -13,5 +13,9 @@
 	<select id="cacategoryList" resultType="com.springlec.base.model.KHomeDto">
 		SELECT p.pid, p.pname, p.pfilename, p.pcontent, p.pprice, c.c_name FROM product p, category c WHERE p.pcategory = c.c_num and c.c_num = #{c_cnum}
 	</select>
-
+	
+	<!-- 검색  -->
+	<select id="searchList" resultType="com.springlec.base.model.KHomeDto">
+		SELECT p.pid, p.pname, p.pfilename, p.pcontent, p.pprice, c.c_name FROM product p, category c WHERE p.pcategory = c.c_num and p.pname like #{search}
+	</select>
 </mapper>

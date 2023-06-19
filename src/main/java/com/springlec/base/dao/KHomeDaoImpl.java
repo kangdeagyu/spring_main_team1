@@ -26,4 +26,10 @@ public class KHomeDaoImpl implements KHomeDao {
 		return sqlSession.selectList(nameSpace + ".cacategoryList");
 	}
 
+	@Override
+	public List<KHomeDto> searchList(String search) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".searchList");
+	}
+
 }
