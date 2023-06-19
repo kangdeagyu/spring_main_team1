@@ -50,4 +50,28 @@ select #{f_cid},'admin', #{f_pid}, 2 , max(fref) + 1,0, 0, 0,#{ftitle}, #{fconte
 Update ordering SET odelivery = 3 WHERE oid = #{oid}
 </update>
 
+<select id="bigCommentAction" resultType="com.springlec.base.model.Kms_Forum_Dto">
+SELECT SUM(fanswernum) AS totalFanswernum FROM (SELECT *, @found := IF(fstep = #{fstep} AND (SELECT fstep FROM forum WHERE fid > sub.fid AND freforder = #{freforder} ORDER BY fid LIMIT 1
+) IS NULL, 1, @found) AS found FROM forum sub CROSS JOIN (SELECT @found := 0) AS vars WHERE freforder = #{freforder} AND fsteporder >= #{fsteporder}
+ORDER BY fid) AS sub WHERE found = 1
+</select>
+
+<select id="bigCommentAction1" resultType="com.springlec.base.model.Kms_Forum_Dto">
+SELECT fanswernum FROM (SELECT *, @found := IF(fstep = #{fstep} AND fsteporder >= #{fsteporder}, 1, @found) AS found FROM forum
+CROSS JOIN (SELECT @found := 0) AS vars WHERE freforder = #{freforder} ORDER BY fsteporder) AS sub WHERE found = 1 ORDER BY fid DESC LIMIT 1
+</select>
+
+<update id="bigCommentAction2">
+update forum set fsteporder = fsteporder + 1 where fsteporder >= #{fsteporder} + #{a} + 1 and freforder = #{freforder} and fref = #{fref}
+</update>
+
+<insert id="bigCommentAction3">
+INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder, ftitle, fcontent, finsertdate, fmotherid, fanswernum)
+values (#{f_cid}, 'admin', #{f_pid}, 3, #{fref}, #{freforder}, #{fstep} + 1, #{fsteporder} + #{a} + 1, #{ftitle}, #{ftitle}, now(), #{fmotherid}, 0)
+</insert>
+
+<update id="bigCommentAction4">
+update forum set fanswernum = fanswernum + 1 where fid = #{fid}
+</update>
+
 </mapper>

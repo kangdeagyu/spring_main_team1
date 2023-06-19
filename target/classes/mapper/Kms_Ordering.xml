@@ -11,4 +11,6 @@ SELECT o.*, p.pname, c.cname FROM ordering o, product p, customer c WHERE o.prod
 <update id="orderRefund">
 UPDATE ordering SET odelivery = 4 WHERE oid = #{oid}
 </update>
+
+
 </mapper>

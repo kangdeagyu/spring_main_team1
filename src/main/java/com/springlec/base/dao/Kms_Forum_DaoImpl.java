@@ -55,5 +55,31 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".orderingupadte");
 	}
+	@Override
+	public Kms_Forum_Dto bigCommentAction(int fstep, int freforder, int fsteporder) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".bigCommentAction");
+	}
+	@Override
+	public Kms_Forum_Dto bigCommentAction1(int fstep, int fsteporder, int freforder) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".bigCommentAction1");
+	}
+	@Override
+	public void bigCommentAction2(int fsteporder, int a, int freforder, int fref) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".bigCommentAction2");
+	}
+	@Override
+	public void bigCommentAction3(String f_cid, int f_pid, int fref, int freforder, int fstep, int fsteporder, int a, String ftitle,
+			int fmotherid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".bigCommentAction3");
+	}
+	@Override
+	public void bigCommentAction4(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".bigCommentAction4");
+	}
 	
 }

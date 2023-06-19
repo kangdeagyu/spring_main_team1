@@ -68,4 +68,35 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 		dao.orderingupdate(oid);
 	}
 
+	@Override
+	public Kms_Forum_Dto bigCommentAction(int fstep, int freforder, int fsteporder) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.bigCommentAction(fstep, freforder, fsteporder);
+	}
+
+	@Override
+	public Kms_Forum_Dto bigCommentAction1(int fstep, int fsteporder, int freforder) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.bigCommentAction1(fstep, fsteporder, freforder);
+	}
+
+	@Override
+	public void bigCommentAction2(int fsteporder, int a, int freforder, int fref) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction2(fsteporder, a, freforder, fref);
+	}
+
+	@Override
+	public void bigCommentAction3(String f_cid, int f_pid, int fref, int freforder, int fstep, int fsteporder, int a, String ftitle,
+			int fmotherid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction3(f_cid, f_pid, fref, freforder, fstep, fsteporder, a, ftitle, fmotherid);
+	}
+
+	@Override
+	public void bigCommentAction4(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction4(fid);
+	}
+
 }

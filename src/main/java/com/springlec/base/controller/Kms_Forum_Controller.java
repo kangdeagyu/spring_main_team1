@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class Kms_Forum_Controller {
 
+	int a;
 	@Autowired
 	Kms_Forum_Service service;
 	// 게시판 리스트
@@ -64,5 +65,21 @@ public class Kms_Forum_Controller {
 	public String QnAwrite(HttpServletRequest request, Model model) throws Exception{
 		service.QnAwrite(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), request.getParameter("ftitle"), request.getParameter("fcontent"));
 		return "";
+	}
+	// 대댓글 작성
+	@RequestMapping("/bigCommentAction")
+	public String bigCommentAction(HttpServletRequest request, Model model) throws Exception{
+		Kms_Forum_Dto totalFanswernum = service.bigCommentAction(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("freforder")),
+				Integer.parseInt(request.getParameter("fsteporder")));
+		model.addAttribute("totalFanswernum1", totalFanswernum);
+		Kms_Forum_Dto fanswernum = service.bigCommentAction1(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("fsteporder")),
+				Integer.parseInt(request.getParameter("freforder")));
+		model.addAttribute(fanswernum);
+		a= totalFanswernum.getTotalFanswernum() - fanswernum.getFanswernum();
+		service.bigCommentAction2(Integer.parseInt(request.getParameter("fsteporder")), Integer.parseInt(request.getParameter("a")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fref")));
+		service.bigCommentAction3(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fstep")),
+				Integer.parseInt(request.getParameter("fsteporder")), Integer.parseInt(request.getParameter("a")), request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
+		service.bigCommentAction4(Integer.parseInt(request.getParameter("fid")));
+		return "redirect:ForumView";
 	}
 }
