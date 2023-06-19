@@ -58,8 +58,8 @@
 <main>
     <table border="1">
         <tr>
+            <th>환불 요청</th>
             <th>상품 정보</th>
-            <th>수량</th>
             <th>주문 금액</th>
             <th>주문 날짜</th>
             <th>배송 상태</th>
@@ -72,8 +72,18 @@
 		<c:forEach items="${Olist}" var="dto" varStatus="status">
 				
 			  <tr>
-			    <td>${dto.pname}</td>
-			    <td>${dto.oqty}</td>
+			   <td>
+			     <c:choose>
+          			<c:when test="${dto.odelivery == 2}">환불 불가</c:when>
+		          	<c:when test="${dto.odelivery == 3}">환불 불가</c:when>
+		          	<c:otherwise>
+						<form action="orderRefund">
+							<input type="hidden" name="oid" value="${dto.oid}">
+							<input type="submit" value="환불요청">
+						</form>
+					</c:otherwise>
+		        </c:choose></td>
+			    <td>${dto.pname} X ${dto.oqty}</td>
 			    <td>${dto.oprice}</td>
 			    <td>${dto.odate}</td>
 			    <td>
@@ -82,7 +92,7 @@
           			<c:when test="${dto.odelivery == 1}">배송 중</c:when>
 		          	<c:when test="${dto.odelivery == 2}">배송 완료</c:when>
 		          	<c:when test="${dto.odelivery == 3}">배송 완료</c:when>
-		          	<c:otherwise>작성완료</c:otherwise>
+		          	<c:otherwise>환불</c:otherwise>
 		        </c:choose></td>
 		        <td>
 		        	<c:choose>
@@ -91,7 +101,7 @@
 			        </c:when>
 			        <c:otherwise>
             <c:if test="${dto.odelivery == 2}">
-                <form action="Reviewforumwrite.do">
+                <form action="Kms_WriteForum.jsp">
                     <input type="hidden" name="oid" value="${dto.oid}">
                     <input type="hidden" name="f_pid" value="${dto.product_pid}">
                     <input type="hidden" name="pname" value="${dto.pname}">

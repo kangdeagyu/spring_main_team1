@@ -15,9 +15,9 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 	Kms_Forum_Dao dao;
 
 	@Override
-	public List<Kms_Forum_Dto> list(int ftype) throws Exception {
+	public List<Kms_Forum_Dto> writelist(int ftype) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.list(ftype);
+		return dao.writelist(ftype);
 	}
 
 	@Override
@@ -60,6 +60,12 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 	public void QnAwrite(String f_cid, int f_pid, String ftitle, String fcontent) throws Exception {
 		// TODO Auto-generated method stub
 		dao.QnAwrite(f_cid, f_pid, ftitle, fcontent);
+	}
+
+	@Override
+	public void orderingupdate(int oid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.orderingupdate(oid);
 	}
 
 }

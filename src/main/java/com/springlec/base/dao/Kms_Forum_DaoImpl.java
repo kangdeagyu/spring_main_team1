@@ -11,9 +11,9 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 	SqlSession sqlSession;
 	public String nameSpace = "com.springlec.base.dao.Kms_Forum_Dao";
 	@Override
-	public List<Kms_Forum_Dto> list(int ftype) throws Exception {
+	public List<Kms_Forum_Dto> writelist(int ftype) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(nameSpace + ".list");
+		return sqlSession.selectList(nameSpace + ".writelist");
 	}
 	@Override
 	public void writeforum(String f_cid, int f_pid, String ftitle, String fcontent) throws Exception {
@@ -49,6 +49,11 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 	public void QnAwrite(String f_cid, int f_pid, String ftitle, String fcontent) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.insert(nameSpace + ".QnAwrite");
+	}
+	@Override
+	public void orderingupdate(int oid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".orderingupadte");
 	}
 	
 }
