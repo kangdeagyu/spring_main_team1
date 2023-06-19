@@ -16,7 +16,9 @@ public class KOrderDaoServiceImpl implements KOrderDaoService {
 	public void orderProduct(String cid, String[] pid, String[] qty, String[] price, String postnum, String address1,
 			String addess2, String memo, String paytype) throws Exception {
 		// TODO Auto-generated method stub
-		dao.orderProduct(cid, pid, qty, price, postnum, address1, addess2, memo, paytype);
+		for (int i = 0; i <pid.length; i++) {
+			dao.orderProduct(cid, pid, qty, price, postnum, address1, addess2, memo, paytype);
+		}
 	}
 
 }

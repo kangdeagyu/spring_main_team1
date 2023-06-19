@@ -17,9 +17,9 @@ public class KOrderController {
 	
 	// 상품구매
 	@RequestMapping("/userOrderProduct")
-	public void userOrderProduct(HttpServletRequest request) throws Exception{
+	public String userOrderProduct(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
-		String[] bid = (String[]) session.getAttribute("bid");
+
 		String cid = (String)session.getAttribute("cid");
 		String[] pid = request.getParameterValues("pid[]");
 		String[] qty = request.getParameterValues("qty[]");
@@ -29,8 +29,10 @@ public class KOrderController {
 		String address2 = request.getParameter("caddress2");
 		String memo = request.getParameter("memo");
 		String payment = request.getParameter("payment");
-		String cname = request.getParameter("cname");
-		String cphone = request.getParameter("cphone");
+
+		
+		service.orderProduct(cid, pid, qty, price, postnum, address1, address2, memo, payment);
+		return "";
 		
 	}
 	
