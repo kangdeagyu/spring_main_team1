@@ -33,6 +33,8 @@ public class KCartController {
 	public String KUserCartView(HttpServletRequest request, Model model) throws Exception{
 		HttpSession session = request.getSession(true);
 		List<KCartDto> cartList = service.userCart((String)session.getAttribute("cid"));
+		session.removeAttribute("orderList");
+		session.removeAttribute("userlist");
 		
 		model.addAttribute("list", cartList);
 		return "KUserCartView";
