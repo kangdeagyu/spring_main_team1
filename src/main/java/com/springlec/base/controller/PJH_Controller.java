@@ -57,7 +57,7 @@ public class PJH_Controller {
 	public String productInsert(HttpServletRequest request ,@RequestParam("pname") String pname, @RequestParam("pprice") int pprice, @RequestParam("pstock") int pstock, @RequestParam("file") MultipartFile file, @RequestParam("pcategory") int pcategory, @RequestParam("pcontent") String pcontent, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, Model model)
 			throws Exception{
 		try {
-	        String uploadPath = request.getServletContext().getRealPath("/image/");
+	        String uploadPath = "src/main/resources/static/image/";
 	        service.saveProduct1(pname, pprice, pstock, file, pcategory, pcontent, file1, file2, uploadPath);
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -69,7 +69,7 @@ public class PJH_Controller {
 	@RequestMapping("/editProduct.do")
 	public String editProduct(HttpServletRequest request ,@RequestParam("pname") String pname, @RequestParam("pprice") int pprice, @RequestParam("pid") int pid, @RequestParam("pstock") int pstock, @RequestParam("pfilename") MultipartFile pfilename, @RequestParam("pcontent") String pcontent, @RequestParam("pcontentfilename1") MultipartFile pcontentfilename1, @RequestParam("pcontentfilename2") MultipartFile pcontentfilename2, Model model) throws Exception{
 		try {
-	        String uploadPath = request.getServletContext().getRealPath("/image/");
+	        String uploadPath = "src/main/resources/static/image/";
 	        service.modify(pname, pprice, pstock, pfilename, pcontent, pcontentfilename1, pcontentfilename2, pid, uploadPath);
 	    } catch (Exception e) {
 	        e.printStackTrace();
