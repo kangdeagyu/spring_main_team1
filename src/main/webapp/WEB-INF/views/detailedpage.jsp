@@ -48,27 +48,18 @@ function updateTotalAmount() { // 수량을 늘렸을 때 db에 남아있는 갯
 	}
 function updateQty() {
 	  var quantityField = document.getElementById('quantity');
-	  var purchaseLink = document.getElementById('purchaseLink');
 	  var cartLink = document.getElementById('cartLink');
+	  var purchaseLink = document.getElementById('purchaseLink');
 	  
 	  var quantity = parseInt(quantityField.value);
 	  
-	  var isLoggedIn = <%= session.getAttribute("user") != null %>;
+	  var originalCartHref = cartLink.getAttribute('href');
+	  var updatedCartHref = originalCartHref.replace(/qty=\d+/, 'qty=' + quantity);
+	  cartLink.setAttribute('href', updatedCartHref);
 	  
-	  if (isLoggedIn) {
-	    // 이미 로그인된 경우, 구매 또는 장바구니 페이지로 이동
-	    var originalPurchaseHref = purchaseLink.getAttribute('href');
-	    var updatedPurchaseHref = originalPurchaseHref.replace(/qty=\d+/, 'qty=' + quantity);
-	    purchaseLink.setAttribute('href', updatedPurchaseHref);
-	    
-	    var originalCartHref = cartLink.getAttribute('href');
-	    var updatedCartHref = originalCartHref.replace(/qty=\d+/, 'qty=' + quantity);
-	    cartLink.setAttribute('href', updatedCartHref);
-	  } else {
-	    // 비회원인 경우, 로그인 창을 띄우기
-	    alert('로그인이 필요합니다.');
-	    // 로그인 창을 띄우는 코드 작성
-	  }
+	  var originalPurchaseHref = purchaseLink.getAttribute('href');
+	  var updatedPurchaseHref = originalPurchaseHref.replace(/qty=\d+/, 'qty=' + quantity);
+	  purchaseLink.setAttribute('href', updatedPurchaseHref);
 	}
 
 productImage.innerHTML = '<img src="' + randomProduct.image + '" alt="' + randomProduct.name + '">';
@@ -118,8 +109,14 @@ productDescription.textContent = randomProduct.description;
        <div class="money">
          <span>총 구매 금액: </span>
          <span id="total-amount">${dto.pprice}</span><br><br><br>
+         	<c:if test="${cid != null }">
        	          <a id="purchaseLink" class="nav-linkthere" href="KJJOrderView?pid=${dto.pid}&qty=1" onclick="updateQty()">구매하기</a>
-           <a id="cartLink" class="nav-linktwo" href="KUserCartViewKJJ?pid=${dto.pid}&qty=1" onclick="updateQty()">장바구니</a>
+           			<a id="cartLink" class="nav-linktwo" href="KUserCartViewKJJ?pid=${dto.pid}&qty=1" onclick="updateQty()">장바구니</a>
+           </c:if>
+           <c:if test="${cid == null }">
+       	          	<a id="purchaseLink" class="nav-linkthere" href="#" onclick="return userCheck()">구매하기</a>
+           			<a id="cartLink" class="nav-linktwo" href="#" onclick="return userCheck()">장바구니</a>           
+           </c:if>
        </div>
      </td>
    </tr>
@@ -130,9 +127,9 @@ productDescription.textContent = randomProduct.description;
     </thead>
   </table>
 </div>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
-function () {
+function userCheck() {
 	if(${cid == null }){
 	    alert("로그인을 해주세요.")
 	    return false
@@ -144,7 +141,7 @@ function () {
 
 
 
-</script> -->
+</script>
 <p>추천상품</p>
 <div id="productImageContainer">
   <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
