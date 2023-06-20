@@ -15,7 +15,7 @@ public class Kms_Ordering_ServiceImpl implements Kms_Ordering_Service {
 	Kms_Ordering_Dao dao;
 
 	@Override
-	public List<Kms_Ordering_Dto> orderinglist(int cid) throws Exception {
+	public List<Kms_Ordering_Dto> orderinglist(String cid) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.orderinglist(cid);
 	}

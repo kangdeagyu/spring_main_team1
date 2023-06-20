@@ -6,6 +6,6 @@ import com.springlec.base.model.Kms_Ordering_Dto;
 
 public interface Kms_Ordering_Dao {
 	
-	public List<Kms_Ordering_Dto> orderinglist(int cid) throws Exception;
+	public List<Kms_Ordering_Dto> orderinglist(String cid) throws Exception;
 	public void orderRefund(int oid) throws Exception;
 }

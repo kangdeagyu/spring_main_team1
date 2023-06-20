@@ -23,6 +23,8 @@ public class Kms_Forum_Controller {
 	public String list(HttpServletRequest request, Model model) throws Exception{
 		List<Kms_Forum_Dto> list = service.writelist(Integer.parseInt(request.getParameter("ftype")));
 		model.addAttribute("RList",list);
+		int listSize = list.size();
+		model.addAttribute("ListSize",listSize);
 		return "Kms_WriteList";
 	}
 	// 리뷰 작성
@@ -39,6 +41,8 @@ public class Kms_Forum_Controller {
 		model.addAttribute("forumView",forumview);
 		List<Kms_Forum_Dto> commentlist = service.commentlist(Integer.parseInt(request.getParameter("fid")));
 		model.addAttribute("Clist",commentlist);
+		int listSize = commentlist.size();
+		model.addAttribute("ListSize",listSize);
 		return "ForumView";
 	}
 	// 댓글 작성
@@ -51,8 +55,9 @@ public class Kms_Forum_Controller {
 	// 댓글 삭제
 	@RequestMapping("/commentDelete")
 	public String commentDelete(HttpServletRequest request, Model model) throws Exception{
+		int page = Integer.parseInt(request.getParameter("page"));
 		service.commentDelete(Integer.parseInt(request.getParameter("fid")));
-		return "redirect:/ForumView";
+		return "redirect:/ForumView?fid=" + page;
 	}
 	// 글 검색
 	@RequestMapping("/forumSearch")

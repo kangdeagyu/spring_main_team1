@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.springlec.base.model.Kms_Ordering_Dto;
 import com.springlec.base.service.Kms_Ordering_Service;
 
+import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Kms_Ordering_Controller {
@@ -20,7 +22,8 @@ public class Kms_Ordering_Controller {
 	// 주문내역 불러오기
 	@RequestMapping("/orderinglist")
 	public String orderinglist(HttpServletRequest request, Model model) throws Exception{
-		List<Kms_Ordering_Dto> list = service.orderinglist(Integer.parseInt(request.getParameter("cid")));
+		HttpSession session = request.getSession(true);
+		List<Kms_Ordering_Dto> list = service.orderinglist((String)session.getAttribute("cid"));
 		model.addAttribute("Olist",list);
 		return "Kms_OrderingList";
 	}
