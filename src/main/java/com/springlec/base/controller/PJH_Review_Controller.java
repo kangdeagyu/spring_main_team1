@@ -133,20 +133,21 @@ public class PJH_Review_Controller {
 	
 	// 댓글 작성
 	@RequestMapping("/commentAction")
-	public String commentAction(HttpServletRequest request, Model model) throws Exception{
-			int page = Integer.parseInt(request.getParameter("fid"));
-			service.commentAction(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fid")));
-			return "redirect:ForumView?fid=" + page;
-		}
-		// 댓글 삭제
-		@RequestMapping("/commentDelete")
-		public String commentDelete(HttpServletRequest request, Model model) throws Exception{
-			int page = Integer.parseInt(request.getParameter("page"));
-			service.commentDelete(Integer.parseInt(request.getParameter("fid")));
-			return "redirect:/ForumView?fid=" + page;
-		}
-	
-	
+	public String commentAction(HttpServletRequest request, Model model) throws Exception {
+		int page = Integer.parseInt(request.getParameter("fid"));
+		service.commentAction(Integer.parseInt(request.getParameter("f_pid")),
+				request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fid")));
+		return "redirect:ForumView?fid=" + page;
+	}
+
+	// 댓글 삭제
+	@RequestMapping("/commentDelete")
+	public String commentDelete(HttpServletRequest request, Model model) throws Exception {
+		int page = Integer.parseInt(request.getParameter("page"));
+		service.commentDelete(Integer.parseInt(request.getParameter("fid")));
+		return "redirect:/ForumView?fid=" + page;
+	}
+
 	
 	
 	

@@ -93,4 +93,60 @@ public class PJH_ReviewDao_Service_Impl implements PJH_ReviewDao_Service {
 		return dao.forumsearch(ftype, content);
 	}
 
+	@Override
+	public void commentAction(int f_pid, String ftitle, int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.commentAction(f_pid, ftitle, fid);
+	}
+
+	@Override
+	public void commentDelete(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.commentDelete(fid);
+	}
+
+	@Override
+	public PJH_ReviewDto bigCommentAction(int fstep, int freforder, int fsteporder) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.bigCommentAction(fstep, freforder, fsteporder);
+	}
+
+	@Override
+	public PJH_ReviewDto bigCommentAction1(int fstep, int fsteporder, int freforder) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.bigCommentAction1(fstep, fsteporder, freforder);
+	}
+
+	@Override
+	public void bigCommentAction2(int fsteporder, int a, int freforder, int fref) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction2(fsteporder, a, freforder, fref);
+	}
+
+	@Override
+	public void bigCommentAction3(int f_pid, int fref, int freforder, int fstep, int fsteporder, int a, String ftitle,
+			int fmotherid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction3(f_pid, fref, freforder, fstep, fsteporder, a, ftitle, fmotherid);
+	}
+
+	@Override
+	public void bigCommentAction4(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction4(fid);
+	}
+
+	@Override
+	public void bigCommentAction5(int f_pid, int fref, int freforder, int fanswernum, String ftitle, int fmotherid)
+			throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction5(f_pid, fref, freforder, fanswernum, ftitle, fmotherid);
+	}
+
+	@Override
+	public void bigCommentAction6(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction6(fid);
+	}
+
 }

@@ -89,4 +89,64 @@ public class PJH_ReviewDaoImpl implements PJH_ReviewDao {
 		return sqlSession.selectList(nameSpace+".forumsearch");
 	}
 
+	
+	
+	
+	@Override
+	public void commentAction(int f_pid, String ftitle, int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".commentAction");
+	}
+
+	@Override
+	public void commentDelete(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".commentDelete");
+	}
+
+	@Override
+	public PJH_ReviewDto bigCommentAction(int fstep, int freforder, int fsteporder) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".bigCommentAction");
+	}
+
+	@Override
+	public PJH_ReviewDto bigCommentAction1(int fstep, int fsteporder, int freforder) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".bigCommentAction1");
+	}
+
+	@Override
+	public void bigCommentAction2(int fsteporder, int a, int freforder, int fref) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".bigCommentAction2");
+	}
+
+	@Override
+	public void bigCommentAction3(int f_pid, int fref, int freforder, int fstep, int fsteporder, int a, String ftitle,
+			int fmotherid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".bigCommentAction3");
+	}
+
+	@Override
+	public void bigCommentAction4(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".bigCommentAction4");
+		
+	}
+
+	@Override
+	public void bigCommentAction5(int f_pid, int fref, int freforder, int fanswernum, String ftitle, int fmotherid)
+			throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".bigCommentAction5");
+	}
+
+	@Override
+	public void bigCommentAction6(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".bigCommentAction6");
+	}
+
 }

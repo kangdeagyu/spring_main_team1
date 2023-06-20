@@ -63,6 +63,58 @@ WHERE p.pid = f.f_pid AND c.cid = f.f_cid AND ftype = #{ftype} AND fdeletedate I
 ORDER BY fref DESC, freforder
 </select>
 
+<!--댓글 작성-->
+<insert id="commentAction">
+INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder, ftitle, fcontent, finsertdate, fmotherid, fanswernum) 
+SELECT 'dummy','admin', #{f_pid}, 3 , max(fref) + 1, 0, 0, 0,#{ftitle}, #{ftitle}, now(),#{fid},0 FROM forum
+</insert>
+
+<!--댓글 삭제-->
+<update id="commentDelete">
+UPDATE forum SET fdeletedate = CURRENT_TIMESTAMP, ftitle = '삭제된 댓글입니다' WHERE fid = #{fid}
+</update>
+
+<select id="bigCommentAction" resultType="com.springlec.base.model.PJH_ReviewDto">
+  SELECT SUM(fanswernum) AS totalFanswernum
+  FROM (
+    SELECT *,
+           @found := IF(fstep = #{fstep} AND (SELECT fstep FROM forum WHERE fid > sub.fid AND freforder = #{freforder} ORDER BY fid LIMIT 1) IS NULL, 1, @found) AS found
+    FROM forum sub
+    CROSS JOIN (SELECT @found := 0) AS vars
+    WHERE freforder = #{freforder} AND fsteporder >= #{fsteporder}
+    ORDER BY fid
+  ) AS sub
+  WHERE found = 1
+</select>
+
+
+<select id="bigCommentAction1" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT fanswernum FROM (SELECT *, @found := IF(fstep = #{fstep} AND fsteporder >= #{fsteporder}, 1, @found) AS found FROM forum
+CROSS JOIN (SELECT @found := 0) AS vars WHERE freforder = #{freforder} ORDER BY fsteporder) AS sub WHERE found = 1 ORDER BY fid DESC LIMIT 1
+</select>
+
+<update id="bigCommentAction2">
+update forum set fsteporder = fsteporder + 1 where fsteporder >= #{fsteporder} + #{a} + 1 and freforder = #{freforder} and fref = #{fref}
+</update>
+
+<insert id="bigCommentAction3">
+INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder, ftitle, fcontent, finsertdate, fmotherid, fanswernum)
+values ('dummy', 'admin', #{f_pid}, 3, #{fref}, #{freforder}, #{fstep} + 1, #{fsteporder} + #{a} + 1, #{ftitle}, #{ftitle}, now(), #{fmotherid}, 0)
+</insert>
+
+<update id="bigCommentAction4">
+update forum set fanswernum = fanswernum + 1 where fid = #{fid}
+</update>
+
+<insert id="bigCommentAction5">
+INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)
+values ('dummy','admin', #{f_pid}, 3 ,#{fref}, #{freforder} + #{fanswernum} + 1 ,1,1 ,#{ftitle}, #{ftitle} ,now(), #{fmotherid}, 0)
+</insert>
+
+<update id="bigCommentAction6">
+update forum set fanswernum = fanswernum + 1 where fid = #{fid}
+</update>
+
 
 
 </mapper>

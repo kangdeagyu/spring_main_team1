@@ -20,4 +20,17 @@ public interface PJH_ReviewDao_Service {
 	public void deleteReviewOrQNA(int fid) throws Exception;
 	public void deleteNotice(int nid) throws Exception;
 	public List<PJH_ReviewDto> forumsearch(int ftype, String content) throws Exception;
+	
+	
+	
+	public void commentAction(int f_pid, String ftitle, int fid) throws Exception;
+	public void commentDelete(int fid) throws Exception;
+	public PJH_ReviewDto bigCommentAction(int fstep, int freforder, int fsteporder) throws Exception;
+	public PJH_ReviewDto bigCommentAction1(int fstep, int fsteporder, int freforder) throws Exception;
+	public void bigCommentAction2(int fsteporder, int a, int freforder, int fref) throws Exception;
+	public void bigCommentAction3(int f_pid, int fref, int freforder, int fstep, int fsteporder, int a, String ftitle, int fmotherid) throws Exception;
+	public void bigCommentAction4(int fid) throws Exception;
+	public void bigCommentAction5(int f_pid, int fref, int freforder, int fanswernum, String ftitle, int fmotherid) throws Exception;
+	public void bigCommentAction6(int fid) throws Exception;
+	
 }
