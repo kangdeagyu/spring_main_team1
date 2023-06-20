@@ -136,24 +136,27 @@ public class PJH_Review_Controller {
 	@RequestMapping("/Acommentwrite.do")
 	public String commentAction(HttpServletRequest request, Model model) throws Exception {
 		int page = Integer.parseInt(request.getParameter("fid"));
+		String ftype=request.getParameter("ftype");
 		service.commentAction(Integer.parseInt(request.getParameter("f_pid")),
 				request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fid")));
-		return "redirect:ForumView?fid=" + page;
+		return "redirect:AForumView.do?fid=" + page+"&ftype=" + ftype;
 	}
 
 	// 댓글 삭제
 	@RequestMapping("/Acommentdelete.do")
 	public String commentDelete(HttpServletRequest request, Model model) throws Exception {
+		String ftype=request.getParameter("ftype");
 		int page = Integer.parseInt(request.getParameter("page"));
 		service.commentDelete(Integer.parseInt(request.getParameter("fid")));
-		return "redirect:/ForumView?fid=" + page;
+		return "redirect:/AForumView.do?fid=" + page+"&ftype=" + ftype;
 	}
 
 	
 	// 대댓글 작성
-		@RequestMapping("/AbigCommentWrite.do")
+		@RequestMapping("/ABigCommentWrite.do")
 		public String bigCommentWrite(HttpServletRequest request, Model model) throws Exception {
 		    int page = Integer.parseInt(request.getParameter("page"));
+		    String ftype=request.getParameter("ftype");
 		    if ("0".equals(request.getParameter("freforder"))) {
 		        service.bigCommentAction5(Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fanswernum")),
 		                request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
@@ -178,12 +181,36 @@ public class PJH_Review_Controller {
 		                Integer.parseInt(request.getParameter("fsteporder")), a, request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
 		        service.bigCommentAction4(Integer.parseInt(request.getParameter("fid")));
 		    }
-		    return "redirect:AForumView?fid=" + page;
+		    return "redirect:AForumView.do?fid=" + page +"&ftype=" + ftype;
 		}
 	
+	//공지사항 수정페이지로 이동
+	@RequestMapping("/AnoticeModifyPage.do")
+	public String noticeModifypage(HttpServletRequest request, Model model) {
+		int ftype=Integer.parseInt(request.getParameter("ftype"));
+		int nid = Integer.parseInt(request.getParameter("nid"));
+		String n_aid = request.getParameter("n_aid");
+		String ntitle = request.getParameter("ntitle");
+		String ncontent = request.getParameter("ncontent");
+		String ninsertdate = request.getParameter("ninsertdate");
+		model.addAttribute("ftype", ftype);
+		model.addAttribute("n_aid", n_aid);
+		model.addAttribute("ntitle", ntitle);
+		model.addAttribute("nid", nid);
+		model.addAttribute("ninsertdate", ninsertdate);
+		model.addAttribute("ncontent", ncontent);
+		
+		return "ANoticeModifyPage";
+	}
 	
-	
-	
+	@RequestMapping("/AnoticeModify.do")
+	public String noticeModify(HttpServletRequest request, Model model) {
+		int ftype = Integer.parseInt(request.getParameter("ftype"));
+		int nid = Integer.parseInt(request.getParameter("nid"));
+		String ntitle = request.getParameter("ntitle");
+		String ncontent = request.getParameter("ncontent");
+		return "ANoticeView.do?nid="+nid;
+	}
 	
 	
 	
