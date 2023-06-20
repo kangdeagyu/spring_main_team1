@@ -18,7 +18,7 @@ public class Kms_Ordering_Controller {
 	@Autowired
 	Kms_Ordering_Service service;
 	// 주문내역 불러오기
-	@RequestMapping("/orderinglist.do")
+	@RequestMapping("/orderinglist")
 	public String orderinglist(HttpServletRequest request, Model model) throws Exception{
 		List<Kms_Ordering_Dto> list = service.orderinglist(Integer.parseInt(request.getParameter("cid")));
 		model.addAttribute("Olist",list);

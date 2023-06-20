@@ -14,7 +14,7 @@
 				<h3 class="text-dark">Little and Precious</h3>
 				<h3 class="text-dark">주문이 완료 되었습니다</h3>	
 				<h3 class="text-dark">감사합니다.</h3>	
-				<h3 class="text-dark"><a href="#">주문내역</a></h3>	
+				<h3 class="text-dark"><a href="orderinglist">주문내역</a></h3>	
 			</figure>
 		</div>
 		
