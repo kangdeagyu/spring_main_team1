@@ -9,7 +9,11 @@
 <!-- 여기서부터 복사하시면 됩니다~~~~~~~~~!!!! -->
 
 <jsp:include page="admin_01_header.jsp" />
-
+<script>
+function showUploadAlert() {
+    alert("업로드 완료 되었습니다.");
+}
+</script>
 
 </head>
 
@@ -43,7 +47,12 @@
 					<td>카테고리</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="pcategory"></td>
+					<td> <select name="pcategory" class="form-select">
+                <option value="0" selected="selected">조명</option>
+                <option value="1">미니어쳐</option>
+                <option value="2">의자</option>
+            </select>
+            		</td>
 				</tr>
 				<tr>
 				<tr>
@@ -73,7 +82,7 @@
 					<input type="file" name="file2"></td>
 				</tr>
 			</table>
-			<input type="submit" value="업로드">
+			<input type="submit" value="업로드" onclick="showUploadAlert()">
 		</form>
 		</main>
 		</div>

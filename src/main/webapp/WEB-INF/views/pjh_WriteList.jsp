@@ -78,6 +78,16 @@
 
         $(document).ready(function() {
             GetTarget(1); // 초기 페이지를 1로 설정
+            
+         // 삭제 버튼 클릭 시 확인 창 표시
+            $(document).on("submit", ".delete-form", function() {
+                var confirmed = confirm("정말로 삭제하시겠습니까?");
+                if (confirmed) {
+                    // 삭제 성공 메시지 출력
+                    alert("댓글이 성공적으로 삭제되었습니다.");
+                }
+                return confirmed;
+            });
         });
     </script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -192,7 +202,7 @@
                     <td></td>
                     <td><a href="ANoticeView.do?nid=${noticedto.nid}&ftype=${ftype}">${noticedto.ntitle}</a></td>     
                     <td>${noticedto.ninsertdate}
-                    <form action ="AdeleteNotice.do?nid=${noticedto.nid}&ftype=${ftype}" method="post">
+                    <form action ="AdeleteNotice.do?nid=${noticedto.nid}&ftype=${ftype}" method="post" class="delete-form">
                     <input type="submit" value="삭제">
                     </form></td>
         	</tr>
@@ -204,7 +214,7 @@
                 <td>${dto.pname}</td>
                 <td><a href="AForumView.do?fid=${dto.fid}&ftype=${ftype}">${dto.ftitle}</a></td>
                 <td>${dto.finsertdate}
-                 <form action ="deleteRevieworQnA.do?fid=${dto.fid}&ftype=${ftype}" method="post">
+                 <form action ="deleteRevieworQnA.do?fid=${dto.fid}&ftype=${ftype}" method="post" class="delete-form">
                  <input type="submit" value="삭제">
                  </form></td>
             	</tr>
