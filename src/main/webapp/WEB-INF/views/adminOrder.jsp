@@ -38,7 +38,7 @@
 <link href="css/bootstrap-utilities.rtl.css" rel="stylesheet">
 <link href="css/bootstrap-utilities.rtl.min.css" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="aQnA_style.css">
+<link rel="stylesheet" type="text/css" href="css/aQnA_style.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
@@ -241,10 +241,15 @@
 						<div class="btn-toolbar mb-2 mb-md-0">
 							<div class="btn-group me-2"></div>
 
-							<button type="button"
-								class="btn btn-sm btn-outline-secondary dropdown-toggle" onclick="thisWeek()">
-							
-								This week</button>
+							<form id="myForm" action="Ordermanage.do" method="post">
+								  <input type="hidden" name="customerId" value="${customerId}"> 
+								  <input type="hidden" name="startDate" id="startdayInput">
+								  <input type="hidden" name="endDate" id="enddayInput">
+								  <button type="button" onclick="thisWeek()"
+										class="btn btn-sm btn-outline-secondary dropdown-toggle">
+										This week
+								  </button>
+							</form>
 								
 
 						</div>

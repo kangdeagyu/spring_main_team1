@@ -16,7 +16,7 @@
 
 
 <!-- 프로젝트내 js 파일  -->
-<script src="js/admin_kkg_remake.js" type="text/javascript"></script>
+<script src="js/admin_kkg_salemanage.js" type="text/javascript"></script>
 <script src="js/admin_kkg_share.js" type="text/javascript"></script>
 <!--  bootsstrap link -->
 
@@ -113,7 +113,7 @@
 
 					<div
 						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-						<h1 class="h2">매출/결재 관리</h1>
+						<h1 class="h2">매출 현황 분석</h1>
 
 
 						<div>
@@ -145,7 +145,7 @@
 					<div class="content">
 					 
 						<div class="array"> 
-							<div class="card shadw-lg"  id = "dailyCanvas" style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px; display: block">
+							<div class="card shadw-lg"  id = "dailyCanvas" style="width: 100%; height: 500px; background-color: #F7F7F7; margin-bottom: 10px; display: block">
 								<h5 class="card-title">일별 매출/주문 현황 <button id="chart_btn01" class="btn btn-dark"  style="size=10; float: right;">Monthly Chart 보기</button> </h5>
 								
 								<canvas id="dailychart" ></canvas>
@@ -157,7 +157,7 @@
 								</div>
 							</div>
 							<div class="card shadw-lg"  id = "monthlyCanvas"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px; display: none">
+								style="width: 100%; height: 500px; background-color: #F7F7F7; margin-bottom: 10px; display: none">
 								<h5 class="card-title">월별 매출/주문 현황 <button id="chart_btn02" class="btn btn-dark" style="size=10; float: right;">Daily Chart 보기</button> </h5>
 								<canvas id="monthlychart"></canvas>
 								<div class="card-body">
@@ -167,18 +167,7 @@
 							
 							
 						</div>
-						<div class="array">
-
-
-							<div class="card shadw-lg"  
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px">
-								<h5 class="card-title">월별 매출/주문 현황</h5>
-								<canvas id="monthlychart"></canvas>
-								<div class="card-body">
-									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-								</div>
-							</div>
-						</div>
+					
 					</div>
 
 					<div class="content">
