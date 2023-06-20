@@ -28,6 +28,7 @@ public class KUserController {
 		HttpSession session = request.getSession(true);
 		String cid = request.getParameter("cid");
 		String cpassword = request.getParameter("cpassword");
+
 		String result = "error";
 		
 		if(cid.startsWith("admin")) {
@@ -107,8 +108,10 @@ public class KUserController {
 	public String kakaoCheck(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
 		String result = service.kakaoLogin(request.getParameter("cid"));
+		String accessToken = request.getParameter("accessToken");
 		
 		if(result.equals("success")) {
+			session.setAttribute("Token", accessToken);
 			session.setAttribute("cid", request.getParameter("cid"));
 			session.setAttribute("name", request.getParameter("cname"));	
 		}else if(result.equals("join")) {
@@ -163,9 +166,9 @@ public class KUserController {
 		int gender = 0;
 		
 		if(cgender.equals("male")) {
-			gender = 1;
-		}else {
 			gender = 0;
+		}else {
+			gender = 1;
 		}
 
 		int result = service.userUpdate(cid, cpassword, cname, cphone, cbirth, gender, cpostnum, caddress1, caddress2);

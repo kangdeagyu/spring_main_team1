@@ -62,6 +62,9 @@ public class KHomeController {
 	@RequestMapping("/logout")
 	public String HomeView(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
+		if(session.getAttribute("Token") != null) {
+			
+		}
 		session.invalidate();
 		return "redirect:/";
 	}

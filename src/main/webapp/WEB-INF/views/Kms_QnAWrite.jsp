@@ -27,7 +27,7 @@
 </script>
 <body>
 <h1>QnA 작성</h1>
-<form action="QnAforumwrite.do" method="post" onsubmit="return validateForumWriteForm()">
+<form action="QnAwrite" method="post" onsubmit="return validateForumWriteForm()">
 		<input type="hidden" name="f_pid" value="${param.pid }">
     <table>
         <tr>
@@ -36,11 +36,11 @@
         </tr>
         <tr>
             <td>작성자</td>
-            <td><input type="text" name="cid" value="${cid }" readonly="readonly"></td>
+            <td><input type="text" name="f_cid" value="${cid }" readonly="readonly"></td>
         </tr>
         <tr>
             <td>상품명</td>
-            <td><input type="text" name="pname" value="${param.pname}" readonly="readonly"></td>
+            <td><input type="text" name="pname" value="${Pname.pname}" readonly="readonly"></td>
         </tr>
         <tr>
             <td colspan="2">내용</td>

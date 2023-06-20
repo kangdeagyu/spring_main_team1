@@ -25,4 +25,7 @@ public interface Kms_Forum_Dao {
 	public void bigCommentAction4(int fid) throws Exception;
 	public void bigCommentAction5(String f_cid, int f_pid, int fref, int freforder, int fanswernum, String ftitle, int fmotherid) throws Exception;
 	public void bigCommentAction6(int fid) throws Exception;
+	public List<Kms_Forum_Dto> DQnAList(int pid) throws Exception;
+	public List<Kms_Forum_Dto> DReviewList(int pid) throws Exception;
+	public Kms_Forum_Dto QnAPname(int pid) throws Exception;
 }
