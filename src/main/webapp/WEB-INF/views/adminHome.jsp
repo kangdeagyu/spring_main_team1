@@ -81,18 +81,6 @@
 
 
 
-
-								<!-- 							<div class="array">
-								<div class="card" style="width: 350px; height: 300px;">
-								    <h5 class="card-title"> 주간 매출/판매 현황</h5>
-								  <canvas id="SaleChart_weekly"></canvas>
-								  <div class="card-body">
-									<a href="#" class="btn btn-primary">Go somewhere</a>
-								  </div>
-								</div>
-							</div> -->
-
-
 								<div class="array">
 									<div class="card shadow-lg"
 										style="width: 500px; height: 300px; background-color: #F7F7F7;">
@@ -106,16 +94,14 @@
 								</div>
 
 							</div>
-							<!-- content  -->
+							<!-- content1 끝  -->
 							<br />
 							<hr />
 							<br />
 							<div>
-								<h2>회원 관리</h2>
+								<h2>회원 / 제품 관리</h2>
 							</div>
 							<div class="content">
-
-
 								<div class="array">
 									<div class="card shadow-lg"
 										style="width: 500px; height: 300px; background-color: #F7F7F7;">
@@ -157,11 +143,23 @@
 								</div>
 								
 								
-							</div>
+							</div> <!-- 회원/제품 관리 끝 -->
 							<br />
 							<hr />
 							<br />
-
+							
+							<!-- 요약 보고서 넣기 -->
+							<div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							</div>
 
  							<div>
 								<p>받아온 data 검증하기 위한 파트</p>
