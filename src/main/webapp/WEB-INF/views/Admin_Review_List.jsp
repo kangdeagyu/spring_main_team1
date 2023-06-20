@@ -29,38 +29,41 @@ function selectAll() {
 
 
 function deleteSelectedItems() {
-    var checkboxes = document.getElementsByName('selectedItems');
-    var selectedItems = [];
+	 var checkboxes = document.getElementsByName('selectedItems');
+	    var selectedItems = [];
 
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            selectedItems.push(checkboxes[i].value);
-        }
-    }
+	    for (var i = 0; i < checkboxes.length; i++) {
+	        if (checkboxes[i].checked) {
+	            selectedItems.push(checkboxes[i].value);
+	        }
+	    }
 
-    if (selectedItems.length === 0) {
-        alert('삭제할 상품을 선택해주세요.');
-        return;
-    }
+	    if (selectedItems.length === 0) {
+	        alert('삭제할 상품을 선택해주세요.');
+	        return;
+	    }
 
-    // 선택된 상품들의 값을 'fid'라는 이름으로 서버로 전송
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'deleteReview.do';
+	    // 알림창 표시
+	    var result = confirm('정말로 삭제 하시겠습니까?');
 
-    for (var i = 0; i < selectedItems.length; i++) {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'fid';
-        input.value = selectedItems[i];
-        form.appendChild(input);
-    }
+	    // 확인 버튼을 눌렀을 때만 삭제 요청 전송
+	    if (result) {
+	        var form = document.createElement('form');
+	        form.method = 'POST';
+	        form.action = 'deleteReview.do';
 
-    document.body.appendChild(form);
-    form.submit();
+	        for (var i = 0; i < selectedItems.length; i++) {
+	            var input = document.createElement('input');
+	            input.type = 'hidden';
+	            input.name = 'fid';
+	            input.value = selectedItems[i];
+	            form.appendChild(input);
+	        }
 
-    return false; // 폼 제출 중지
-}
+	        document.body.appendChild(form);
+	        form.submit();
+	    }
+	}
 
 function openCommentModal() {
     var checkboxes = document.getElementsByName('selectedItems');
