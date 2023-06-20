@@ -6,6 +6,17 @@
 
 <html>
 <head>
+<script type="text/javascript">
+    function confirmRefund() {
+        var confirmed = confirm("정말 환불 하시겠습니까?");
+        if (confirmed) {
+            alert("제품이 성공적으로 환불되었습니다.");
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
@@ -70,8 +81,10 @@
             <td>수량 :</td><td>${param.oqty }</td>
         </tr>
         <tr>
-            <td>금액 :</td><td>${param.oprice }</td>
-        </tr>
+		    <td>금액 :</td>
+		    <td><fmt:formatNumber value="${param.oprice}" pattern="#,##0원" /></td>
+		</tr>
+
         <tr>
             <td>배송상태 :</td><td><c:choose>
           			<c:when test="${param.odelivery == 0}">배송 전</c:when>
@@ -100,9 +113,9 @@
 		<c:set var="listSize" value="${fn:length(list)}" />
 </table>
 				<c:choose>
-          			<c:when test="${dto.odelivery == 2}">환불 불가</c:when>
-		          	<c:when test="${dto.odelivery == 3}">환불 불가</c:when>
-		          	<c:when test="${dto.odelivery == 4}">환불 완료</c:when>
+          			<c:when test="${param.odelivery == 2}">환불 불가</c:when>
+		          	<c:when test="${param.odelivery == 3}">환불 불가</c:when>
+		          	<c:when test="${param.odelivery == 4}">환불 완료</c:when>
 		          	<c:otherwise>
 						<form id="refundForm" action="orderRefund">
 							<input type="hidden" name="oid" value="${param.oid}">
@@ -111,13 +124,7 @@
 					</c:otherwise>
 		        </c:choose>
 		        
-<script>
-    function confirmRefund() {
-        if (confirm('정말 환불 하시겠습니까?')) {
-            document.getElementById('refundForm').submit();
-        }
-    }
-</script>
+
     
       
 </main>

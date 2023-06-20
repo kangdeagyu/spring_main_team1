@@ -27,8 +27,10 @@
 </script>
 <body>
 <h1>리뷰 작성</h1>
-<form action="forumwrite.do" method="post" onsubmit="return validateForumWriteForm()">
+<form action="writeforum" method="post" onsubmit="return validateForumWriteForm()">
 		<input type="hidden" name="f_cid" value="${cid }">
+		<input type="hidden" name="f_pid" value="${param.f_pid }">
+		<input type="hidden" name="oid" value="${param.oid }">
 		<input type="hidden" name="ftype" value="1">
     <table>
         <tr>
@@ -40,8 +42,8 @@
             <td><input type="text" name="cname" value="${param.cname }" readonly="readonly"></td>
         </tr>
         <tr>
-            <td>상품코드</td>
-            <td><input type="text" name="f_pid" value="${param.f_pid}" readonly="readonly"></td>
+            <td>상품</td>
+            <td><input type="text" name="pname" value="${param.pname}" readonly="readonly"></td>
         </tr>
         <tr>
             <td colspan="2">내용</td>

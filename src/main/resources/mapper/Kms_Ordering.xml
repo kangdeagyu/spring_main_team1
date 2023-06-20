@@ -5,7 +5,7 @@
 <mapper namespace="com.springlec.base.dao.Kms_Ordering_Dao">
 
 <select id="orderinglist" resultType="com.springlec.base.model.Kms_Ordering_Dto">
-SELECT o.*, p.pname, c.cname FROM ordering o, product p, customer c WHERE o.product_pid = p.pid AND c.cid = o.customer_cid AND customer_cid = #{cid} ORDER BY oid DESC
+SELECT o.*, p.pname, p.pfilename, c.cname FROM ordering o, product p, customer c WHERE o.product_pid = p.pid AND c.cid = o.customer_cid AND customer_cid = #{cid} ORDER BY oid DESC
 </select>
 
 <update id="orderRefund">

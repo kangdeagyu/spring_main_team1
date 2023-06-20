@@ -19,7 +19,7 @@ SELECT * FROM notice WHERE nid = #{nid}
 </select>
 
 <!--리뷰 작성-->
-<insert id="forumwrite">
+<insert id="writeforum">
 INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)
  SELECT #{f_cid},'admin', #{f_pid}, 1 , max(fref) + 1, 0,0, 0,#{ftitle},#{fcontent},NOW(),0,0 FROM forum
 </insert>
@@ -47,7 +47,13 @@ UPDATE forum SET fdeletedate = CURRENT_TIMESTAMP, ftitle = '삭제된 댓글입�
 
 <!--글 검색-->
 <select id="forumSearch" resultType="com.springlec.base.model.Kms_Forum_Dto">
-SELECT f.*, p.pname,c.cname FROM forum f, product p, customer c WHERE p.pid = f.f_pid AND c.cid = f.f_cid AND ftype = #{ftype} AND fdeletedate = NULL p.pname LIKE #{content} ORDER BY fref DESC, freforder
+SELECT f.*, p.pname, c.cname
+FROM forum f, product p, customer c
+WHERE p.pid = f.f_pid
+  AND c.cid = f.f_cid
+  AND f.ftype = 2
+  AND p.pname LIKE CONCAT('%', #{content}, '%')
+
 </select>
 
 <insert id="QnAwrite">

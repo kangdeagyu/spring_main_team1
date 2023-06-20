@@ -15,7 +15,7 @@ public interface Kms_Forum_Dao {
 	public List<Kms_Forum_Dto> commentlist(int fid) throws Exception;
 	public void commentAction(String f_cid, int f_pid, String ftitle, int fid) throws Exception;
 	public void commentDelete(int fid) throws Exception;
-	public List<Kms_Forum_Dto> forumSearch(int ftype, String content) throws Exception;
+	public List<Kms_Forum_Dto> forumSearch(String content) throws Exception;
 	public void QnAwrite(String f_cid, int f_pid, String ftitle, String fcontent) throws Exception;
 	public void orderingupdate(int oid) throws Exception;
 	public Kms_Forum_Dto bigCommentAction(int fstep, int freforder, int fsteporder) throws Exception;

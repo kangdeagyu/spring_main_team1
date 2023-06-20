@@ -31,6 +31,18 @@ public class Kms_Ordering_Controller {
 	@RequestMapping("/orderRefund")
 	public String orderRefund(HttpServletRequest request, Model model) throws Exception{
 		service.orderRefund(Integer.parseInt(request.getParameter("oid")));
-		return "redirect:Kms_OrderingList";
+		HttpSession session = request.getSession(true);
+		String page = (String)session.getAttribute("cid");
+		return "Kms_OrderingList?cid=" + page;
+	}
+	
+	@RequestMapping("/OrderingView")
+	public String OrderingView(HttpServletRequest request, Model model) throws Exception{
+		return "Kms_OrderingView";
+	}
+	
+	@RequestMapping("/ReviewWriteForum")
+	public String ReviewWriteForum(HttpServletRequest request, Model model) throws Exception{
+		return "Kms_WriteForum";
 	}
 }

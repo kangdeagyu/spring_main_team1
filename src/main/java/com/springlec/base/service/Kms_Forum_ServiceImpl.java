@@ -52,10 +52,9 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 	}
 
 	@Override
-	public List<Kms_Forum_Dto> forumSearch(int ftype, String content) throws Exception {
+	public List<Kms_Forum_Dto> forumSearch(String content) throws Exception {
 		// TODO Auto-generated method stub
-		content = "%" + content + "%";
-		return dao.forumSearch(ftype, content);
+		return dao.forumSearch(content);
 	}
 
 	@Override

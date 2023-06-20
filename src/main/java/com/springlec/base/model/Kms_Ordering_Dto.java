@@ -6,7 +6,7 @@ public class Kms_Ordering_Dto {
 
 	int oid;
 	String customer_cid;
-	int product_cid;
+	int product_pid;
 	int oqty;
 	int oprice;
 	String opostnum;
@@ -16,6 +16,7 @@ public class Kms_Ordering_Dto {
 	Timestamp odate;
 	String omemo;
 	String opaytype;
+	String pfilename;
 	
 	String cname;
 	String pname;
@@ -26,12 +27,12 @@ public class Kms_Ordering_Dto {
 	
 	
 
-	public Kms_Ordering_Dto(int oid, String customer_cid, int product_cid, int oqty, int oprice, String opostnum,
-			String oaddress1, String oaddress2, int odelivery, Timestamp odate, String omemo, String opaytype, String cname, String pname) {
+	public Kms_Ordering_Dto(int oid, String customer_cid, int product_pid, int oqty, int oprice, String opostnum,
+			String oaddress1, String oaddress2, int odelivery, Timestamp odate, String omemo, String opaytype, String cname, String pname, String pfilename) {
 		super();
 		this.oid = oid;
 		this.customer_cid = customer_cid;
-		this.product_cid = product_cid;
+		this.product_pid = product_pid;
 		this.oqty = oqty;
 		this.oprice = oprice;
 		this.opostnum = opostnum;
@@ -43,6 +44,19 @@ public class Kms_Ordering_Dto {
 		this.opaytype = opaytype;
 		this.cname = cname;
 		this.pname = pname;
+		this.pfilename = pfilename;
+	}
+
+
+
+	public String getPfilename() {
+		return pfilename;
+	}
+
+
+
+	public void setPfilename(String pfilename) {
+		this.pfilename = pfilename;
 	}
 
 
@@ -87,12 +101,12 @@ public class Kms_Ordering_Dto {
 		this.customer_cid = customer_cid;
 	}
 
-	public int getProduct_cid() {
-		return product_cid;
+	public int getProduct_pid() {
+		return product_pid;
 	}
 
-	public void setProduct_cid(int product_cid) {
-		this.product_cid = product_cid;
+	public void setProduct_pid(int product_pid) {
+		this.product_pid = product_pid;
 	}
 
 	public int getOqty() {

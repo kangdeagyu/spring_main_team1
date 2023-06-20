@@ -59,6 +59,7 @@
     <table border="1">
         <tr>
             <th>주문 정보</th>
+            <th>상품 이미지</th>
             <th>주문 내역 </th>
             <th>주문 금액</th>
             <th>주문 날짜</th>
@@ -72,7 +73,7 @@
 		<c:forEach items="${Olist}" var="dto" varStatus="status">
 				
 			  <tr>
-			   	<td><form action="Kms_OrderingView.jsp">
+			   	<td><form action="OrderingView">
 				   		<input type="hidden" name="oid" value="${dto.oid}">
 	                    <input type="hidden" name="pname" value="${dto.pname}">
 	                    <input type="hidden" name="cname" value="${dto.cname}">
@@ -87,8 +88,9 @@
 	                    <input type="hidden" name="odate" value="${dto.odate}">
 	                    <input type="submit" value="주문정보">
 			   	</form></td>
+			    <td><img src="image/${dto.pfilename }" style="width: 100px; height: 100px; margin-bottom: 10px;"  alt="..."></td>
 			    <td>${dto.pname} X ${dto.oqty}</td>
-			    <td>${dto.oprice}</td>
+			    <td><fmt:formatNumber value="${dto.oprice}" pattern="#,##0원" /></td>
 			    <td>${dto.odate}</td>
 			    <td>
 			     <c:choose>
@@ -105,7 +107,7 @@
 			        </c:when>
 			        <c:otherwise>
             <c:if test="${dto.odelivery == 2}">
-                <form action="Kms_WriteForum.jsp">
+                <form action="ReviewWriteForum">
                     <input type="hidden" name="oid" value="${dto.oid}">
                     <input type="hidden" name="f_pid" value="${dto.product_pid}">
                     <input type="hidden" name="pname" value="${dto.pname}">
