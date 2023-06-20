@@ -8,5 +8,4 @@ public interface KJJpurchaseDao {
 
 	public List<KJJpurchaseDto> product(int pid) throws Exception;
 	public List<KJJpurchaseDto> customer(String cid) throws Exception;
-
 }

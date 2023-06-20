@@ -46,8 +46,8 @@
             <img src="image/${dto.pfilename}" style="width: 100px; height: 100px; margin-bottom: 10px;" alt="..." />
           </td>
           <td style="width: 75%">${dto.pname}<br/>
-            ${dto.pcontent} - ${dto.qty}개<br/>
-            <fmt:formatNumber value="${dto.pprice * dto.qty}" pattern="#,##0원" />
+            ${dto.pcontent} - ${qty}개<br/>
+            <fmt:formatNumber value="${dto.pprice * qty}" pattern="#,##0원" />
           </td>
         </tr>
       </c:forEach> 	
@@ -57,7 +57,7 @@
 
    <div class="col-md-6">
    <!-- ****************** 액션 바꿔주기 ***************** -->
-    <form action="userOrderProduct" name="orderForm" id="orderForm" method="post" onsubmit="return check()">
+    <form action="purchase" name="orderForm" id="orderForm" method="post" onsubmit="return check()">
       <h3>주문자 정보</h3>
       <c:forEach items="${userlist}" var="dto">
         <c:set var="name" value="${dto.cname }"></c:set>
@@ -92,7 +92,7 @@
       <c:set var="totalprice" value="0"></c:set>
       <c:forEach items="${orderList}" var="dto" varStatus="status">	
         <input type="hidden" name="pid" value="${dto.pid }">
-        <c:set var="subtotal" value="${dto.pprice * dto.qty}"></c:set>
+        <c:set var="subtotal" value="${dto.pprice * qty}"></c:set>
         <c:set var="totalprice" value="${totalprice + subtotal}"></c:set>
       </c:forEach>
 		  <div class="form-group">

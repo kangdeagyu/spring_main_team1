@@ -119,17 +119,43 @@ function userCheck() {
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-  Kakao.init('e94ea7cf7a4161d305da7590513621dc'); // 발급받은 키 중 javascript키를 사용해준다.
-  console.log(Kakao.isInitialized()); // sdk초기화여부판단
+function logoutAndKakaoLogout() {
+	  Kakao.init('e94ea7cf7a4161d305da7590513621dc');
+	  Kakao.isInitialized();
+
+	  if (!Kakao.Auth.getAccessToken()) {
+	    console.log('Not logged in.'); // 이미 로그아웃되어 있음
+	    return;
+	  }
+	  
+	  Kakao.Auth.logout(function(response) {
+	    if (response) {
+	      Kakao.Auth.setAccessToken(undefined); // 토큰 제거
+	      location.href='logout';
+	      alert("로그아웃되었습니다. 편안한 하루 되세요!");
+	    } else {
+	      alert("잘못된 정보입니다. 관리자에 문의해 주시기 바랍니다.");
+	    }
+	  });
+}
   
-  function logoutAndKakaoLogout() {
-    // 카카오 로그아웃 처리
-    Kakao.Auth.logout(function() {
-// 로그아웃이 성공한 후에 서버의 로그아웃 처리를 진행
-      window.location.href = 'logout';
-      alert("로그아웃되었습니다. 편안한 하루 되세요!") 
-    });
-  }
+/*   function logoutAndKakaoLogout() {
+
+	  Kakao.init('e94ea7cf7a4161d305da7590513621dc');//카카오에서 제공 myceo.co.kr 수정
+	  Kakao.Auth.logout(
+	  function(obj) {
+	  if(obj==true){}else{}
+		   location.href='logout';
+		   alert("로그아웃되었습니다. 편안한 하루 되세요!") 
+	   }
+	  );
+
+ 		  window.location.href = 'logout';
+	      alert("로그아웃되었습니다. 편안한 하루 되세요!")  
+      
+  } */
+  
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
