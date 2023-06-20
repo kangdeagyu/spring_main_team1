@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KJJBasketDao">
+
+			<insert id="BasketDao">
+				INSERT INTO basket (b_pid, b_cid, bqty)
+ 				 VALUES (#{pid}, #{cid}, #{bqty})
+			</insert>			
+
+
+
+
+
+</mapper>

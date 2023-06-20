@@ -22,5 +22,6 @@ public class KJJdetailPageController {
 	public String listKJJdetailPageDao(HttpServletRequest request, Model model) throws Exception{
 		List<KJJdetailPageDto> listKJJdetailPageDao = service.listKJJdetailPageDao(Integer.parseInt(request.getParameter("pid")));
 		model.addAttribute("listdetailPage", listKJJdetailPageDao);
-		return "detailedpage" ;	}
+		return "detailedpage" ;	
+		}
 }
