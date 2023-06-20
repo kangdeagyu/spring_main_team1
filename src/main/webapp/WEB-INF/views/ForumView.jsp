@@ -158,7 +158,7 @@
         </tr>
         <tr>
             <td><strong>상품:</strong></td>
-            <td>${forumView.cname}</td>
+            <td>${forumView.pname}</td>
         </tr>
         <tr>
             <td colspan="2"><strong>내용:</strong></td>

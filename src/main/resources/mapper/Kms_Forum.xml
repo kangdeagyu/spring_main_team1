@@ -19,7 +19,7 @@ SELECT * FROM notice WHERE nid = #{nid}
 </select>
 
 <!--리뷰 작성-->
-<insert id="forumwrite">
+<insert id="writeforum">
 INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)
  SELECT #{f_cid},'admin', #{f_pid}, 1 , max(fref) + 1, 0,0, 0,#{ftitle},#{fcontent},NOW(),0,0 FROM forum
 </insert>

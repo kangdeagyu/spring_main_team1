@@ -38,11 +38,12 @@ public class Kms_Forum_Controller {
 		return "Kms_NoticeView";
 	}
 	// 리뷰 작성
-	@RequestMapping("/forumwrite.do")
+	@RequestMapping("/writeforum")
 	public String writeforum(HttpServletRequest request, Model model) throws Exception{
+		String page = request.getParameter("f_cid");
 		service.writeforum(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), request.getParameter("ftitle"), request.getParameter("fcontent"));
 		service.orderingupdate(Integer.parseInt(request.getParameter("oid")));
-		return "redirect:Kms_WriteList";
+		return "redirect:orderinglist?cid=" + page;
 	}
 	// 게시글 정보
 	@RequestMapping("/ForumView")
