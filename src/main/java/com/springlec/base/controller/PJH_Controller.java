@@ -65,9 +65,12 @@ public class PJH_Controller {
 	// 상품 수정
 	@RequestMapping("/editProduct.do")
 	public String editProduct(HttpServletRequest request ,@RequestParam("pname") String pname, @RequestParam("pprice") int pprice, @RequestParam("pid") int pid, @RequestParam("pstock") int pstock, @RequestParam("pfilename") MultipartFile pfilename, @RequestParam("pcontent") String pcontent, @RequestParam("pcontentfilename1") MultipartFile pcontentfilename1, @RequestParam("pcontentfilename2") MultipartFile pcontentfilename2, Model model) throws Exception{
+		System.out.println(pstock);
 		try {
 	        String uploadPath = "src/main/resources/static/image/";
 	        service.modify(pname, pprice, pstock, pfilename, pcontent, pcontentfilename1, pcontentfilename2, pid, uploadPath);
+	        service.modify2(pid);
+	        service.modify1(pid, pstock);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

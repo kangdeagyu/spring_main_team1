@@ -103,42 +103,36 @@
             var fileInput1 = document.getElementById('pcontentfilename1');
             var fileInput2 = document.getElementById('pcontentfilename2');
 
-            // 파일이 선택되었는지 확인
-            if (fileInput.files.length > 0 || fileInput1.files.length > 0 || fileInput2.files.length > 0) {
-                // FormData 객체 생성
-                var formData = new FormData(form);
+            // FormData 객체 생성
+            var formData = new FormData(form);
 
-                // 선택된 파일들을 FormData에 추가
-                if (fileInput.files.length > 0) {
-                    var file = fileInput.files[0];
-                    var newFileName = generateNewFileName(product.pid, file.name);
-                    formData.append('pfilename', file, newFileName);
-                }
-                if (fileInput1.files.length > 0) {
-                    var file1 = fileInput1.files[0];
-                    var newFileName1 = generateNewFileName(product.pid, file1.name);
-                    formData.append('pcontentfilename1', file1, newFileName1);
-                }
-                if (fileInput2.files.length > 0) {
-                    var file2 = fileInput2.files[0];
-                    var newFileName2 = generateNewFileName(product.pid, file2.name);
-                    formData.append('pcontentfilename2', file2, newFileName2);
-                }
-
-                // AJAX를 사용하여 파일 업로드 및 폼 데이터 전송
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'editProduct.do', true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // 업로드 및 저장 완료 후 처리할 로직 작성
-                        closeModal(); // 업로드 및 저장 완료 후 모달 닫기
-                    }
-                };
-                xhr.send(formData);
-            } else {
-                // 파일이 선택되지 않은 경우 기존 폼 데이터만 전송
-                closeModal(); // 모달 닫기
+            // 선택된 파일들을 FormData에 추가
+            if (fileInput.files.length > 0) {
+                var file = fileInput.files[0];
+                var newFileName = generateNewFileName(product.pid, file.name);
+                formData.append('pfilename', file, newFileName);
             }
+            if (fileInput1.files.length > 0) {
+                var file1 = fileInput1.files[0];
+                var newFileName1 = generateNewFileName(product.pid, file1.name);
+                formData.append('pcontentfilename1', file1, newFileName1);
+            }
+            if (fileInput2.files.length > 0) {
+                var file2 = fileInput2.files[0];
+                var newFileName2 = generateNewFileName(product.pid, file2.name);
+                formData.append('pcontentfilename2', file2, newFileName2);
+            }
+
+            // AJAX를 사용하여 파일 업로드 및 폼 데이터 전송
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'editProduct.do', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 업로드 및 저장 완료 후 처리할 로직 작성
+                    closeModal(); // 업로드 및 저장 완료 후 모달 닫기
+                }
+            };
+            xhr.send(formData);
         }
 
         function generateNewFileName(pid, originalFileName) {

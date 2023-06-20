@@ -98,7 +98,7 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	
 	private String saveFile(MultipartFile file, String directory) throws Exception {
 	    if (file.isEmpty()) {
-	        return null;
+	        return "";
 	    }
 
 	    String originalFileName = file.getOriginalFilename();
@@ -113,9 +113,31 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	@Override
 	public void modify(String pname, int pprice, int pstock, MultipartFile pfilename, String pcontent,
 			MultipartFile pcontentfilename1, MultipartFile pcontentfilename2, int pid, String uploadPath) throws Exception {
-		String fileName = pfilename.isEmpty() ? "" : saveFile(pfilename, uploadPath);
-	    String newFileName1 = pcontentfilename1.isEmpty() ? "" : saveFile(pcontentfilename1, uploadPath);
-	    String newFileName2 = pcontentfilename2.isEmpty() ? "" : saveFile(pcontentfilename2, uploadPath);
+		String fileName = null;
+	    if (!pfilename.isEmpty()) {
+	        fileName = saveFile(pfilename, uploadPath);
+	    }else {
+	    	fileName="";
+	    }
+
+	    String newFileName1 = null;
+	    if (!pcontentfilename1.isEmpty()) {
+	        newFileName1 = saveFile(pcontentfilename1, uploadPath);
+	    }else {
+	    	newFileName1="";
+	    }
+
+	    String newFileName2 = null;
+	    if (!pcontentfilename2.isEmpty()) {
+	        newFileName2 = saveFile(pcontentfilename2, uploadPath);
+	    }else {
+	    	newFileName2="";
+	    }
+
+	    System.out.println(pfilename);
+	    System.out.println(pcontentfilename1);
+	    System.out.println(pcontentfilename2);
+
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("pname", pname);
 	    params.put("pprice", pprice);
@@ -126,9 +148,20 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	    params.put("pcontentfilename2", newFileName2);
 	    params.put("pid", pid);
 	    dao.modify(params);
-		
+	}
+	@Override
+	public void modify1(int pid, int modifiedQty) throws Exception {
+		// TODO Auto-generated method stub
+		int existingPstock = dao.modify2(pid);
+		modifiedQty=modifiedQty - existingPstock;
+		dao.modify1(pid, modifiedQty);
 	}
 
+	@Override
+	public int modify2(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.modify2(pid);
+	}
 
 	@Override
 	public void delete(int[] pidArray) throws Exception {
@@ -136,6 +169,10 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	        dao.delete(pid);
 	    }
 	}
+
+
+
+
 
 	
 

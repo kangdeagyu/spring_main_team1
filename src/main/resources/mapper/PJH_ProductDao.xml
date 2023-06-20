@@ -45,13 +45,14 @@ update product set pname=#{pname}, pfilename=#{pfilename}, pcontent=#{pcontent},
 pcontentfilename2=#{pcontentfilename1}, pstock=#{pstock}, pprice=#{pprice} where pid= #{pid}
 </update>
 
-<update id="modify2">
+<update id="modify1">
 INSERT INTO inbound (i_aid, i_pid, iqty, idate) VALUES ('admin', #{pid}, #{modifiedQty}, now())
 </update>
 
-<select id="modify3" resultType="com.springlec.base.model.PJH_ProductDto">
+<select id="modify2" resultType="int">
 SELECT pstock FROM product WHERE pid = #{pid}
 </select>
+
 
 <select id="informationlist" resultType="com.springlec.base.model.PJH_ProductDto">
 SELECT p.pfilename, p.pname, p.pprice, p.pid, c.c_name 

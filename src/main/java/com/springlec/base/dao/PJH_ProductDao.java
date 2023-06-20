@@ -14,5 +14,7 @@ public interface PJH_ProductDao {
 	public List<PJH_ProductDto> search1(@Param("list")String list, @Param("query") String query) throws Exception;
 	public void saveProduct1(Map<String, Object> params) throws Exception;
 	public void modify(Map<String, Object> params) throws Exception;
+	public void modify1(int pid, int modifiedQty) throws Exception;
+	public int modify2(int pid) throws Exception;
 	public void delete(int pid) throws Exception;
 }

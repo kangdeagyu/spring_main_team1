@@ -36,6 +36,16 @@ public class PJH_ProductDao_Impl implements PJH_ProductDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".modify", params);
 	}
+	@Override
+	public void modify1(int pid, int modifiedQty) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace+".modify1");
+	}
+	@Override
+	public int modify2(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace+".modify2");
+	}
 	
 	@Override
 	public void delete(int pid) throws Exception {
