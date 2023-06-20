@@ -78,13 +78,13 @@
         </div>
         <br>
         배송메모<br>
-        <select name="memo" class="form-control">
+        <select name="memo" class="form-control"  onchange="showTextInput(this.value)">
           <option>배송메모를 선택해주세요.</option>		
           <option>배송 전에 미리 연락 바랍니다.</option>		
           <option>부재시 경비실에 맡겨주세요.</option>		
-          <option>부재시 전화나 문자를 남겨주세요.</option>		
-          <option>직접입력</option>		
+          <option>부재시 전화나 문자를 남겨주세요.</option>				
         </select>
+
       </c:forEach>
       <br/><br/>
       <h3>주문 요약</h3>
@@ -261,10 +261,7 @@
     	    alert("유효한 우편번호를 입력해주세요.");
     	    return false;
     	  }
-
-
-    	  
-    	 
+ 	 
     	 var confirmed = confirm("구매하시겠습니까?");
     		  
     	 if (confirmed) {
@@ -272,15 +269,8 @@
     	} else {
     		return false
     	}
-    		
-
-		  
-    	  
+  
     	}
-
-
-	
-
 
 </script>
 
