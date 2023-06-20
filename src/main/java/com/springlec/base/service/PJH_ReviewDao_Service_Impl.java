@@ -149,4 +149,10 @@ public class PJH_ReviewDao_Service_Impl implements PJH_ReviewDao_Service {
 		dao.bigCommentAction6(fid);
 	}
 
+	@Override
+	public void noticeModify(String ntitle, String ncontent, int nid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.noticeModify(ntitle, ncontent, nid);
+	}
+
 }

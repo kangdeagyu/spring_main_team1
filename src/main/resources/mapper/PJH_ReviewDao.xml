@@ -116,5 +116,9 @@ update forum set fanswernum = fanswernum + 1 where fid = #{fid}
 </update>
 
 
+<update id="noticeModify">
+update notice set ntitle=#{ntitle}, ncontent=#{ncontent}, ninsertdate=now() where nid= #{nid}
+</update>
+
 
 </mapper>

@@ -33,4 +33,8 @@ public interface PJH_ReviewDao_Service {
 	public void bigCommentAction5(int f_pid, int fref, int freforder, int fanswernum, String ftitle, int fmotherid) throws Exception;
 	public void bigCommentAction6(int fid) throws Exception;
 	
+	
+	
+	
+	public void noticeModify(String ntitle, String ncontent, int nid) throws Exception;
 }

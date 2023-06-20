@@ -149,4 +149,10 @@ public class PJH_ReviewDaoImpl implements PJH_ReviewDao {
 		sqlSession.update(nameSpace + ".bigCommentAction6");
 	}
 
+	@Override
+	public void noticeModify(String ntitle, String ncontent, int nid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace+".noticeModify");
+	}
+
 }

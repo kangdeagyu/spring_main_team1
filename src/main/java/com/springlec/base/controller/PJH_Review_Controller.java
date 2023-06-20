@@ -204,12 +204,13 @@ public class PJH_Review_Controller {
 	}
 	
 	@RequestMapping("/AnoticeModify.do")
-	public String noticeModify(HttpServletRequest request, Model model) {
+	public String noticeModify(HttpServletRequest request, Model model) throws Exception {
 		int ftype = Integer.parseInt(request.getParameter("ftype"));
 		int nid = Integer.parseInt(request.getParameter("nid"));
 		String ntitle = request.getParameter("ntitle");
 		String ncontent = request.getParameter("ncontent");
-		return "ANoticeView.do?nid="+nid;
+		service.noticeModify(ntitle, ncontent, nid);
+		return "redirect:ANoticeView.do?nid="+nid+"&ftype="+ftype;
 	}
 	
 	

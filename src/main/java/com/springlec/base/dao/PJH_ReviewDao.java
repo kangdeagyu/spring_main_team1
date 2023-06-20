@@ -36,4 +36,7 @@ public interface PJH_ReviewDao {
 	public void bigCommentAction6(int fid) throws Exception;
 	
 	
+	
+	public void noticeModify(String ntitle, String ncontent, int nid) throws Exception;
+	
 }
