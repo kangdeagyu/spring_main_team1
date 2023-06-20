@@ -152,9 +152,9 @@
     		<input type="hidden" name="ftype" value="${ftype}">
         	<input type="submit" value="공지사항 적기">
         </form>
-        <form action="pjh_WriteForum.jsp">
+       <!--  <form action="pjh_WriteForum.jsp">
             <input type="submit" value="리뷰쓰기">
-        </form>
+        </form> -->
     </c:if>
     <c:if test="${ftype eq 2}">
         <form action="AdminNoticeWrite.do">

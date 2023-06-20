@@ -33,8 +33,12 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	    for (PJH_ProductDto dto : dtos) {
 	        String uploadPath = "image/";
 	        String fileName = dto.getPfilename();
-	        String imagePath = uploadPath + fileName;
-	        dto.setPfilename(imagePath);
+	        if (fileName.isEmpty()) {
+	            fileName = uploadPath+"no Image.jpeg";
+	        } else {
+	            fileName = uploadPath + fileName;
+	        }
+	        dto.setPfilename(fileName);
 	    }
 	    
 	    return dtos;
@@ -62,31 +66,35 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	    for (PJH_ProductDto dto : dtos) {
 	        String uploadPath = "image/";
 	        String fileName = dto.getPfilename();
-	        String imagePath = uploadPath + fileName;
-	        dto.setPfilename(imagePath);
+	        if (fileName.isEmpty()) {
+	            fileName = uploadPath+"no Image.jpeg";
+	        } else {
+	        	fileName = uploadPath + fileName;
+	        }
+	        dto.setPfilename(fileName);
 	    }
-
+	    
 	    return dtos;
 	}
 
 	@Override
-	 public void saveProduct1(String pname, int pprice, int pstock, MultipartFile file, int pcategory, String pcontent, MultipartFile file1, MultipartFile file2, String uploadPath) throws Exception {
-		 String fileName = saveFile(file, uploadPath);
-		    String newFileName1 = saveFile(file1, uploadPath);
-		    String newFileName2 = saveFile(file2, uploadPath);
+	public void saveProduct1(String pname, int pprice, int pstock, MultipartFile file, int pcategory, String pcontent, MultipartFile file1, MultipartFile file2, String uploadPath) throws Exception {
+	    String fileName = file.isEmpty() ? "" : saveFile(file, uploadPath);
+	    String newFileName1 = file1.isEmpty() ? "" : saveFile(file1, uploadPath);
+	    String newFileName2 = file2.isEmpty() ? "" : saveFile(file2, uploadPath);
 
-		    Map<String, Object> params = new HashMap<>();
-		    params.put("pname", pname);
-		    params.put("pprice", pprice);
-		    params.put("pstock", pstock);
-		    params.put("file", fileName);
-		    params.put("pcategory", pcategory);
-		    params.put("pcontent", pcontent);
-		    params.put("file1", newFileName1);
-		    params.put("file2", newFileName2);
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("pname", pname);
+	    params.put("pprice", pprice);
+	    params.put("pstock", pstock);
+	    params.put("file", fileName);
+	    params.put("pcategory", pcategory);
+	    params.put("pcontent", pcontent);
+	    params.put("file1", newFileName1);
+	    params.put("file2", newFileName2);
 
-		    dao.saveProduct1(params);
-		}
+	    dao.saveProduct1(params);
+	}
 	
 	private String saveFile(MultipartFile file, String directory) throws Exception {
 	    if (file.isEmpty()) {
@@ -105,9 +113,9 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	@Override
 	public void modify(String pname, int pprice, int pstock, MultipartFile pfilename, String pcontent,
 			MultipartFile pcontentfilename1, MultipartFile pcontentfilename2, int pid, String uploadPath) throws Exception {
-		String fileName = saveFile(pfilename, uploadPath);
-	    String newFileName1 = saveFile(pcontentfilename1, uploadPath);
-	    String newFileName2 = saveFile(pcontentfilename2, uploadPath);
+		String fileName = pfilename.isEmpty() ? "" : saveFile(pfilename, uploadPath);
+	    String newFileName1 = pcontentfilename1.isEmpty() ? "" : saveFile(pcontentfilename1, uploadPath);
+	    String newFileName2 = pcontentfilename2.isEmpty() ? "" : saveFile(pcontentfilename2, uploadPath);
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("pname", pname);
 	    params.put("pprice", pprice);
