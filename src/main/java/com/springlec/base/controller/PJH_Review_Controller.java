@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springlec.base.model.Kms_Forum_Dto;
 import com.springlec.base.model.PJH_ReviewDto;
 import com.springlec.base.service.PJH_ReviewDao_Service;
 
@@ -132,7 +133,7 @@ public class PJH_Review_Controller {
 	}
 	
 	// 댓글 작성
-	@RequestMapping("/commentAction")
+	@RequestMapping("/Acommentwrite.do")
 	public String commentAction(HttpServletRequest request, Model model) throws Exception {
 		int page = Integer.parseInt(request.getParameter("fid"));
 		service.commentAction(Integer.parseInt(request.getParameter("f_pid")),
@@ -141,7 +142,7 @@ public class PJH_Review_Controller {
 	}
 
 	// 댓글 삭제
-	@RequestMapping("/commentDelete")
+	@RequestMapping("/Acommentdelete.do")
 	public String commentDelete(HttpServletRequest request, Model model) throws Exception {
 		int page = Integer.parseInt(request.getParameter("page"));
 		service.commentDelete(Integer.parseInt(request.getParameter("fid")));
@@ -149,7 +150,36 @@ public class PJH_Review_Controller {
 	}
 
 	
-	
+	// 대댓글 작성
+		@RequestMapping("/AbigCommentWrite.do")
+		public String bigCommentWrite(HttpServletRequest request, Model model) throws Exception {
+		    int page = Integer.parseInt(request.getParameter("page"));
+		    if ("0".equals(request.getParameter("freforder"))) {
+		        service.bigCommentAction5(Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fanswernum")),
+		                request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
+		        service.bigCommentAction6(Integer.parseInt(request.getParameter("fid")));
+		    } else {
+		    	PJH_ReviewDto totalFanswernum = service.bigCommentAction(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("freforder")),
+		                Integer.parseInt(request.getParameter("fsteporder")));
+		        model.addAttribute("totalFanswernum", totalFanswernum);
+		        PJH_ReviewDto fanswernum = service.bigCommentAction1(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("fsteporder")),
+		                Integer.parseInt(request.getParameter("freforder")));
+		        model.addAttribute("fanswernum", fanswernum);
+		        
+		        int a;
+		        if (totalFanswernum != null && fanswernum != null) {
+		            a = totalFanswernum.getTotalFanswernum() - fanswernum.getFanswernum();
+		        } else {
+		            a = 0; // null인 경우 기본값 0 설정
+		        }
+		        
+		        service.bigCommentAction2(Integer.parseInt(request.getParameter("fsteporder")), a, Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fref")));
+		        service.bigCommentAction3(Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fstep")),
+		                Integer.parseInt(request.getParameter("fsteporder")), a, request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
+		        service.bigCommentAction4(Integer.parseInt(request.getParameter("fid")));
+		    }
+		    return "redirect:AForumView?fid=" + page;
+		}
 	
 	
 	
