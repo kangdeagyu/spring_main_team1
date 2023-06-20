@@ -16,6 +16,7 @@ public class KJJpurchaseDto {
 	String caddress1;
 	String caddress2;
 	
+	int bqty;
 	
 	
 	public KJJpurchaseDto() {

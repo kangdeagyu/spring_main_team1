@@ -110,7 +110,7 @@ productDescription.textContent = randomProduct.description;
    						<span>총 구매 금액: </span>
      					<span id="total-amount">${dto.pprice}</span><br><br><br>
      					
-     						<a id="purchaseLink" class="nav-linkthere" href="KCartOrderView?pid=${dto.pid }&qty=1" onclick="updateQty()" >구매하기</a>
+     						<a id="purchaseLink" class="nav-linkthere" href="KJJOrderView?pid=${dto.pid }&qty=1" onclick="updateQty()" >구매하기</a>
    						
    						<a id="cartLink" class="nav-linktwo" href="KUserCartViewKJJ?pid=${dto.pid}&qty=1" onclick="updateQty()">장바구니</a>
 					</div>

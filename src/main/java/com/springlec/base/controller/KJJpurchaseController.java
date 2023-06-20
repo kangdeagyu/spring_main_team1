@@ -22,18 +22,18 @@ public class KJJpurchaseController {
 	KJJpurchaseDaoService service;
 	
 	@RequestMapping("/KJJOrderView")
-	public String product(HttpServletRequest request, Model model) throws Exception{
+	public String product(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession(true);
-		int qty = Integer.parseInt(request.getParameter("qty"));
+		int qty = ((int)Integer.parseInt(request.getParameter("qty")));
 		List<KJJpurchaseDto> product = service.product(Integer.parseInt(request.getParameter("pid")));
 		session.setAttribute("orderList", product);
-		List<KJJpurchaseDto> customer = service.customer((string)session.getAttribute("cid"));
-		session.setAttribute("uselList", customer);
+		List<KJJpurchaseDto> customer = service.customer((String) session.getAttribute("cid"));
+		session.setAttribute("userlist", customer);
 		session.setAttribute("qty", qty);
 		System.out.println(Integer.parseInt(request.getParameter("pid")));
-		System.out.println(Integer.parseInt(request.getParameter("pid")));
-		System.out.println(Integer.parseInt(request.getParameter("pid")));
-		return "redirect:KJJOrderView";
+		System.out.println((String) session.getAttribute("cid"));
+		System.out.println(Integer.parseInt(request.getParameter("qty")));
+		return "KJJOrderView";
 	
 	
 //	@RequestMapping("/KCartOrderView")
