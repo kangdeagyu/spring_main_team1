@@ -27,7 +27,6 @@ public class KJJdetailPageController {
 	public String listKJJdetailPageDao(HttpServletRequest request, Model model) throws Exception{
 		HttpSession session = request.getSession(true);
 		List<KJJdetailPageDto> listKJJdetailPageDao = service.listKJJdetailPageDao(Integer.parseInt(request.getParameter("pid")));
-//		List<KJJdetailPageDto> customerDao = service.customerDao((String) session.getAttribute("cid"));
 		model.addAttribute("listdetailPage", listKJJdetailPageDao);
 		List<Kms_Forum_Dto> DQnAList = dservice.DQnAList(Integer.parseInt(request.getParameter("pid")));
 		model.addAttribute("Qdto",DQnAList);

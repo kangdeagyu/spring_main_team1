@@ -92,6 +92,8 @@
       <c:set var="totalprice" value="0"></c:set>
       <c:forEach items="${orderList}" var="dto" varStatus="status">	
         <input type="hidden" name="pid" value="${dto.pid }">
+       <input type="hidden" name="qty" value="${qty }">
+        <input type="hidden" name="price" value="${pprice }"> 
         <c:set var="subtotal" value="${dto.pprice * qty}"></c:set>
         <c:set var="totalprice" value="${totalprice + subtotal}"></c:set>
       </c:forEach>
@@ -114,7 +116,9 @@
       <input type="radio" name="payment" value="카카오페이" > 카카오페이 
       <input type="radio" name="payment" value="삼성페이" > 삼성페이 
       <br/><br/>
+      <form action="KOderCompleted" method="post">
       <input type="submit" class="form-control" value="구매하기">
+      </form>
     </form>
   </div>
   </div>
