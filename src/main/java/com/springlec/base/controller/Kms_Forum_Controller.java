@@ -20,8 +20,8 @@ public class Kms_Forum_Controller {
 	@Autowired
 	Kms_Forum_Service service;
 	// 게시판 리스트
-	@RequestMapping("/writelist.do")
-	public String list(HttpServletRequest request, Model model) throws Exception{
+	@RequestMapping("/writelist")
+	public String writelist(HttpServletRequest request, Model model) throws Exception{
 		List<Kms_Notice_Dto> noticeList = service.noticelist();
 		model.addAttribute("noticelist",noticeList);
 		List<Kms_Forum_Dto> list = service.writelist(Integer.parseInt(request.getParameter("ftype")));
@@ -73,9 +73,13 @@ public class Kms_Forum_Controller {
 	// 글 검색
 	@RequestMapping("/forumSearch")
 	public String forumSearch(HttpServletRequest request, Model model) throws Exception{
-		List<Kms_Forum_Dto> serchlist = service.forumSearch(Integer.parseInt(request.getParameter("ftype")), request.getParameter("content"));
-		model.addAttribute("searchlist",serchlist);
-		return "redirect:Kms_WriteList";
+		List<Kms_Notice_Dto> noticeList = service.noticelist();
+		model.addAttribute("noticelist",noticeList);
+		List<Kms_Forum_Dto> searchlist = service.forumSearch(request.getParameter("content"));
+		model.addAttribute("RList",searchlist);
+		int listSize = searchlist.size();
+		model.addAttribute("ListSize",listSize);
+		return "Kms_WriteList";
 	}
 	// QnA 작성
 	@RequestMapping("/QnAwrite")

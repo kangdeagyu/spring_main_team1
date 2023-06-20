@@ -47,7 +47,13 @@ UPDATE forum SET fdeletedate = CURRENT_TIMESTAMP, ftitle = '삭제된 댓글입�
 
 <!--글 검색-->
 <select id="forumSearch" resultType="com.springlec.base.model.Kms_Forum_Dto">
-SELECT f.*, p.pname,c.cname FROM forum f, product p, customer c WHERE p.pid = f.f_pid AND c.cid = f.f_cid AND ftype = #{ftype} AND fdeletedate = NULL p.pname LIKE #{content} ORDER BY fref DESC, freforder
+SELECT f.*, p.pname, c.cname
+FROM forum f, product p, customer c
+WHERE p.pid = f.f_pid
+  AND c.cid = f.f_cid
+  AND f.ftype = 2
+  AND p.pname LIKE CONCAT('%', #{content}, '%')
+
 </select>
 
 <insert id="QnAwrite">

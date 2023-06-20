@@ -42,7 +42,7 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 		sqlSession.update(nameSpace + ".commentDelete");
 	}
 	@Override
-	public List<Kms_Forum_Dto> forumSearch(int ftype, String content) throws Exception {
+	public List<Kms_Forum_Dto> forumSearch(String content) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".forumSearch");
 	}
