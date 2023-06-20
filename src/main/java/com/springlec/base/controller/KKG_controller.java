@@ -222,7 +222,7 @@ public class KKG_controller {
 				// 남녀별 매출/주문량 비율 그래프 그리기
 				
 				List<AdminExtra_Dto_kkg> genderDtos = service.genderChart(startday,endday);
-				List<String> genderName = Arrays.asList("남","여");
+				List<String> genderName = Arrays.asList("'남'","'여'");
 				List<Integer> genderOrders = exService.getOrders(genderDtos);
 				List<Integer> genderSales = exService.getSales(genderDtos);
 				model.addAttribute("genderList",genderName);
