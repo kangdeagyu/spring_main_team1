@@ -272,7 +272,7 @@
 									<th scope="col"style="text-align: center">주소</th>
 									<th scope="col"style="text-align: center">연락처</th>
 									<th scope="col"style="text-align: center">결재일</th>
-									<th scope="col"style="text-align: center">취소 일자</th>
+								<!-- 	<th scope="col"style="text-align: center">취소 일자</th> -->
 									<th scope="col"style="text-align: center">결재내역</th>
 									<!-- <th scope="col"style="text-align: center">주문취소</th> -->
 									<!-- <th scope="col">정보 수정/삭제</th> -->

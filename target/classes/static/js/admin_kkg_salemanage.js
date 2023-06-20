@@ -138,60 +138,59 @@ function SingleBarChart(context, xlabels, y01, ydatas_01) {
 
 
 function PieChart(Title, context, xlabel, ydatas_01) {
+  var dataset = {
+    label: Title,
+    backgroundColor: ['#FF00FF', '#FF69B4', '#FFA500', '#FFD700', '#00FF00', '#00BFFF', '#FF1493', '#00CED1', '#FF7F50', '#FFFF00'],
+    data: ydatas_01
+  };
 
+  var labels = xlabel;
 
-	const dataset = {
-		label: Title,
-		backgroundColor: ['#FF00FF', '#FF69B4', '#FFA500', '#FFD700', '#00FF00', '#00BFFF', '#FF1493', '#00CED1', '#FF7F50', '#FFFF00'],
-		/*		backgroundColor : ['#B4D9FF', '#007AFF', '#5856D6', '#34C759', '#FF2D55', '#FF9500', '#FFCC00', '#8E8E93', '#FF3B30', '#C69C6D'], */
-		data: ydatas_01
+  var data = {
+    datasets: [dataset],
+    labels: labels
+  };
 
-	}
+  var options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    legend: {
+      labels: {
+        fontColor: 'black'
+      },
+      align: 'center',
+      display: true,
+      fullWidth: true
+    },
+    tooltips: {
+      enabled: false
+    },
+    plugins: {
+      datalabels: {
+        formatter: function(value, ctx) {
+          var sum = 0;
+          var dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.forEach(function(data) {
+            sum += data;
+          });
+          var percentage = ((value * 100) / sum).toFixed(2) + '%';
+          return percentage;
+        },
+        color: '#fff',
+        font: {
+          size: 15
+        }
+      }
+    }
+  };
 
-	const labels = xlabel
+  var myChart = new Chart(context, {
+    type: 'pie',
+    data: data,
+    options: options
+  });
 
-	const datas = { datasets: [dataset], labels: labels }
-
-
-
-
-	const config = {
-		type: 'pie',
-		data: datas, //데이터 셋 
-		options: {
-			responsive: true,
-			maintainAspectRatio: true, //true 하게 되면 캔버스 width,height에 따라 리사이징된다.
-			legend: {
-				
-				fontColor: 'black',
-				align: 'center',
-				display: true,
-				fullWidth: true,
-				labels: {
-					fontColor: 'rgb(0, 0, 0)'
-				}
-			},
-			plugins: {
-				labels: {//두번째 script태그를 설정하면 각 항목에다가 원하는 데이터 라벨링을 할 수 있다.
-					render: 'value',
-					fontColor: 'black',
-					fontSize: 15,
-					precision: 2
-				},
-				        datalabels: {
-                    formatter: function (value, context) {
-                        return Math.round(value / context.chart.getDatasetMeta(0).total * 100) + "%";
-                   },
-                    }
-
-
-
-			}
-		}
-	}
-
-	const PieChart = new Chart(context, config);
-	return PieChart;
+  return myChart;
 }
 
 

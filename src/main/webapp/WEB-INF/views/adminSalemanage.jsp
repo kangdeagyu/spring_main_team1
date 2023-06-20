@@ -11,8 +11,7 @@
 <meta charset="UTF-8">
 <title>매출 관리</title>
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
 
 <!-- 프로젝트내 js 파일  -->

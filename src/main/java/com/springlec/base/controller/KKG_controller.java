@@ -150,7 +150,7 @@ public class KKG_controller {
 	
 	@RequestMapping("/Salemanage.do")
 	public String saleManage(HttpServletRequest request, Model model) throws Exception{
-				
+				   
 				
 				// userlist.jsp 를 최초로 오픈할때는 기본값을 입력함.
 				// 그 이후로는 열려있던 startdate/enddate를  param으로 받아서 출력함. (수정된것은 수정된대로 param으로 입력해줌)
@@ -222,7 +222,7 @@ public class KKG_controller {
 				// 남녀별 매출/주문량 비율 그래프 그리기
 				
 				List<AdminExtra_Dto_kkg> genderDtos = service.genderChart(startday,endday);
-				List<String> genderName = Arrays.asList("남","여");
+				List<String> genderName = Arrays.asList("'남'","'여'");
 				List<Integer> genderOrders = exService.getOrders(genderDtos);
 				List<Integer> genderSales = exService.getSales(genderDtos);
 				model.addAttribute("genderList",genderName);
