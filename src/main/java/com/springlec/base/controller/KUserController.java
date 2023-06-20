@@ -166,9 +166,9 @@ public class KUserController {
 		int gender = 0;
 		
 		if(cgender.equals("male")) {
-			gender = 1;
-		}else {
 			gender = 0;
+		}else {
+			gender = 1;
 		}
 
 		int result = service.userUpdate(cid, cpassword, cname, cphone, cbirth, gender, cpostnum, caddress1, caddress2);
