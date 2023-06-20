@@ -655,7 +655,6 @@ public class KKG_config {
 				} else {
 					j++;
 				}
-
 			} catch (IndexOutOfBoundsException e) {
 				countList.add(0);
 				// j++;
