@@ -217,6 +217,7 @@
 	  
 	}
 	
+	// 이메일 인증
 	var verificationCode = null
 	function AuthenticationNum(){
 		const form = document.join

@@ -71,55 +71,53 @@
 </head>
 
 
-
-
-
 <body>
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-	// 카카오로그인
-	function kakaoLogin() {
-		Kakao.init('e94ea7cf7a4161d305da7590513621dc'); // 발급받은 키 중 javascript키를 사용해준다.
-		Kakao.isInitialized();
-		Kakao.Auth.setAccessToken(undefined);
+function kakaoLogin() {
+	Kakao.init('e94ea7cf7a4161d305da7590513621dc'); // 발급받은 키 중 javascript키를 사용해준다.
+	
 		Kakao.Auth.login({
-			success: function(response) {
+			success: function(authObj) {
 				Kakao.API.request({
 					url: '/v2/user/me',
 					success: function(response) {
+						console.log(response); // 응답 객체 출력하여 구조 확인
+						
 						var nickname = response.properties.nickname; // 닉네임 가져오기
 						var kakaoAccount = response.kakao_account;
 						var email = kakaoAccount.email; // 카카오 계정 이메일 가져오기
-
+						var accessToken = authObj.access_token; // 카카오 토큰 가져오기
+						
+						
 						// 이메일을 서버로 전송하여 데이터베이스에 있는지 확인
 						
 						axios.post('kakaoLogin', null, {
-								params: {
-									cid: email,
-									cname: nickname,
-
-								}
-							})
-							.then(response => {
-								// 로그인 성공 시 처리
-								console.log(response.data);
-								if(response.data == "join"){
-									alert("등록되어 있는 회원정보가 없습니다. 회원가입을 해주세요");
-									window.location.href = 'joinView?kakao=1'; 
-								}else if(response.data == "mdraw"){
-									alert("탈퇴한 회원입니다.");
-								}else{
-									alert("로그인 성공");
-									window.location.href = '/'; 
-								}
-								
-							})
-							.catch(error => {
-								// 로그인 실패 시 처리
-								this.errorMessage = error.response.data.message;
-								alert("아이디와 비밀번호를 확인해주세요!");
-							});
+							params: {
+								cid: email,
+								cname: nickname,
+								accessToken: accessToken,
+							}
+						})
+						.then(response => {
+							// 로그인 성공 시 처리
+							console.log(response.data);
+							if (response.data == "join") {
+								alert("등록되어 있는 회원정보가 없습니다. 회원가입을 해주세요");
+								window.location.href = 'joinView?kakao=1'; 
+							} else if (response.data == "mdraw") {
+								alert("탈퇴한 회원입니다.");
+							} else {
+								alert("로그인 성공");
+								window.location.href = '/'; 
+							}
+						})
+						.catch(error => {
+							// 로그인 실패 시 처리
+							this.errorMessage = error.response.data.message;
+							alert("아이디와 비밀번호를 확인해주세요!");
+						});
 					},
 					fail: function(error) {
 						console.log(error);
@@ -130,7 +128,9 @@
 				console.log(error);
 			}
 		});
-	}
+	
+}
+
 </script>
 
 

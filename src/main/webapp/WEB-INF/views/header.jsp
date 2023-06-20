@@ -119,11 +119,14 @@ function userCheck() {
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
+
 function logoutAndKakaoLogout() {
 	  Kakao.init('e94ea7cf7a4161d305da7590513621dc');
 	  Kakao.isInitialized();
 
 	  if (!Kakao.Auth.getAccessToken()) {
+	    location.href='logout';
+	    alert("로그아웃되었습니다. 편안한 하루 되세요!");
 	    console.log('Not logged in.'); // 이미 로그아웃되어 있음
 	    return;
 	  }
@@ -139,21 +142,7 @@ function logoutAndKakaoLogout() {
 	  });
 }
   
-/*   function logoutAndKakaoLogout() {
 
-	  Kakao.init('e94ea7cf7a4161d305da7590513621dc');//카카오에서 제공 myceo.co.kr 수정
-	  Kakao.Auth.logout(
-	  function(obj) {
-	  if(obj==true){}else{}
-		   location.href='logout';
-		   alert("로그아웃되었습니다. 편안한 하루 되세요!") 
-	   }
-	  );
-
- 		  window.location.href = 'logout';
-	      alert("로그아웃되었습니다. 편안한 하루 되세요!")  
-      
-  } */
   
 
 </script>
