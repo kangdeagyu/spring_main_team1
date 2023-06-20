@@ -100,4 +100,17 @@ values (#{f_cid},'admin', #{f_pid}, 3 ,#{fref}, #{freforder} + #{fanswernum} + 1
 update forum set fanswernum = fanswernum + 1 where fid = #{fid}
 </update>
 
+<!--상세페이지 QnA 리스트-->
+<select id="DQnAList" resultType="com.springlec.base.model.Kms_Forum_Dto">
+select f.*,p.pname,c.cname from forum f,product p, customer c where p.pid = f.f_pid and c.cid = f.f_cid and ftype = 2 and f_pid = #{pid} order by fref desc,freforder
+</select>
+<!--상세페이지 리뷰 리스트-->
+<select id="DReviewList" resultType="com.springlec.base.model.Kms_Forum_Dto">
+select f.*,p.pname,c.cname from forum f,product p, customer c where p.pid = f.f_pid and c.cid = f.f_cid and ftype = 1 and f_pid = #{pid} order by fref desc,freforder
+</select>
+<!--QnA 상품명-->
+<select id="QnAPname" resultType="com.springlec.base.model.Kms_Forum_Dto">
+select pname from product where pid = #{pid}
+</select>
+
 </mapper>

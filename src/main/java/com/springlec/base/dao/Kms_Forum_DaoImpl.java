@@ -103,5 +103,20 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".noticeView");
 	}
+	@Override
+	public List<Kms_Forum_Dto> DQnAList(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".DQnAList");
+	}
+	@Override
+	public List<Kms_Forum_Dto> DReviewList(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".DReviewList");
+	}
+	@Override
+	public Kms_Forum_Dto QnAPname(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".QnAPname");
+	}
 	
 }

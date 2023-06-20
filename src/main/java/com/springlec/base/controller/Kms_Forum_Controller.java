@@ -79,8 +79,9 @@ public class Kms_Forum_Controller {
 	// QnA 작성
 	@RequestMapping("/QnAwrite")
 	public String QnAwrite(HttpServletRequest request, Model model) throws Exception{
+		int page = Integer.parseInt(request.getParameter("f_pid"));
 		service.QnAwrite(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), request.getParameter("ftitle"), request.getParameter("fcontent"));
-		return "";
+		return "redirect:detailPage?pid=" + page;
 	}
 	// 대댓글 작성
 	@RequestMapping("/bigCommentWrite")
@@ -112,7 +113,7 @@ public class Kms_Forum_Controller {
 	    }
 	    return "redirect:ForumView?fid=" + page;
 	}
-
+	
 		
 	
 }

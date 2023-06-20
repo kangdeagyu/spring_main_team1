@@ -126,4 +126,22 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 		return dao.noticeView(nid);
 	}
 
+	@Override
+	public List<Kms_Forum_Dto> DQnAList(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.DQnAList(pid);
+	}
+
+	@Override
+	public List<Kms_Forum_Dto> DReviewList(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.DReviewList(pid);
+	}
+
+	@Override
+	public Kms_Forum_Dto QnAPname(int pid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.QnAPname(pid);
+	}
+
 }

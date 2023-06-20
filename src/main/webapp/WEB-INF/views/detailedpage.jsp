@@ -246,7 +246,6 @@ window.onload = changeImages;
             		<th style="background-color: lavender;color: purple;">작성자</th>
             		<th style="background-color: lavender;color: purple;">제품</th>
             		<th style="background-color: lavender;color: purple;">제목</th>
-            		<th style="background-color: lavender;color: purple;">내용</th>
             		<th style="background-color: lavender;color: purple;">작성일</th>
         	</tr>
         	<c:choose>
@@ -258,11 +257,10 @@ window.onload = changeImages;
     <c:otherwise>
         	<c:forEach items="${Rdto}" var="dto">
             	<tr>
-                <td><a href="ForumView.do?fid=${dto.fid}">${dto.fid}</a></td>
-                <td>${dto.f_cid}</td>
-                <td>${dto.f_pid}</td>
+                <td><a href="ForumView?fid=${dto.fid}">${dto.fid}</a></td>
+                <td>${dto.cname}</td>
+                <td>${dto.pname}</td>
                 <td>${dto.ftitle}</td>
-                <td>${dto.fcontent}</td>
                 <td>${dto.finsertdate}</td>
             	</tr>
         	</c:forEach>
@@ -277,7 +275,6 @@ window.onload = changeImages;
             		<th style="background-color: lavender;color: purple;">작성자</th>
             		<th style="background-color: lavender;color: purple;">제품</th>
             		<th style="background-color: lavender;color: purple;">제목</th>
-            		<th style="background-color: lavender;color: purple;">내용</th>
             		<th style="background-color: lavender;color: purple;">작성일</th>
         	</tr>
         	<c:choose>
@@ -289,26 +286,23 @@ window.onload = changeImages;
     <c:otherwise>
         	<c:forEach items="${Qdto}" var="dto">
             	<tr>
-                <td><a href="ForumView.do?fid=${dto.fid}">${dto.fid}</a></td>
-                <td>${dto.f_cid}</td>
-                <td>${dto.f_pid}</td>
+                <td><a href="ForumView?fid=${dto.fid}">${dto.fid}</a></td>
+                <td>${dto.cname}</td>
+                <td>${dto.pname}</td>
                 <td>${dto.ftitle}</td>
-                <td>${dto.fcontent}</td>
                 <td>${dto.finsertdate}</td>
             	</tr>
         </c:forEach>
          </c:otherwise>
 </c:choose>
-</table></div>
 
-<c:forEach items="${DetailedProduct}" var="dto">
-<form action="Kms_QnAWrite.jsp" method="get">
+
+</table></div>
+<form action="QnAWrite" method="get">
 <input type="submit" value="질문작성하기">
 <input type="hidden" name="cid" value="${cid }">
 <input type="hidden" name="pid" value="${param.pid}">
-<input type="hidden" name="pname" value="${dto.pname}">
 </form>
-</c:forEach>
 
 <%@ include file="bottom.jsp" %>
 </body>
