@@ -23,6 +23,7 @@ public class KJJdetailPageDaoServiceImpl implements KJJdetailPageDaoService {
 
 
 
+
 	
 
 	
