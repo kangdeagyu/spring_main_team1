@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.KJJMyReviewPageDao">
+
+<select id="MyReviewPageDao" resultType="com.springlec.base.model.KJJMyReviewPageDto">
+SELECT f.*, p.pname, p.pfilename, c.cname
+FROM customer c, forum f, product p
+WHERE f.f_pid = p.pid
+  AND c.cid = f.f_cid
+  AND f.f_cid = #{cid}
+  AND f.ftype = 1
+  ORDER BY fref desc
+</select>
+
+</mapper>

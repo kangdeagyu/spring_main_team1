@@ -9,8 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 홈 화면</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 		<!-- SaleChart_daily 그리기   -->
 
 
