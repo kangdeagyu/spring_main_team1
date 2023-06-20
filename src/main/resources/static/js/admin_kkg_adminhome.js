@@ -1,5 +1,5 @@
 /**
- * 
+ *  
  */
 
 
@@ -138,10 +138,7 @@ function SingleBarChart(context, xlabels, y01, ydatas_01) {
 
 
 function PieChart(Title, context, xlabel, ydatas_01) {
-	console.log('파이차트 들어왔어')
-	console.log(context)
-	console.log(xlabel)
-	console.log(ydatas_01)
+
 
 	const dataset = {
 		label: Title,
@@ -303,86 +300,66 @@ function SingleLineChart(context, xlabels, y01, ydatas_01) {
 }
 
 // 두개 데이터차트를 한 화면에 보여주는 함수.
-function DoubleLineChart(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
-	console.log(xlabel+"값 들어왔다")
+function SaleChart_double(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
 
 
-
-
-	/*		var xlabels = ${requestScope.dailyDate};
-	
-			var ydatas_01 = ${requestScope.dailySale};
-			var ydatas_02 = ${requestScope.dailyOrder};
-	*/
 	const datas = {
 		labels: xlabels, /* x축을 선언하는 파트. - 위에서 선언한 labels 로 대체할 수 있다.*/
 
 		datasets: [ /* 그려질 그래프의 정보를 입력하는 부분이다. 그래프의 배경색, 테두리색, data 값들이 입력된다. */
 			{
 				label: y01, /* 그래프(차트)의 제목이다.*/
+				type: 'line',
 				fill: false,
-				backgroundColor: 'rgb(255, 0, 0)',
-				borderColor: 'rgb(255, 0, 0)',
+				backgroundColor: 'rgb(255, 50, 0,0.8)',
+				borderColor: 'rgb(255, 50, 0,0.8)',
 				data: ydatas_01,
-				yAxisID: 'y-axis-1'
-
+				yAxisID: 'y-axis-1',
+				
 			}, //첫번째 data 셋 입력 끝.(매출액 데이터))
 
 			{
 				label: y02, /* 그래프(차트)의 제목이다.*/
-				fill: false,
-				backgroundColor: 'rgb(0, 0, 255)',
-				borderColor: 'rgb(0, 0, 255)',
+				type: 'bar',
+				backgroundColor: 'rgb(0, 200, 200, 0.5)',
 				data: ydatas_02,
-				yAxisID: 'y-axis-2'
+				yAxisID: 'y-axis-2',
+				
 
 			}
 
 
 		] //dataset 끝
 
+	}; //datas 끝
 
-
-
-	};
-
-	/* 차트 발생 코드에 넣을 값들을 하단에 몰아 넣는다면  여기에는 이 코드가 들어가야 한다.
-	
-	var context = document      
-	  .getElementById('myChart') 
-	  .getContext('2d');	
-	
-	 */
 
 	const config = {
-		type: 'line',
+		type: 'bar',
 		data: datas,
 		options: {
 			maintainAspectRatio: false, /*  가로세로 비율 무시하기*/
 
 			scales: {
-				x: {
-					grid: {
-						display: false,
-					}
-				},
-				y: {
-					grid: {
-						display: false,
-					}
 
-				},
 				yAxes: [
 					{
 						id: 'y-axis-1',
 						position: 'left',
 						ticks: {
 							beginAtZero: true,
-							fontSize: 8,
+							fontSize: 10,
 							fontColor: 'rgb(255,0,0)',
+				            callback: function(value, index, values) {	 // 세 자리마다 쉼표 추가
+
+				              return (value/1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				            }							
 							
 							/* max : 1600000 */
-						}
+						},
+			         	 gridLines: { // 가로선 지울지 말지 결정 하는 옵션.
+            				drawOnChartArea: false 
+         				 }
 					},
 					{
 						id: 'y-axis-2',
@@ -390,12 +367,16 @@ function DoubleLineChart(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
 						ticks: {
 							beginAtZero: true,
 							
-							fontSize: 8,
+							fontSize: 10,
 							fontColor: 'rgb(0,0,255)',
-							suggestedMax: 16,
+							suggestedMax: 20,
 							/* max : 16 */
-						}
-					}
+						},
+			          gridLines: {
+            				drawOnChartArea: false // 가로선 지울지 말지 결정 하는 옵션.
+         				 }
+					},
+					
 				],
 
 
@@ -419,8 +400,8 @@ function DoubleLineChart(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
 			legend: {
 				display: true,
 				labels: {
-					fontSize: 20,
-					boxWidth: 15,// 범례의 글씨 크기 설정
+					fontSize: 15,
+					boxWidth: 10,// 범례의 글씨 크기 설정
 				},
 				elements: {
 					line: {

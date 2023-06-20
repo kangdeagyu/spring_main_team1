@@ -52,11 +52,7 @@ public class KKG_config {
 			@Override
 			public List<Date> DateList(Timestamp startday, Timestamp endday) {
 				A +=1;
-System.out.println("DateList 실행 되었는지확인하기. " + A + "번째 들어옴");
-System.out.println("시작일 : "+startday);
-System.out.println("마지막 : "+endday);
-				
-System.out.println("DateList 결과물 : "+getDateList(startday, endday));
+
 				return getDateList(startday, endday); // 하단의 method 01. 참조.
 			}
 
@@ -173,7 +169,7 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 				// TODO Auto-generated method stub
 				
 				
-				return getDailySaleList(dateList, DNrs);  //DTO 에 Date / SALE 로 저장하는 방식이 있어서 이렇게 써서 가져옴.
+				return getDailyCountList(dateList, DNrs);  //DTO 에 Date / SALE 로 저장하는 방식이 있어서 이렇게 써서 가져옴.
 			}
 
 
@@ -600,5 +596,74 @@ System.out.println("DateList 결과물 : "+getDateList(startday, endday));
 		return productName;
 
 	}// ----------------- method 11 끝
+	
+	
+	
+	// ----------------- method012. JSP로 내보낼 일별 Count데이터들을 List<integer>로 만들기. DB에서 받아온 내용을 날짜별로 대조해서 없는 날은 0 으로 만들어야함. ----------------
+
+	private List<Integer> getDailyCountList(List<Date> dateList, List<AdminExtra_Dto_kkg> ddrs) {
+
+		List<Integer> countList = new ArrayList<>();
+
+		// 날짜 별로 판매금액 가져오는 중. / 판매 없는 날은 0넣어야 함.
+
+		// while 문을 돌려서, 매출액 리스트를 채울거임. while 문 조건은 다음과 같음.
+		// 실제 기간내 모든 날짜가 담긴 리스트 : dateList 의 길이를 len 으로 지정함.
+		// k는 dateList 내 날짜를 탐색할 번호임. 이 번호가 dateList의 길이보다 작아야함.(배열의 시작은 0이기 때문임)
+		// j는 DB에서 받아온 Arraylist<dto> 안에 있는 날짜들을 탐색하는 번호임.
+		// 판매가 없는 날은 포함되지 않았을 것이기에, 탐색번호를 j,k로 구분하였음.
+
+		int j = 0;
+		int k = 0;
+		int len = dateList.size(); // 실제 기간내 모든 기간이
+
+		// --------------while문 설명 : while문이 돌아가는 조건은 위에서 이야기하였음.----------------
+		// try 문을 쓴 이유는 db에서 가져온 값에 null point exception 이 발생할 것이기 때문임.
+		// 최근 몇일간 판매량이 없었다면,혹은 당일 판매량이 아직 없다면 null point exception이 발생할 수 밖에 없음.
+		// 따라null point exception 이 발생하면, k값만 늘려서 반복문을 지속하기 위함. (근데 j값 늘려도 상관 없음. 어차피 db
+		// 에서 가져온 데이터는 끝일거라서.)
+		// try 문 DB 값의 날짜와, real 날짜 리스트의 값을 탐색함.
+
+		// ------ try 안의 if 문 설---------
+		// if 문안에서 위에 탐색한 두 날짜가 없으면, saleList에다가 0 을 추가함. ( 해당하는 Real_date에 해당하는 sale 값이
+		// 없다는 소리기 때문)
+		// DB 값의 날짜는 그대로 두고, real 날짜만 다음 날짜를 탐색해 오기 위해 k에만 1을 더해줌.
+
+		// 위에 탐색한 두 날짜가 같으면 해당하는 db 값의 sale 데이터를 saleList에 추가함.
+		// j와 k를 둘다 ++함.
+		while (k < len) {
+
+			try {
+				// DB에서 가져온 목록에서 오늘 날짜의 날이 있는지 없는지 검증.
+				Date DB_date = ddrs.get(j).getDate(); // DB 데이터의 날짜.
+				Date Real_date = dateList.get(k); // 실제 있어야 하는 날짜.
+
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // 날짜를 문자열로 변환합니다.
+
+				if (dtf.format(DB_date.toLocalDate()).equals(dtf.format(Real_date.toLocalDate()))) {
+
+					countList.add(ddrs.get(j).getCount()); // 날짜가 있으면
+
+					j++;
+					k++;
+				}
+
+				else if (DB_date.compareTo(Real_date) > 0) {
+					countList.add(0); // 날짜가 없으면 (같지 않으면) 0 더하기.
+					k++;
+
+				} else {
+					j++;
+				}
+			} catch (IndexOutOfBoundsException e) {
+				countList.add(0);
+				// j++;
+				k++;
+			} // outofbound에러 처리 끝.
+		} // daily sale을 위한 while 끝
+
+		return countList;
+
+	} // -------------------------DailySale 저장하기 getDailySaleList
 
 } // end game

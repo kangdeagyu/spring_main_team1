@@ -1,5 +1,5 @@
 /**
- * 
+ *  
  */
 
 
@@ -138,10 +138,7 @@ function SingleBarChart(context, xlabels, y01, ydatas_01) {
 
 
 function PieChart(Title, context, xlabel, ydatas_01) {
-	console.log('파이차트 들어왔어')
-	console.log(context)
-	console.log(xlabel)
-	console.log(ydatas_01)
+
 
 	const dataset = {
 		label: Title,
@@ -304,7 +301,7 @@ function SingleLineChart(context, xlabels, y01, ydatas_01) {
 
 // 두개 데이터차트를 한 화면에 보여주는 함수.
 function DoubleLineChart(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
-	console.log(xlabel+"값 들어왔다")
+
 
 
 

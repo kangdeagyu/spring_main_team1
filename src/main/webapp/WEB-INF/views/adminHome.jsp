@@ -12,24 +12,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 		<!-- SaleChart_daily 그리기   -->
-	<script>
-	   /* 데일리 매출/결재건수 차트 */
-	
-	var dsContext = document.getElementById('SaleChart_daily');
-    DoubleLineChart(dsContext, ${requestScope.dailyDate},'매출', ${requestScope.dailySale},'결재건' ,${requestScope.dailyOrder});
 
-    /* monthly 매출/결재건수 차트 */
-    var msContext = document.getElementById('SaleChart_month');
-    DoubleLineChart(msContext, ${requestScope.monthlyMonth},'매출',${requestScope.monthlySale},'결재건', ${requestScope.monthlyOrder});
-
-    /* 신규 가입자수 차트 */
-    var DNSContext = document.getElementById('NewScriberChart_daily');
-    SingleBarChart(DNSContext, ${requestScope.dailyDate}, '신규가입자' ,${requestScope.dailyNS});
-	</script>
 
 
 <!-- 프로젝트내 js 파일  -->
-<script src="js/admin_kkg.js" type="text/javascript"></script>
+<script src="js/admin_kkg_adminhome.js" type="text/javascript"></script>
  
 <!--  bootsstrap link -->
 
@@ -82,9 +69,9 @@
 
 
 								<div class="array">
-									<div class="card shadw-lg"
+									<div class="card shadow-lg"
 										style="width: 500px; height: 300px; background-color: #F7F7F7;">
-										<h5 class="card-title">월간 매출/판매 현황</h5>
+										<h5 class="card-title" style="margin-left: 25px">  << 월간 매출/판매 현황 >></h5>
 										<canvas id="SaleChart_month"></canvas>
 										<div class="card-body">
 											<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
@@ -109,7 +96,7 @@
 								<div class="array">
 									<div class="card shadow-lg"
 										style="width: 500px; height: 300px; background-color: #F7F7F7;">
-										<h5 class="card-title">일일 매출/판매 현황</h5>
+										<h5 class="card-title" style="margin-left: 25px">  << 일일 매출/판매 현황 >> </h5>
 										<canvas id="SaleChart_daily"></canvas>
 										<!-- <div class="card-body">
 									<a href="#" class="btn btn-primary">Go somewhere</a>
@@ -132,7 +119,7 @@
 								<div class="array">
 									<div class="card shadow-lg"
 										style="width: 500px; height: 300px; background-color: #F7F7F7;">
-										<h5 class="card-title">일일 신규 가입자수/탈퇴자수</h5>
+										<h5 class="card-title" style="margin-left: 25px"> << 일일 신규 가입자수/탈퇴자수 >> </h5>
 										<canvas id="NewScriberChart_daily"></canvas>
 										<div class="card-body">
 											<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
@@ -143,18 +130,18 @@
 								
 								<div class="array">
 									<div class="card shadow-lg"
-										style="width: 500px; height: 300px; background-color: #F7F7F7; ">
+										style="width: 500px; height: 300px; background-color: #F7F7F7; margin-right: 20px">
 										
-										<h5 class="card-title" >재고 부족 제품</h5>
+										<h5 class="card-title" style="margin-left: 25px; " > << 재고 부족 제품 >> </h5>
 										
-										<table style="margin-left: 20px">
-										<tr>
-										<th>No.</th><th>분류</th><th>제품번호</th><th>제품</th><th>재고</th>
+										<table >
+										<tr style="text-align: center;">
+										<th>No.</th><th>제품번호</th><th>제품</th><th>재고</th>
 										</tr>
 									<c:forEach items="${OutofStocks}" var="product">
-										<tr>
+										<tr style="font-size: 12; text-align: center">
 										<td>${product.seq}</td>
-										<td>${product.category}</td>
+
 										<td>${product.pid}</td>
 										<td>${product.pname}</td>
 										<td>${product.stock}</td>
@@ -216,7 +203,20 @@
 	</div>
 
 
+	<script>
+	   /* 데일리 매출/결재건수 차트 */
+	
+	var dsContext = document.getElementById('SaleChart_daily');
+	SaleChart_double(dsContext, ${requestScope.dailyDate},'매출(천원)   ', ${requestScope.dailySale},'결재건(건)' ,${requestScope.dailyOrder});
 
+    /* monthly 매출/결재건수 차트 */
+    var msContext = document.getElementById('SaleChart_month');
+    SaleChart_double(msContext, ${requestScope.monthlyMonth},'매출(천원)   ',${requestScope.monthlySale},'결재건(건)', ${requestScope.monthlyOrder});
+
+    /* 신규 가입자수 차트 */
+    var DNSContext = document.getElementById('NewScriberChart_daily');
+    SingleBarChart(DNSContext, ${requestScope.dailyDate}, '신규가입자' ,${requestScope.dailyNS});
+	</script>
 
 
 
