@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class Kms_Forum_Controller {
 
-	int a;
+	
 	@Autowired
 	Kms_Forum_Service service;
 	// 게시판 리스트
@@ -33,25 +33,26 @@ public class Kms_Forum_Controller {
 		return "redirect:Kms_WriteList";
 	}
 	// 게시글 정보
-	@RequestMapping("/ForumView.do")
+	@RequestMapping("/ForumView")
 	public String forumview(HttpServletRequest request, Model model) throws Exception{
 		Kms_Forum_Dto forumview = service.forumview(Integer.parseInt(request.getParameter("fid")));
-		model.addAttribute("forumview",forumview);
+		model.addAttribute("forumView",forumview);
 		List<Kms_Forum_Dto> commentlist = service.commentlist(Integer.parseInt(request.getParameter("fid")));
-		model.addAttribute("commentlist",commentlist);
+		model.addAttribute("Clist",commentlist);
 		return "ForumView";
 	}
 	// 댓글 작성
 	@RequestMapping("/commentAction")
 	public String commentAction(HttpServletRequest request, Model model) throws Exception{
+		int page = Integer.parseInt(request.getParameter("fid"));
 		service.commentAction(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fid")));
-		return "redirect:ForumView";
+		return "redirect:ForumView?fid=" + page;
 	}
 	// 댓글 삭제
 	@RequestMapping("/commentDelete")
 	public String commentDelete(HttpServletRequest request, Model model) throws Exception{
 		service.commentDelete(Integer.parseInt(request.getParameter("fid")));
-		return "redirect:ForumView";
+		return "redirect:/ForumView";
 	}
 	// 글 검색
 	@RequestMapping("/forumSearch")
@@ -67,19 +68,36 @@ public class Kms_Forum_Controller {
 		return "";
 	}
 	// 대댓글 작성
-	@RequestMapping("/bigCommentAction")
-	public String bigCommentAction(HttpServletRequest request, Model model) throws Exception{
-		Kms_Forum_Dto totalFanswernum = service.bigCommentAction(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("freforder")),
-				Integer.parseInt(request.getParameter("fsteporder")));
-		model.addAttribute("totalFanswernum1", totalFanswernum);
-		Kms_Forum_Dto fanswernum = service.bigCommentAction1(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("fsteporder")),
-				Integer.parseInt(request.getParameter("freforder")));
-		model.addAttribute(fanswernum);
-		a= totalFanswernum.getTotalFanswernum() - fanswernum.getFanswernum();
-		service.bigCommentAction2(Integer.parseInt(request.getParameter("fsteporder")), Integer.parseInt(request.getParameter("a")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fref")));
-		service.bigCommentAction3(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fstep")),
-				Integer.parseInt(request.getParameter("fsteporder")), Integer.parseInt(request.getParameter("a")), request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
-		service.bigCommentAction4(Integer.parseInt(request.getParameter("fid")));
-		return "redirect:ForumView";
+	@RequestMapping("/bigCommentWrite")
+	public String bigCommentWrite(HttpServletRequest request, Model model) throws Exception {
+	    int page = Integer.parseInt(request.getParameter("page"));
+	    if ("0".equals(request.getParameter("freforder"))) {
+	        service.bigCommentAction5(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fanswernum")),
+	                request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
+	        service.bigCommentAction6(Integer.parseInt(request.getParameter("fid")));
+	    } else {
+	        Kms_Forum_Dto totalFanswernum = service.bigCommentAction(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("freforder")),
+	                Integer.parseInt(request.getParameter("fsteporder")));
+	        model.addAttribute("totalFanswernum", totalFanswernum);
+	        Kms_Forum_Dto fanswernum = service.bigCommentAction1(Integer.parseInt(request.getParameter("fstep")), Integer.parseInt(request.getParameter("fsteporder")),
+	                Integer.parseInt(request.getParameter("freforder")));
+	        model.addAttribute("fanswernum", fanswernum);
+	        
+	        int a;
+	        if (totalFanswernum != null && fanswernum != null) {
+	            a = totalFanswernum.getTotalFanswernum() - fanswernum.getFanswernum();
+	        } else {
+	            a = 0; // null인 경우 기본값 0 설정
+	        }
+	        
+	        service.bigCommentAction2(Integer.parseInt(request.getParameter("fsteporder")), a, Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fref")));
+	        service.bigCommentAction3(request.getParameter("f_cid"), Integer.parseInt(request.getParameter("f_pid")), Integer.parseInt(request.getParameter("fref")), Integer.parseInt(request.getParameter("freforder")), Integer.parseInt(request.getParameter("fstep")),
+	                Integer.parseInt(request.getParameter("fsteporder")), a, request.getParameter("ftitle"), Integer.parseInt(request.getParameter("fmotherid")));
+	        service.bigCommentAction4(Integer.parseInt(request.getParameter("fid")));
+	    }
+	    return "redirect:ForumView?fid=" + page;
 	}
+
+		
+	
 }

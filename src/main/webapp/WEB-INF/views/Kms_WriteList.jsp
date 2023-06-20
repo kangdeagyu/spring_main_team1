@@ -142,8 +142,8 @@
     </c:if> --%>
 
     <div style="text-align: right;">
-        <form action="Aforumsearch.do" method="post">
-            <input type="hidden" name="ftype" value="${ftype}">
+        <form action="forumSearch" method="post">
+            <input type="hidden" name="ftype" value="2">
             <input type="text" name="content" placeholder="원하시는 상품을 검색하세요!">
             <input type="submit" value="검색">
         </form>
@@ -177,7 +177,7 @@
                 <td>${dto.fid}</td>
                 <td>${dto.cname}</td>
                 <td>${dto.pname}</td>
-                <td><a href="ForumView.do?fid=${dto.fid}">${dto.ftitle}</a></td>
+                <td><a href="ForumView?fid=${dto.fid}">${dto.ftitle}</a></td>
                 <td>${dto.finsertdate}</td>
             	</tr>
         </c:forEach>

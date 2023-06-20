@@ -20,4 +20,6 @@ public interface Kms_Forum_Service {
 	public void bigCommentAction2(int fsteporder, int a, int freforder, int fref) throws Exception;
 	public void bigCommentAction3(String f_cid, int f_pid, int fref, int freforder, int fstep, int fsteporder, int a, String ftitle, int fmotherid) throws Exception;
 	public void bigCommentAction4(int fid) throws Exception;
+	public void bigCommentAction5(String f_cid, int f_pid, int fref, int freforder, int fanswernum, String ftitle, int fmotherid) throws Exception;
+	public void bigCommentAction6(int fid) throws Exception;
 }
