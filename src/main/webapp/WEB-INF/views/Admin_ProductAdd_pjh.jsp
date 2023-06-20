@@ -9,7 +9,11 @@
 <!-- 여기서부터 복사하시면 됩니다~~~~~~~~~!!!! -->
 
 <jsp:include page="admin_01_header.jsp" />
-
+<script>
+function showUploadAlert() {
+    alert("업로드 완료 되었습니다.");
+}
+</script>
 
 </head>
 
@@ -78,7 +82,7 @@
 					<input type="file" name="file2"></td>
 				</tr>
 			</table>
-			<input type="submit" value="업로드">
+			<input type="submit" value="업로드" onclick="showUploadAlert()">
 		</form>
 		</main>
 		</div>
