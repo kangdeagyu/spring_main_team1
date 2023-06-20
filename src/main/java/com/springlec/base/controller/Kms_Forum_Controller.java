@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springlec.base.model.Kms_Forum_Dto;
+import com.springlec.base.model.Kms_Notice_Dto;
 import com.springlec.base.service.Kms_Forum_Service;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,11 +22,20 @@ public class Kms_Forum_Controller {
 	// 게시판 리스트
 	@RequestMapping("/writelist.do")
 	public String list(HttpServletRequest request, Model model) throws Exception{
+		List<Kms_Notice_Dto> noticeList = service.noticelist();
+		model.addAttribute("noticelist",noticeList);
 		List<Kms_Forum_Dto> list = service.writelist(Integer.parseInt(request.getParameter("ftype")));
 		model.addAttribute("RList",list);
 		int listSize = list.size();
 		model.addAttribute("ListSize",listSize);
 		return "Kms_WriteList";
+	}
+	// 공지사항 보기
+	@RequestMapping("/noticeView")
+	public String noticeView(HttpServletRequest request, Model model) throws Exception{
+		Kms_Notice_Dto noticeView = service.noticeView(Integer.parseInt(request.getParameter("nid")));
+		model.addAttribute("AforumView",noticeView);
+		return "Kms_NoticeView";
 	}
 	// 리뷰 작성
 	@RequestMapping("/forumwrite.do")

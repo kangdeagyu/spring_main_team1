@@ -9,6 +9,15 @@ SELECT f.*,p.pname,c.cname FROM forum f,product p, customer c WHERE p.pid = f.f_
 AND ftype = #{ftype} AND fdeletedate IS NULL ORDER BY fref DESC,freforder
 </select>
 
+<select id="noticelist" resultType="com.springlec.base.model.Kms_Notice_Dto">
+SELECT *
+FROM notice where ndeletedate IS NULL
+</select>
+
+<select id="noticeView" resultType="com.springlec.base.model.Kms_Notice_Dto">
+SELECT * FROM notice WHERE nid = #{nid}
+</select>
+
 <!--리뷰 작성-->
 <insert id="forumwrite">
 INSERT INTO forum (f_cid, f_aid, f_pid, ftype, fref, freforder, fstep, fsteporder,ftitle, fcontent, finsertdate, fmotherid, fanswernum)

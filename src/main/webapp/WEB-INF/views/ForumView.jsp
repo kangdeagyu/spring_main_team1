@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="aQnA_style.css">
+    <link rel="stylesheet" type="text/css" href="css/aQnA_style.css">
   <script>
         // 전체 데이터 개수
         var totalData = ${ListSize};

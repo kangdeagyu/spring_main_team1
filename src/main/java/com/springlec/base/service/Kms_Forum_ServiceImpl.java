@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.springlec.base.dao.Kms_Forum_Dao;
 import com.springlec.base.model.Kms_Forum_Dto;
+import com.springlec.base.model.Kms_Notice_Dto;
 
 @Service
 public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
@@ -53,6 +54,7 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 	@Override
 	public List<Kms_Forum_Dto> forumSearch(int ftype, String content) throws Exception {
 		// TODO Auto-generated method stub
+		content = "%" + content + "%";
 		return dao.forumSearch(ftype, content);
 	}
 
@@ -110,6 +112,18 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 	public void bigCommentAction6(int fid) throws Exception {
 		// TODO Auto-generated method stub
 		dao.bigCommentAction6(fid);
+	}
+
+	@Override
+	public List<Kms_Notice_Dto> noticelist() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.noticelist();
+	}
+
+	@Override
+	public Kms_Notice_Dto noticeView(int nid) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.noticeView(nid);
 	}
 
 }

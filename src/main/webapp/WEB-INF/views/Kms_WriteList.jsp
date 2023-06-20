@@ -11,7 +11,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="aQnA_style.css">
+<link rel="stylesheet" type="text/css" href="css/aQnA_style.css">
   <script>
         // 전체 데이터 개수
         var totalData = ${ListSize};
@@ -168,7 +168,7 @@
         			<td>${noticedto.nid}</td>       
                     <td>관리자</td>     
                     <td>공지사항</td>     
-                    <td><a href="">${noticedto.ntitle}</a></td>     
+                    <td><a href="noticeView?nid=${noticedto.nid}">${noticedto.ntitle}</a></td>     
                     <td>${noticedto.ninsertdate}</td>
         	</tr>
         	</c:forEach>

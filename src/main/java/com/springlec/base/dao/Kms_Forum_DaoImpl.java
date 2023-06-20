@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.springlec.base.model.Kms_Forum_Dto;
+import com.springlec.base.model.Kms_Notice_Dto;
 
 public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 
@@ -91,6 +92,16 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 	public void bigCommentAction6(int fid) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".bigCommentAction6");
+	}
+	@Override
+	public List<Kms_Notice_Dto> noticelist() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".noticeList");
+	}
+	@Override
+	public Kms_Notice_Dto noticeView(int nid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".noticeView");
 	}
 	
 }
