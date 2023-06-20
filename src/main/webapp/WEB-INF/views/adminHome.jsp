@@ -12,24 +12,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 		<!-- SaleChart_daily 그리기   -->
-	<script>
-	   /* 데일리 매출/결재건수 차트 */
-	
-	var dsContext = document.getElementById('SaleChart_daily');
-    DoubleLineChart(dsContext, ${requestScope.dailyDate},'매출', ${requestScope.dailySale},'결재건' ,${requestScope.dailyOrder});
 
-    /* monthly 매출/결재건수 차트 */
-    var msContext = document.getElementById('SaleChart_month');
-    DoubleLineChart(msContext, ${requestScope.monthlyMonth},'매출',${requestScope.monthlySale},'결재건', ${requestScope.monthlyOrder});
-
-    /* 신규 가입자수 차트 */
-    var DNSContext = document.getElementById('NewScriberChart_daily');
-    SingleBarChart(DNSContext, ${requestScope.dailyDate}, '신규가입자' ,${requestScope.dailyNS});
-	</script>
 
 
 <!-- 프로젝트내 js 파일  -->
-<script src="js/admin_kkg.js" type="text/javascript"></script>
+<script src="js/admin_kkg_remake.js" type="text/javascript"></script>
  
 <!--  bootsstrap link -->
 
@@ -216,7 +203,20 @@
 	</div>
 
 
+	<script>
+	   /* 데일리 매출/결재건수 차트 */
+	
+	var dsContext = document.getElementById('SaleChart_daily');
+    DoubleLineChart(dsContext, ${requestScope.dailyDate},'매출', ${requestScope.dailySale},'결재건' ,${requestScope.dailyOrder});
 
+    /* monthly 매출/결재건수 차트 */
+    var msContext = document.getElementById('SaleChart_month');
+    DoubleLineChart(msContext, ${requestScope.monthlyMonth},'매출',${requestScope.monthlySale},'결재건', ${requestScope.monthlyOrder});
+
+    /* 신규 가입자수 차트 */
+    var DNSContext = document.getElementById('NewScriberChart_daily');
+    SingleBarChart(DNSContext, ${requestScope.dailyDate}, '신규가입자' ,${requestScope.dailyNS});
+	</script>
 
 
 

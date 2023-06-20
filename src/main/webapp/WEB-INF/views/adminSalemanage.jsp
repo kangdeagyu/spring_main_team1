@@ -16,7 +16,7 @@
 
 
 <!-- 프로젝트내 js 파일  -->
-<script src="js/admin_kkg.js" type="text/javascript"></script>
+<script src="js/admin_kkg_remake.js" type="text/javascript"></script>
 
 <!--  bootsstrap link -->
 
