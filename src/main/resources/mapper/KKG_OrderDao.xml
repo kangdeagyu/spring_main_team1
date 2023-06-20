@@ -5,18 +5,18 @@
 <mapper namespace="com.springlec.base.dao.KKG_OrderDao">
 
 	<select id="getOrderList_Default" resultType="com.springlec.base.model.Admin_Order_Dto_kkg">
-		SELECT ROW_NUMBER() OVER (ORDER BY DATE(o.odate)) AS No,  o.oid, o.o_pid, p.pname, o.oqty, o.oprice, o.o_cid, c.cname, CONCAT(c.cpostnum,' ', c.caddress1, c.caddress2) as caddress, c.cphone, o.odate
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE(o.odate)) AS No,  o.oid, o.product_pid AS opid, p.pname, o.oqty, o.oprice, o.customer_cid AS ocid, c.cname, CONCAT(c.cpostnum,' ', c.caddress1, c.caddress2) as caddress, c.cphone, o.odate
 		FROM product AS p, ordering AS o, customer AS c 
-		WHERE p.pid=o.o_pid AND c.cid=o.o_cid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
+		WHERE p.pid=o.product_pid AND c.cid=o.customer_cid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
 		ORDER BY o.odate DESC
 	
 	
 	</select>
 	
 	<select id="getOrderList_Hope" resultType="com.springlec.base.model.Admin_Order_Dto_kkg">
-		SELECT ROW_NUMBER() OVER (ORDER BY DATE(o.odate)) AS No,  o.oid, o.o_pid, p.pname, o.oqty, o.oprice, o.o_cid, c.cname, CONCAT(c.cpostnum,' ', c.caddress1, c.caddress2) as caddress, c.cphone, o.odate 
+		SELECT ROW_NUMBER() OVER (ORDER BY DATE(o.odate)) AS No,  o.oid, o.product_pid AS opid, p.pname, o.oqty, o.oprice, o.customer_cid AS ocid, c.cname, CONCAT(c.cpostnum,' ', c.caddress1, c.caddress2) as caddress, c.cphone, o.odate 
 		FROM product AS p, ordering AS o, customer AS c 
-		WHERE p.pid=o.o_pid AND c.cid=o.o_cid AND c.cid = #{cid} AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}  
+		WHERE p.pid=o.product_pid AND c.cid=o.customer_cid AND c.cid = #{cid} AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}  
 		ORDER BY o.odate DESC
 	
 	</select>

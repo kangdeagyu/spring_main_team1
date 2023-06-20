@@ -34,7 +34,7 @@
 	<select id="categoryChart" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
 		SELECT ROW_NUMBER() OVER (ORDER BY cg.c_num) AS No, cg.c_num AS categotyId, cg.c_name AS categoryName, SUM(o.oqty) AS orders, SUM(o.oprice) AS sale 
 		FROM product AS p , ordering AS o, category AS cg 
-		WHERE p.pcategory = cg.c_num AND o.o_pid=p.pid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday} 
+		WHERE p.pcategory = cg.c_num AND o.product_pid=p.pid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday} 
 		GROUP BY cg.c_num
 
 	</select>
@@ -42,7 +42,7 @@
 	<select id="genderChart" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
 		SELECT  g.g_name, ROW_NUMBER() OVER (ORDER BY g.g_name) AS No, SUM(o.oqty) AS orders, sum(o.oprice) AS sale
 		FROM customer AS c, ordering AS o, gender AS g  
-		WHERE o.o_cid = c.cid AND c.cgender = g.g_num AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
+		WHERE o.customer_cid = c.cid AND c.cgender = g.g_num AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
 		GROUP BY g.g_name
 
 	</select>
@@ -51,7 +51,7 @@
 	<select id="maxOrders" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
 		SELECT p.pname, SUM(o.oqty) AS orders
 		FROM  ordering AS o, product AS p
-		WHERE o.o_pid = p.pid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
+		WHERE o.product_pid = p.pid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
 		GROUP BY p.pname
 		ORDER BY orders desc
 		LIMIT 5
@@ -63,7 +63,7 @@
 	<select id="maxSales" resultType="com.springlec.base.model.AdminExtra_Dto_kkg">
 		SELECT  SUM(o.oprice) AS sale, p.pname
 		FROM  ordering AS o, product AS p
-		WHERE o.o_pid = p.pid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
+		WHERE o.product_pid = p.pid AND o.odate &gt;= #{startday} AND o.odate &lt;= #{endday}
 		GROUP BY p.pname
 		ORDER BY sale desc
 		LIMIT 5

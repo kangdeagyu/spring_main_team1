@@ -257,9 +257,6 @@ public class KKG_controller {
 		String cid ;
 		Timestamp startday = null;
 		Timestamp endday=null;
-	
-
-		
 
 		
 		//최초 오픈할때 날짜 데이터 없을테니 그땐 전체 날짜를 지정해준다.

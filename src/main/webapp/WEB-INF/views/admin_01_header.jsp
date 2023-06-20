@@ -39,7 +39,7 @@
   <span style="font-size: 30; color: white;"> Little & Prince 관리자 페이지 입니다.</span>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="logout.do">logout</a>
+      <a class="nav-link px-3" href="logout">logout</a>
     </div>
   </div>
 </header>

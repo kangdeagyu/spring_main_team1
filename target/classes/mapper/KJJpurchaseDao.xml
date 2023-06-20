@@ -5,11 +5,11 @@
 <mapper namespace="com.springlec.base.dao.KJJpurchaseDao">
 
 <select id="product" resultType="com.springlec.base.model.KJJpurchaseDto">
-	SELECT * FROM product WHERE pid = #{pid} 
+	SELECT * FROM product WHERE pid = #{pid}
 </select>
 
 <select id="customer" resultType="com.springlec.base.model.KJJpurchaseDto">
-SELECT * FROM customer WHERE cid = #{cid} 
+	SELECT * FROM customer WHERE cid = #{cid}
 </select>
 
 
