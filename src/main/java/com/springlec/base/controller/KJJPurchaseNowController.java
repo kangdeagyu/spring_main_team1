@@ -28,16 +28,19 @@ public class KJJPurchaseNowController {
 //				request.getParameter("payment"));
 		
 		
-		String cid = (String)session.getAttribute("cid");
-		int pid = Integer.parseInt(request.getParameterValues("pid"));
-		int qty = request.getParameterValues("qty");
-		int price = request.getParameterValues("price");
+		String cid = (String) session.getAttribute("cid");
+		int pid = (int) session.getAttribute("pid");
+
+		int qty = Integer.parseInt(request.getParameter("qty"));
+		int price = Integer.parseInt(request.getParameter("pprice"));
 		String postnum = request.getParameter("cpostnum");
 		String address1 = request.getParameter("caddress1");
 		String address2 = request.getParameter("caddress2");
 		String memo = request.getParameter("memo");
 		String payment = request.getParameter("payment");
 		
+		session.setAttribute("pid", pid); // pid를 세션에 설정
+		session.setAttribute("cid", cid); // cid를 세션에 설정
 //		for (int i = 0; i <pids.length; i++) {
 //			int pid = Integer.parseInt(pids[i]);
 //			int qty = Integer.parseInt(qtys[i]);
@@ -46,8 +49,9 @@ public class KJJPurchaseNowController {
 //			service.cartDeleteProduct(pid);
 //			service.prodcutQtyModify(pid, qty);
 //		
-
-		return "KOrderCompleted";
+			
+			
+			return "KOrderCompleted";
 	
 }
 
