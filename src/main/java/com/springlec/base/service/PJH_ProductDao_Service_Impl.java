@@ -43,11 +43,31 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 
 	@Override
 	public List<PJH_ProductDto> search1(String list, String query) throws Exception {
-		// TODO Auto-generated method stub
-		query = '%'+query+'%';
-		return dao.search1(list, query);
-	}
+		System.out.println(list);
+		System.out.println(query);
+		if (list.equals("pcategory")) {
+	        if (query.contains("조") || query.contains("명")) {
+	            query = "0";
+	        } else if (query.contains("미") || query.contains("니") || query.contains("어") || query.contains("쳐")) {
+	            query = "1";
+	        } else if (query.contains("의") || query.contains("자")) {
+	            query = "2";
+	        }
+	    }
 
+	    query = '%' + query + '%';
+
+	    List<PJH_ProductDto> dtos = dao.search1(list, query);
+
+	    for (PJH_ProductDto dto : dtos) {
+	        String uploadPath = "image/";
+	        String fileName = dto.getPfilename();
+	        String imagePath = uploadPath + fileName;
+	        dto.setPfilename(imagePath);
+	    }
+
+	    return dtos;
+	}
 
 	@Override
 	 public void saveProduct1(String pname, int pprice, int pstock, MultipartFile file, int pcategory, String pcontent, MultipartFile file1, MultipartFile file2, String uploadPath) throws Exception {

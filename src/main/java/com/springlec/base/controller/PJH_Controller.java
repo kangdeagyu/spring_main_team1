@@ -37,10 +37,7 @@ public class PJH_Controller {
 	//상품 검색
 	@RequestMapping("/productQuery.do")
 	public String search(Model model,@RequestParam("list") String list, @RequestParam("query") String query) throws Exception{
-		System.out.println(list);
-		System.out.println(query);
 		List<PJH_ProductDto> searchlist = service.search1(list, query);
-		System.out.println(searchlist);
 	    model.addAttribute("list", searchlist);
 	    return "Admin_ProductList_pjh";
 	}

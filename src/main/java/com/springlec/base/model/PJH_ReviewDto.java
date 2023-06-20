@@ -32,8 +32,12 @@ public class PJH_ReviewDto {
 	int fref;
 	Timestamp fdeletedate;	
 	
-	
-	
+	int nid;
+	String n_aid;
+	String ntitle;
+	String ncontent;
+	Timestamp ninsertdate;
+	Timestamp ndeletedate;
 	
 	//Constructor
 	
@@ -41,10 +45,26 @@ public class PJH_ReviewDto {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
 	public PJH_ReviewDto(int fid, String f_cid, String f_aid, int f_pid, int ftype, int freforder, int fstep,
 			String ftitle, String fcontent, int fmotherid, Timestamp finsertdate, String cid, String cname,
 			String pname, String pfilename, int pprice, String pcontent, int pcategory, String t_name,
-			String categoryName, int totalFanswernum, int fanswernum, int fsteporder, int fref, Timestamp fdeletedate) {
+			String categoryName, int totalFanswernum, int fanswernum, int fsteporder, int fref, Timestamp fdeletedate,
+			int nid, String n_aid, String ntitle, String ncontent, Timestamp ninsertdate) {
 		super();
 		this.fid = fid;
 		this.f_cid = f_cid;
@@ -71,7 +91,22 @@ public class PJH_ReviewDto {
 		this.fsteporder = fsteporder;
 		this.fref = fref;
 		this.fdeletedate = fdeletedate;
+		this.nid = nid;
+		this.n_aid = n_aid;
+		this.ntitle = ntitle;
+		this.ncontent = ncontent;
+		this.ninsertdate = ninsertdate;
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -277,6 +312,107 @@ public class PJH_ReviewDto {
 
 	public void setFdeletedate(Timestamp fdeletedate) {
 		this.fdeletedate = fdeletedate;
+	}
+
+
+
+
+
+
+
+
+	public int getNid() {
+		return nid;
+	}
+
+
+
+
+
+
+
+
+	public void setNid(int nid) {
+		this.nid = nid;
+	}
+
+
+
+
+
+
+
+
+	public String getNtitle() {
+		return ntitle;
+	}
+
+
+
+
+
+
+
+
+	public void setNtitle(String ntitle) {
+		this.ntitle = ntitle;
+	}
+
+
+
+
+
+
+
+
+	public String getNcontent() {
+		return ncontent;
+	}
+
+
+
+
+
+
+
+
+	public void setNcontent(String ncontent) {
+		this.ncontent = ncontent;
+	}
+
+
+
+
+
+
+
+
+	public Timestamp getNinsertdate() {
+		return ninsertdate;
+	}
+
+
+
+
+
+
+	public void setNinsertdate(Timestamp ninsertdate) {
+		this.ninsertdate = ninsertdate;
+	}
+
+
+
+
+
+	public String getN_aid() {
+		return n_aid;
+	}
+
+
+
+
+	public void setN_aid(String n_aid) {
+		this.n_aid = n_aid;
 	}
 	
 	
