@@ -202,7 +202,7 @@
                     <td>${cdto.finsertdate}</td>
                     <td>
                         <c:if test="${cdto.fdeletedate eq null}">
-                            <form action="BigCommentWrite.do" method="post">
+                            <form action="bigCommentWrite?page=${forumView.fid}">
                                 <input type="text" name="ftitle" placeholder="댓글을 입력하세요.">
                                 <input type="hidden" name="page" value="${forumView.fid}">
                                 <input type="hidden" name="f_cid" value="${cid}">
@@ -220,11 +220,11 @@
                     </td>
                     <td>
                         <c:if test="${cdto.fdeletedate eq null}">
-                            <form action="commentdelete.do" method="post" onsubmit="return confirmDelete('${cdto.f_cid}', this)">
-                                <input type="hidden" name="page" value="${forumView.fid}">
+                            <form action="commentDelete" method="post" onsubmit="return confirmDelete('${cdto.f_cid}', this)">
                                 <input type="hidden" name="f_cid" value="${cdto.f_cid}">
                                 <input type="hidden" name="fid" value="${cdto.fid}">
                                 <input type="submit" id="deleteButton_${cdto.f_cid}" value="삭제">
+                                <input type="hidden" name="page" value="${forumView.fid}">
                             </form>
                         </c:if>
                     </td>
@@ -234,12 +234,11 @@
     </table>
 	<br/><br/>
     <div class="center-align">
-    <form action="commentwrite.do" method="post">
-        <input type="text" name="ftitle" style="width: 300px;" placeholder="댓글을 입력하세요.">
-        <input type="hidden" name="fsteporder" value="${forumView.fsteporder}">
-        <input type="hidden" name="fid" value="${forumView.fid}">
+    <form action="commentAction" method="post">
         <input type="hidden" name="f_cid" value="${cid}">
         <input type="hidden" name="f_pid" value="${forumView.f_pid}">
+        <input type="text" name="ftitle" style="width: 300px;" placeholder="댓글을 입력하세요.">
+        <input type="hidden" name="fid" value="${forumView.fid}">
         <input type="submit" value="입력">
     </form>
 </div>

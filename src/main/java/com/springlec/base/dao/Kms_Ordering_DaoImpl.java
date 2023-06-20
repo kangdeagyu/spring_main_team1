@@ -11,7 +11,7 @@ public class Kms_Ordering_DaoImpl implements Kms_Ordering_Dao {
 	SqlSession sqlSession;
 	public String nameSpace = "com.springlec.base.dao.Kms_Ordering_Dao";
 	@Override
-	public List<Kms_Ordering_Dto> orderinglist(int cid) throws Exception {
+	public List<Kms_Ordering_Dto> orderinglist(String cid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace + ".orderinglist");
 	}

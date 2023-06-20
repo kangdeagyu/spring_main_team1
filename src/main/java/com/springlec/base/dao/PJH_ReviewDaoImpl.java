@@ -36,15 +36,57 @@ public class PJH_ReviewDaoImpl implements PJH_ReviewDao {
 	}
 
 	@Override
-	public List<PJH_ReviewDto> forumView(int fid) throws Exception {
+	public PJH_ReviewDto forumView(int fid) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(nameSpace+".forumView");
+		return sqlSession.selectOne(nameSpace+".forumView");
 	}
 
 	@Override
 	public List<PJH_ReviewDto> commentList(int fid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(nameSpace+".commentList");
+	}
+
+	@Override
+	public List<PJH_ReviewDto> writeList(int ftype) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".writeList");
+	}
+
+	@Override
+	public List<PJH_ReviewDto> noticeList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".noticeList");
+	}
+
+	@Override
+	public PJH_ReviewDto noticeView(int nid) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace+".noticeView");
+	}
+
+	@Override
+	public void noticeUpload(String ntitle, String ncontent) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.selectList(nameSpace+".noticeUpload");
+	}
+
+	@Override
+	public void deleteReviewOrQNA(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.selectList(nameSpace+".deleteReviewOrQNA");
+	}
+
+	@Override
+	public void deleteNotice(int nid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.selectList(nameSpace+".deleteNotice");
+	}
+
+	@Override
+	public List<PJH_ReviewDto> forumsearch(int ftype, String content) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".forumsearch");
 	}
 
 }

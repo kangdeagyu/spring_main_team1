@@ -99,4 +99,17 @@ public class Kms_Forum_ServiceImpl implements Kms_Forum_Service {
 		dao.bigCommentAction4(fid);
 	}
 
+	@Override
+	public void bigCommentAction5(String f_cid, int f_pid, int fref, int freforder, int fanswernum, String ftitle,
+			int fmotherid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction5(f_cid, f_pid, fref, freforder, fanswernum, ftitle, fmotherid);
+	}
+
+	@Override
+	public void bigCommentAction6(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		dao.bigCommentAction6(fid);
+	}
+
 }

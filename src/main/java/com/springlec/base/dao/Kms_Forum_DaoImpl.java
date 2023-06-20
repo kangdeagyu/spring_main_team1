@@ -81,5 +81,16 @@ public class Kms_Forum_DaoImpl implements Kms_Forum_Dao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace + ".bigCommentAction4");
 	}
+	@Override
+	public void bigCommentAction5(String f_cid, int f_pid, int fref, int freforder, int fanswernum, String ftitle,
+			int fmotherid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".bigCommentAction5");
+	}
+	@Override
+	public void bigCommentAction6(int fid) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".bigCommentAction6");
+	}
 	
 }

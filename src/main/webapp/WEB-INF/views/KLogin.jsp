@@ -78,11 +78,11 @@
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-	Kakao.init('e94ea7cf7a4161d305da7590513621dc'); // 발급받은 키 중 javascript키를 사용해준다.
-	console.log(Kakao.isInitialized()); // sdk초기화여부판단
-
 	// 카카오로그인
 	function kakaoLogin() {
+		Kakao.init('e94ea7cf7a4161d305da7590513621dc'); // 발급받은 키 중 javascript키를 사용해준다.
+		Kakao.isInitialized();
+		Kakao.Auth.setAccessToken(undefined);
 		Kakao.Auth.login({
 			success: function(response) {
 				Kakao.API.request({
@@ -91,10 +91,6 @@
 						var nickname = response.properties.nickname; // 닉네임 가져오기
 						var kakaoAccount = response.kakao_account;
 						var email = kakaoAccount.email; // 카카오 계정 이메일 가져오기
-
-						// 가져온 정보 활용
-						console.log("닉네임: " + nickname);
-						console.log("카카오 계정 이메일: " + email);
 
 						// 이메일을 서버로 전송하여 데이터베이스에 있는지 확인
 						
@@ -208,7 +204,7 @@
     		    	 alert("탈퇴한 회원입니다.")
     		    }else if(response.data == "admin"){
     		    	alert("관리자 입니다.")
-    		    	/* window.location.href = 'adminHome.do';  */ 
+    		    	window.location.href = 'adminHome.do';
     		    }else if(response.data == "error"){
     		    	alert("아이디와 비밀번호를 확인해주세요!")
     		    }else{

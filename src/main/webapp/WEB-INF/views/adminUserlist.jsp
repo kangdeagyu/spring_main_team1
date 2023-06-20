@@ -18,6 +18,7 @@
 
 <!-- 프로젝트내 js 파일  -->
 <script src="js/admin_kkg_remake.js" type="text/javascript"></script>
+<script src="js/admin_kkg_share.js" type="text/javascript"></script>
 
 <!--  bootsstrap link -->
 
@@ -144,12 +145,16 @@
 							</div>
 
 
-							<form action=""></form>
-		
-							<button type="button"
-								class="btn btn-sm btn-outline-secondary dropdown-toggle">
-								This week
-							</button>
+							<form id="myForm" action="AUserlist.do" method="post">
+								
+								  <input type="hidden" name="startDate" id="startdayInput">
+								  <input type="hidden" name="endDate" id="enddayInput">
+								  <input type="hidden" name="pageNum" value="${userList[0].pageNum}">
+								  <button type="button" onclick="thisWeek()"
+										class="btn btn-sm btn-outline-secondary dropdown-toggle">
+										This week
+								  </button>
+							</form>
 						</div>
 						<!-- 여기까지가 버튼 과 관련된 부분 이아래가 그래프다 -->
 					</div>

@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link href="css/admin_kkg.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="aQnA_style.css">
+    <link rel="stylesheet" type="text/css" href="css/aQnA_style.css">
 <style>
     table {
         border-collapse: collapse;
@@ -185,18 +185,6 @@
     </form>
 	</div>
 
-    <%-- <form action="pjh_WriteReply.do" method="post">
-    	<input type="hidden" name="ftype" value="${ftype}">
-        <input type="hidden" name="fid" value="${forumView.fid}">
-        <input type="hidden" name="fref" value="${forumView.fref}">
-        <input type="hidden" name="freforder" value="${forumView.freforder}">
-        <input type="hidden" name="fstep" value="${forumView.fstep}">
-        <input type="hidden" name="fmotherid" value="${forumView.fmotherid}">
-        <input type="hidden" name="fanswernum" value="${forumView.fanswernum}">
-        <input type="hidden" name="f_pid" value="${forumView.f_pid}">
-        <input type="hidden" name="f_cid" value="${cid}">
-        <input type="submit" value="답글 달기">
-    </form> --%>
     <form action="Awritelist.do?ftype=${ftype}" method="post">
         <input type="submit" value="목록">
     </form>

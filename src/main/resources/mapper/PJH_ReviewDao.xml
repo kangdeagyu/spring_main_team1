@@ -27,4 +27,42 @@ SELECT f.*, p.pname FROM forum f, product p WHERE p.pid = f.f_pid and f.fid = #{
 SELECT f.*, c.cname FROM forum f, customer c WHERE f.f_cid = c.cid AND ftype = 3 AND fmotherid = #{fid} ORDER BY fref desc,freforder,fsteporder,fstep
 </select>
 
+
+<select id="writeList" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT f.*,p.pname,c.cname FROM forum f,product p, customer c WHERE p.pid = f.f_pid AND c.cid = f.f_cid 
+AND ftype = #{ftype} AND fdeletedate IS null ORDER BY fref desc,freforder
+</select>
+
+<select id="noticeList" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT nid, ntitle, ncontent, ninsertdate
+FROM notice where ndeletedate IS NULL
+</select>
+
+
+<select id="noticeView" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT n_aid, ntitle, ncontent, ninsertdate FROM notice WHERE nid = #{nid}
+</select>
+
+<insert id="noticeUpload">
+INSERT INTO notice (n_aid, ntitle, ncontent, ninsertdate)
+SELECT 'admin', #{ntitle}, #{ncontent}, now()
+</insert>
+
+<update id="deleteReviewOrQNA">
+UPDATE forum SET fdeletedate = CURRENT_TIMESTAMP, ftitle = '삭제된 댓글입니다'
+WHERE fid = #{fid}
+</update>
+
+<update id="deleteNotice">
+UPDATE notice SET ndeletedate= now() WHERE nid = #{nid}
+</update>
+
+<select id="forumsearch" resultType="com.springlec.base.model.PJH_ReviewDto">
+SELECT f.*, p.pname, c.cname FROM forum f, product p, customer c
+WHERE p.pid = f.f_pid AND c.cid = f.f_cid AND ftype = #{ftype} AND fdeletedate IS NULL AND (p.pname IS NULL OR p.pname LIKE #{content})
+ORDER BY fref DESC, freforder
+</select>
+
+
+
 </mapper>

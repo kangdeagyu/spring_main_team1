@@ -16,8 +16,8 @@
 
 
 <!-- 프로젝트내 js 파일  -->
-<script src="js/admin_kkg_remake.js" type="text/javascript"></script>
-
+<script src="js/admin_kkg_salemanage.js" type="text/javascript"></script>
+<script src="js/admin_kkg_share.js" type="text/javascript"></script>
 <!--  bootsstrap link -->
 
 <link href="css/admin_kkg.css" rel="stylesheet">
@@ -113,7 +113,7 @@
 
 					<div
 						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-						<h1 class="h2">매출/결재 관리</h1>
+						<h1 class="h2">매출 현황 분석</h1>
 
 
 						<div>
@@ -129,37 +129,45 @@
 
 						<div class="btn-toolbar mb-2 mb-md-0">
 							<div class="btn-group me-2"></div>
-							<button type="button"
-								class="btn btn-sm btn-outline-secondary dropdown-toggle" onclick="thisWeek()">
-
-								This week</button>
+							<form id="myForm" action="Salemanage.do" method="post">
+								
+								  <input type="hidden" name="startDate" id="startdayInput">
+								  <input type="hidden" name="endDate" id="enddayInput">
+								  <button type="button" onclick="thisWeek()"
+										class="btn btn-sm btn-outline-secondary dropdown-toggle">
+										This week
+								  </button>
+							</form>
 						</div>
 						<!-- 여기까지가 버튼 과 관련된 부분 이아래가 그래프다 -->
 					</div>
 
 					<div class="content">
-						<div class="array">
-							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px">
-								<h5 class="card-title">일별 매출/주문 현황</h5>
-								<canvas id="dailychart"></canvas>
+					 
+						<div class="array"> 
+							<div class="card shadw-lg"  id = "dailyCanvas" style="width: 100%; height: 500px; background-color: #F7F7F7; margin-bottom: 10px; display: block">
+								<h5 class="card-title">일별 매출/주문 현황 <button id="chart_btn01" class="btn btn-dark"  style="size=10; float: right;">Monthly Chart 보기</button> </h5>
+								
+								<canvas id="dailychart" ></canvas>
+								
 								<div class="card-body">
+								
+
 									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 								</div>
 							</div>
-						</div>
-						<div class="array">
-
-
-							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px">
-								<h5 class="card-title">월별 매출/주문 현황</h5>
+							<div class="card shadw-lg"  id = "monthlyCanvas"
+								style="width: 100%; height: 500px; background-color: #F7F7F7; margin-bottom: 10px; display: none">
+								<h5 class="card-title">월별 매출/주문 현황 <button id="chart_btn02" class="btn btn-dark" style="size=10; float: right;">Daily Chart 보기</button> </h5>
 								<canvas id="monthlychart"></canvas>
 								<div class="card-body">
 									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 								</div>
 							</div>
+							
+							
 						</div>
+					
 					</div>
 
 					<div class="content">
@@ -198,6 +206,7 @@
 									<canvas id="gender_sale"></canvas>
 								</div>
 								<div class="card-body">
+							
 									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 								</div>
 							</div>
@@ -374,9 +383,18 @@
    	  location.href = url;
    	
    }
+
+	//chart
+
+  document.getElementById("chart_btn01").addEventListener("click", function() {
+    showChart("dailyCanvas","monthlyCanvas");
+  });
+
+  document.getElementById("chart_btn02").addEventListener("click", function() {
+	    showChart("monthlyCanvas","dailyCanvas");
+  });
+
+
 	</script>
-
-
-
 </body>
 </html>
