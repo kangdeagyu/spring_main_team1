@@ -105,6 +105,9 @@
         });
     </script>
 <style>
+	a.no-underline {
+	    text-decoration: none;
+	  }
     table {
         border-collapse: collapse;
         width: 100%;
@@ -157,32 +160,34 @@
     <table class="table table-striped table-sm">
   <thead class="thead-light">
     <tr>
-      <th style="width: 100px;">
-        QnA No.
+      <th style="width: 100px; text-align: center">
+        No.
       </th>
-      <th style="width: 200px;">작성자</th>
-      <th style="width: 200px;">제품</th>
-      <th style="width: 350px;">제목</th>
-      <th style="width: 300px;">작성일</th>
+      <th style="width: 200px; text-align: center">작성자</th>
+      <th style="width: 200px; text-align: center">제품</th>
+      <th style="width: 350px; text-align: center">제목</th>
+      <th style="width: 300px; text-align: center">작성일</th>
     </tr>
   </thead>
   <tbody id="tableBody">
     <c:forEach items="${noticelist}" var="noticedto" varStatus="status">
       <tr>
-        <td>${noticedto.nid}</td>
-        <td>관리자</td>
-        <td>공지사항</td>
-        <td><a href="noticeView?nid=${noticedto.nid}" style="color: black;">${noticedto.ntitle}</a></td>
-        <td>${noticedto.ninsertdate}</td>
+        <td style="text-align: center">${noticedto.nid}</td>
+        <td style="text-align: center">관리자</td>
+        <td style="text-align: center">공지사항</td>
+        <td style="text-align: center"><a href="noticeView?nid=${noticedto.nid}" style="color: black;">${noticedto.ntitle}</a></td>
+        <td style="text-align: center">${noticedto.ninsertdate}</td>
       </tr>
     </c:forEach>
+    <c:set var="a" value="0" />
     <c:forEach items="${RList}" var="dto" varStatus="status">
+    <c:set var="a" value="${a+1}" />
       <tr class="data-row hidden-row" id="dataRow${status.index}">
-        <td>${dto.fid}</td>
-        <td>${dto.cname}</td>
-        <td>${dto.pname}</td>
-        <td><a href="ForumView?fid=${dto.fid}" style="color: black;">${dto.ftitle}</a></td>
-        <td>${dto.finsertdate}</td>
+        <td style="text-align: center">${a}</td>
+        <td style="text-align: center">${dto.cname}</td>
+        <td style="text-align: center">${dto.pname}</td>
+        <td style="text-align: center"><a href="ForumView?fid=${dto.fid}" class="no-underline" style="color: black;">${dto.ftitle}</a></td>
+        <td style="text-align: center">${dto.finsertdate}</td>
       </tr>
     </c:forEach>
   </tbody>

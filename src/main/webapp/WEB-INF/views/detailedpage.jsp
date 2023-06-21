@@ -5,6 +5,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link href="css/admin_kkg.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.rtl.css" rel="stylesheet">
+<link href="css/bootstrap.rtl.min.css" rel="stylesheet">
+
+<link href="css/bootstrap-grid.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+<link href="css/bootstrap-grid.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.rtl.css" rel="stylesheet">
+
+
+<link href="css/bootstrap-reboot.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.rtl.min.css" rel="stylesheet">
+
+<link href="css/bootstrap-utilities.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.min.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.rtl.min.css" rel="stylesheet">
 <style>
 
 .nav-linktwo {
@@ -239,15 +260,19 @@ window.onload = changeImages;
 
 
 <div id="detailGoodsInfo">상세 상품 내용</div>
-<div id="detailReview">
-		<table>
-        		<tr>
-            		<th style="background-color: lavender; color: purple;">ReviewNo.</th>
-            		<th style="background-color: lavender;color: purple;">작성자</th>
-            		<th style="background-color: lavender;color: purple;">제품</th>
-            		<th style="background-color: lavender;color: purple;">제목</th>
-            		<th style="background-color: lavender;color: purple;">작성일</th>
-        	</tr>
+<div id="detailReview" class="table-responsive">
+		 <table class="table table-striped table-sm">
+		  <thead class="thead-light">
+		    <tr>
+		      <th style="width: 100px; text-align: center">
+		       ReviewNo.
+		      </th>
+		      <th style="width: 200px; text-align: center">작성자</th>
+		      <th style="width: 200px; text-align: center">제품</th>
+		      <th style="width: 350px; text-align: center">제목</th>
+		      <th style="width: 300px; text-align: center">작성일</th>
+		    </tr>
+		    </thead>
         	<c:choose>
     <c:when test="${empty Rdto}">
         <tr>
@@ -255,13 +280,15 @@ window.onload = changeImages;
         </tr>
     </c:when>
     <c:otherwise>
+    		<c:set var="a" value="0" />
         	<c:forEach items="${Rdto}" var="dto">
+        	<c:set var="a" value="${a+1}" />
             	<tr>
-                <td><a href="ForumView?fid=${dto.fid}">${dto.fid}</a></td>
-                <td>${dto.cname}</td>
-                <td>${dto.pname}</td>
-                <td>${dto.ftitle}</td>
-                <td>${dto.finsertdate}</td>
+                <td style="text-align: center"><a href="ForumView?fid=${dto.fid}">${a}</a></td>
+                <td style="text-align: center">${dto.cname}</td>
+                <td style="text-align: center">${dto.pname}</td>
+                <td style="text-align: center">${dto.ftitle}</td>
+                <td style="text-align: center">${dto.finsertdate}</td>
             	</tr>
         	</c:forEach>
         	 </c:otherwise>
@@ -269,14 +296,19 @@ window.onload = changeImages;
 		</table>
 	</div>
 
-<div id="detailQna"><table>
-        		<tr>
-            		<th style="background-color: lavender; color: purple;">QnAno.</th>
-            		<th style="background-color: lavender;color: purple;">작성자</th>
-            		<th style="background-color: lavender;color: purple;">제품</th>
-            		<th style="background-color: lavender;color: purple;">제목</th>
-            		<th style="background-color: lavender;color: purple;">작성일</th>
-        	</tr>
+<div id="detailQna" class="table-responsive">
+			<table class="table table-striped table-sm">
+			  <thead class="thead-light">
+			    <tr>
+			      <th style="width: 100px; text-align: center">
+			       QnANo.
+			      </th>
+			      <th style="width: 200px; text-align: center">작성자</th>
+			      <th style="width: 200px; text-align: center">제품</th>
+			      <th style="width: 350px; text-align: center">제목</th>
+			      <th style="width: 300px; text-align: center">작성일</th>
+			    </tr>
+			    </thead>
         	<c:choose>
     <c:when test="${empty Qdto}">
         <tr>
@@ -284,13 +316,15 @@ window.onload = changeImages;
         </tr>
     </c:when>
     <c:otherwise>
+   			<c:set var="b" value="0" />
         	<c:forEach items="${Qdto}" var="dto">
+        	<c:set var="b" value="${b+1}" />
             	<tr>
-                <td><a href="ForumView?fid=${dto.fid}">${dto.fid}</a></td>
-                <td>${dto.cname}</td>
-                <td>${dto.pname}</td>
-                <td>${dto.ftitle}</td>
-                <td>${dto.finsertdate}</td>
+                <td style="text-align: center"><a href="ForumView?fid=${dto.fid}">${b}</a></td>
+                <td style="text-align: center">${dto.cname}</td>
+                <td style="text-align: center">${dto.pname}</td>
+                <td style="text-align: center">${dto.ftitle}</td>
+                <td style="text-align: center">${dto.finsertdate}</td>
             	</tr>
         </c:forEach>
          </c:otherwise>

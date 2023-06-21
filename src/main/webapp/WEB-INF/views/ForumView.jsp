@@ -164,34 +164,33 @@
 <body>
     <table>
         <tr>
-            <td style="width: 100px;"><strong>제목:</strong></td>
+            <td style="width: 100px; text-align: center"><strong>제목:</strong></td>
             <td>${forumView.ftitle}</td>
         </tr>
         <tr>
-            <td><strong>작성자:</strong></td>
-            <td>${forumView.f_cid}</td>
+            <td style="text-align: center"><strong>작성자:</strong></td>
+            <td>${forumView.cname}</td>
         </tr>
         <tr>
-            <td><strong>상품:</strong></td>
+            <td style="text-align: center"><strong>상품:</strong></td>
             <td>${forumView.pname}</td>
         </tr>
         <tr>
-            <td colspan="2"><strong>내용:</strong></td>
+            <td style="text-align: center"><strong>내용:</strong></td>
+            <td>${forumView.fcontent}</td>
         </tr>
-        <tr>
-            <td colspan="2">${forumView.fcontent}</td>
-        </tr>
+        
     </table>
     <br/>
     <h3>댓글 목록</h3>
     <table class="table table-striped table-bordered">
         <thead class="thead-light">
         <tr>
-            <th style="width: 100px;">작성자</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>댓글</th>
-            <th>삭제</th>
+            <th style="width: 100px; text-align: center">작성자</th>
+            <th style="text-align: center">작성일</th>
+            <th style="text-align: center">내용</th>
+            <th style="text-align: center">댓글</th>
+            <th style="text-align: center">삭제</th>
         </tr>
         </thead>
         <tbody id="tableBody">
@@ -202,8 +201,9 @@
 		</c:if>
             <c:forEach items="${Clist}" var="cdto" varStatus="status">
                 <tr class="data-row hidden-row" id="dataRow${status.index}">
-                    <td>${cdto.cname}</td>
-                    <td class="text-left">
+                    <td style="text-align: center">${cdto.cname}</td>
+                    <td>${cdto.finsertdate}</td>
+                    <td class="text-left" style="text-align: left">
 				    <c:choose>
 				        <c:when test="${cdto.fstep eq 0}">
 				            ${cdto.ftitle}
@@ -214,7 +214,6 @@
 				    </c:choose>
 					</td>
 
-                    <td>${cdto.finsertdate}</td>
                     <td>
                         <c:if test="${cdto.fdeletedate eq null}">
                             <form action="bigCommentWrite?page=${forumView.fid}" method="post" onsubmit="return checkLogin()">
