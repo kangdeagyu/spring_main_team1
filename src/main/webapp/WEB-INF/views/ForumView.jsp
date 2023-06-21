@@ -88,7 +88,7 @@
         // 만약 로그인되어 있지 않으면 아래의 알림 창이 뜨도록 합니다.
         var isLoggedIn = false; // 예시로 로그인 상태를 false로 설정합니다.
 
-        if (!isLoggedIn) {
+        if(${cid == null }){
             alert("로그인 후 이용 가능합니다."); // 알림 창을 띄웁니다.
             return false; // 폼 제출을 중단합니다.
         }
