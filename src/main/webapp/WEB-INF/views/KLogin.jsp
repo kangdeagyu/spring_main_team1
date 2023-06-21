@@ -77,7 +77,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 function kakaoLogin() {
-	Kakao.init('e94ea7cf7a4161d305da7590513621dc'); // 발급받은 키 중 javascript키를 사용해준다.
+	Kakao.init(''); // 발급받은 키 중 javascript키를 사용해준다.
 	
 		Kakao.Auth.login({
 			success: function(authObj) {
