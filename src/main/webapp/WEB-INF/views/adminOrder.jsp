@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문 현황 보기</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
@@ -224,6 +224,10 @@
 						<h1 class="h2">주문 목록 관리</h1>
 
 
+
+
+
+						<div class="btn-toolbar mb-2 mb-md-0">
 						<div>
 
 							<form action="Ordermanage.do" name="date" method="post">
@@ -234,24 +238,8 @@
 								<input type="button" value="확 인" onclick="checkDate()">
 							</form>
 
-						</div>
-
-
-						<div class="btn-toolbar mb-2 mb-md-0">
-							<div class="btn-group me-2">
-							
-								<form name="export" action="saveOrderList" >
-								
-								  <input type="hidden" name="customerId" value="${customerId}"> 
-								  <input type="hidden" name="startDate" value="${startDate}">
-								  <input type="hidden" name="endDate" value="${endDate}">
-								  <input type="submit" class="btn btn-sm btn-outline-secondary" value="Export">
-								
-	
-								</form>
-							
-							</div>
-
+						</div> &nbsp; &nbsp; &nbsp;
+							<div>
 							<form id="myForm" action="Ordermanage.do" method="post">
 								  <input type="hidden" name="customerId" value="${customerId}"> 
 								  <input type="hidden" name="startDate" id="startdayInput">
@@ -261,7 +249,21 @@
 										This week
 								  </button>
 							</form>
+							</div>
+							
+							<div class="btn-group me-2">
+							
+								<form name="export" action="saveOrderList" >
 								
+								  <input type="hidden" name="customerId" value="${customerId}"> 
+								  <input type="hidden" name="startDate" value="${startDate}">
+								  <input type="hidden" name="endDate" value="${endDate}">
+								  <input type="submit" class="btn btn-dark" value="Export">
+								
+	
+								</form>
+							
+							</div>
 
 						</div>
 					</div>

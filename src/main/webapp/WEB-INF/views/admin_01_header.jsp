@@ -36,7 +36,7 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand  col-lg-2 me-0 px-3 fs-6" style="width: 10%" href="adminHome.do"><span style="font-size: 120%">Little & <br/>Precious</span></a>
   
-  <span style="font-size: 30; color: white;"> Little & Prince 관리자 페이지 입니다.</span>
+  <span style="font-size: 30; color: white;"> Little & Precious 관리자 페이지 입니다.</span>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3" href="logout">logout</a>

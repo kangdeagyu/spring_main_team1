@@ -123,7 +123,14 @@
 					<div
 						class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 						<h1 class="h2">회원관리</h1>
-						<div>
+
+
+
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div class="btn-group me-2">
+
+							</div>
+													<div>
 							<form action="AUserlist.do" name="date" method="post">
 								<input type="text" name="startDate" id="startDate"
 									placeholder="시작일" autocomplete="off"> 
@@ -136,14 +143,7 @@
 									<input type="button" value="확 인" onclick="checkDate()">
 							</form>
 
-						</div>
-
-
-						<div class="btn-toolbar mb-2 mb-md-0">
-							<div class="btn-group me-2">
-
-							</div>
-
+						</div> &nbsp; &nbsp; &nbsp;
 
 							<form id="myForm" action="AUserlist.do" method="post">
 								
@@ -202,7 +202,6 @@
 									<th scope="col">ID</th>
 									<th scope="col">생년월일</th>
 									<th scope="col">성별</th>
-									<th scope="col">주소</th>
 									<th scope="col">연락처</th>
 									<th scope="col">가입일</th>
 									<!-- <th scope="col">정보 수정/삭제</th> -->
@@ -220,14 +219,18 @@
 										<td>${customer.cname}</td>
 										<td>${customer.cid}</td>
 										<td>${customer.cbirthdate}</td>
-										<td>${customer.cgender}</td>
-										<td>${customer.caddress}</td>
+										<c:if test="${customer.cgender == 0}">
+											<td>남</td>
+										</c:if>
+										<c:if test="${customer.cgender == 1}">
+											<td>여</td>
+										</c:if>
 										<td>${customer.cphone}</td>
 										<td>${customer.cinsertdate}</td>
 										<%-- 	<td><form  name="updateInfo"><button onclick="updateInfo(${customer.cid})">수정/삭제</button></form></td> --%>
-										<td><form action="showOderList.do" name="showOlist">
-												<input type="hidden" name="cid" value="${customer.cid}"><input
-													type="submit" value="구매내역" size="30">
+										<td><form action="Ordermanage.do" name="showOlist">
+											<input type="hidden" name="customerId" value="${customer.cid}">
+											<input type="submit" value="결재내역">
 											</form></td>
 									</tr>
 

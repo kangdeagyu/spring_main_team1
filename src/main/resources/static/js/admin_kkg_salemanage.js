@@ -10,13 +10,15 @@ function DoublebarChart(context, xlabel, ylabel_01, ylabel_02) {
 			{
 				label: "남",
 				backgroundcolor: "blue",
-				data: ylabel_01
+				data: ylabel_01,
+				barThickness: 10, // 막대의 두께 (픽셀 단위)
 
 			},
 			{
 				label: "여",
 				backgroundcolor: "red",
-				data: ylabel_02
+				data: ylabel_02,
+				barThickness: 10, // 막대의 두께 (픽셀 단위)
 
 			}
 		]
@@ -51,7 +53,8 @@ function SingleBarChart(context, xlabels, y01, ydatas_01) {
 				backgroundColor: ['#B4D9FF', '#007AFF', '#5856D6', '#34C759', '#FF2D55', '#FF9500', '#FFCC00', '#8E8E93', '#FF3B30', '#C69C6D'],
 				borderColor: ['#B4D9FF', '#007AFF', '#5856D6', '#34C759', '#FF2D55', '#FF9500', '#FFCC00', '#8E8E93', '#FF3B30', '#C69C6D'],
 				data: ydatas_01,
-				yAxisID: 'y-axis-1'
+				yAxisID: 'y-axis-1',
+				barThickness: 10, // 막대의 두께 (픽셀 단위)
 
 			} //첫번째 data 셋 입력 끝.(매출액 데이터))
 
@@ -311,8 +314,8 @@ function SaleChart_double(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
 				label: y01, /* 그래프(차트)의 제목이다.*/
 				type: 'line',
 				fill: false,
-				backgroundColor: 'rgb(255, 50, 0,0.8)',
-				borderColor: 'rgb(255, 50, 0,0.8)',
+				backgroundColor: 'rgba(255,30,104,0.1)',
+				borderColor: 'rgba(255,30,104,0.5)',
 				data: ydatas_01,
 				yAxisID: 'y-axis-1',
 				
@@ -349,7 +352,7 @@ function SaleChart_double(context, xlabels, y01, ydatas_01, y02, ydatas_02) {
 						ticks: {
 							beginAtZero: true,
 							fontSize: 10,
-							fontColor: 'rgb(255,0,0)',
+							fontColor: 'rgba(255,30,104,2)',
 				            callback: function(value, index, values) {	 // 세 자리마다 쉼표 추가
 
 				              return (value/1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

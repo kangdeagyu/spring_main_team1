@@ -146,6 +146,8 @@
 						</div>
 						<!-- 여기까지가 버튼 과 관련된 부분 이아래가 그래프다 -->
 					</div>
+					
+					<h1 class="h1" style="text-align: center;"> 일*월별 매출액/주문량 분석</h2>
 
 					<div class="content">
 					 
@@ -174,13 +176,50 @@
 						</div>
 					
 					</div>
+					
+					<hr>
+					<hr>
+					
+					<h2 class="h2" style="text-align: center;"> 기간 중 남녀별 구매액/구매량 비교</h2>
 
 					<div class="content">
 						<div class="array">
 							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; display: flex; justify-content: center; align-items: center; margin-bottom: 10px">
+								style="width: 30%px; height: 600px; background-color: #F7F7F7; display: flex; justify-content: center; align-items: center; margin-bottom: 10px">
+								<h5 class="card-title">기간내 남녀 매출 비교</h5>
+								<div style="width: 50%; height: 50%;">
+									<canvas id="gender_sale"></canvas>
+								</div>
+								<div class="card-body">
+							
+									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+								</div>
+							</div>
+						</div>
+						<div class="array">
+							<div class="card shadw-lg"
+								style="width: 35%px; height: 600px; background-color: #F7F7F7; padding:50px; margin-bottom: 10px">
+								<h5 class="card-title">기간내 남녀 주문량 비교</h5>
+									<canvas id="gender_order"></canvas>
+		
+								<div class="card-body">
+									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<hr>
+					<hr>
+					<h2 class="h2" style="text-align: center;"> 기간 중 카테고리별 매출/주문량 비교</h2>
+					
+					
+					<div class="content">
+						<div class="array">
+							<div class="card shadw-lg"
+								style="width: 30%px; height: 600px; background-color: #F7F7F7; display: flex; justify-content: center; align-items: center;  margin-bottom: 10px">
 								<h5 class="card-title">기간내 카테고리별 매출 비교</h5>
-								<div style="width: 70%; height: 70%;">
+								<div style="width: 50%; height: 50%;">
 									<canvas id="categorychart_sale"></canvas>
 								</div>
 
@@ -192,66 +231,31 @@
 						<div class="array">
 
 							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px">
+								style="width: 35%px; height: 600px; background-color: #F7F7F7; margin-bottom: 10px; padding:50px;">
 								<h5 class="card-title">기간내 카테고리별 판매량 비교</h5>
-								<canvas id="categorychart_order"></canvas>
+								<canvas id="categorychart_order" ></canvas>
 								<div class="card-body">
 									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 								</div>
 							</div>
 						</div>
 					</div>
+					
 
-					<div class="content">
-						<div class="array">
-							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; display: flex; justify-content: center; align-items: center; margin-bottom: 10px">
-								<h5 class="card-title">기간내 남녀 매출 비교</h5>
-								<div style="width: 70%; height: 70%;">
-									<canvas id="gender_sale"></canvas>
-								</div>
-								<div class="card-body">
-							
-									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-								</div>
-							</div>
-						</div>
-						<div class="array">
-							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; display: flex; justify-content: center; align-items: center; margin-bottom: 10px">
-								<h5 class="card-title">기간내 남녀 주문량 비교</h5>
-								<div style="width: 70%; height: 70%;">
-									<canvas id="gender_order"></canvas>
-								</div>
-								<div class="card-body">
-									<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
-
-					<%-- 				<div>
-					<p>기간내 카테고리별 남녀 매출 현황</p>
-					<canvas class="my-4 w-100 chartjs-render-monitor"
-						id="categorygenderchart_sale" width="700" height="400"
-						style="display: block; height: 275px; width: 500px;"></canvas>
-				</div>
-
-				<div>
-					<p>기간내 카테고리별 남녀 주문량 현황</p>
-					<canvas class="my-4 w-100 chartjs-render-monitor"
-						id="categorygenderchart_order" width="400" height="300"
-						style="display: block; height: 275px; width: 500px;"></canvas>
-				</div>  --%>
+				
+			
+				
+				
+					<hr>
+					<hr>
+					
+					<h2 class="h2" style="text-align: center;"> 기간 중 인기 카테고리 및 제품 </h2>
 
 					<div class="content">
 					
 						<div class="array">
 							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px">
+								style="width: 35%px; height: 600px; background-color: #F7F7F7; margin-bottom: 10px;padding:30px;">
 								<h5 class="card-title">기간내 판매량 Top 5</h5>
 								<canvas id="orderTopChart"></canvas>
 								<div class="card-body">
@@ -263,7 +267,7 @@
 
 
 							<div class="card shadw-lg"
-								style="width: 500px; height: 500px; background-color: #F7F7F7; margin-bottom: 10px">
+								style="width: 35%px; height: 600px; background-color: #F7F7F7; margin-bottom: 10px;padding:30px;">
 								<h5 class="card-title">기간내 매출액 Top 5</h5>
 								<canvas id="saleTopChart"></canvas>
 								<div class="card-body">
@@ -274,10 +278,10 @@
 					</div>
 
 
-
+<%-- 					<hr>
 					<hr>
 
-	<%-- 				<div>
+					<div>
 
 						<p>데이터 확인 하는 파트</p>
 						<p>시작 날 :${dateList[0]}</p>
@@ -318,15 +322,20 @@
 
 						<hr>
 
-					</div> 
- --%>
+					</div>  --%>
+
 
 
 				</main>
 			</div>
 		</div>
 	</div>
-
+	<div> </br></div>
+	<div> </br></div>
+	<div> </br></div>
+	<div> </br></div>
+	<div> </br></div>
+	<div> </br></div>
 
 	<script>
 	
@@ -341,12 +350,14 @@
 		/*function PieChart(Title, context, xlabel, ydatas_01) {*/
 
      	PieChart("남녀 매출 비교",document.getElementById('gender_sale'),${requestScope.genderList},${requestScope.genderSales} );
-    	PieChart("남녀 주문량 비교",document.getElementById('gender_order'),${requestScope.genderList},${requestScope.genderOrders} );
+     	SingleBarChart(document.getElementById('gender_order'),${requestScope.genderList},'주문량',${requestScope.genderOrders} );
 
     	SingleBarChart(document.getElementById('orderTopChart'),${requestScope.maxPnameOrders},'판매량',${requestScope.maxOrders}); 
 		SingleBarChart(document.getElementById('saleTopChart'),${requestScope.maxPnameSales},'매출액',${requestScope.maxSales});
 		
 		
+		PieChart("카테고리 매출액 비교",document.getElementById('categorySale'),${requestScope.categoryList},${requestScope.categorySales} );
+		SingleBarChart(document.getElementById('categoryOrder'),${requestScope.categoryList},'판매량',${requestScope.categoryOrders});
 		
 	</script>
 
