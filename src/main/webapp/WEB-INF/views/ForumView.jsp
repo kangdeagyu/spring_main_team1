@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/aQnA_style.css">
   <script>
@@ -260,15 +261,7 @@
         <ul class="pagination float--right" id="pages">
         </ul>
     </div>
-    <%-- <form action="Kms_WriteReply.jsp" method="post">
-        <input type="hidden" name="fid" value="${forumView.fid}">
-        <input type="hidden" name="fref" value="${forumView.fref}">
-        <input type="hidden" name="freforder" value="${forumView.freforder}">
-        <input type="hidden" name="fstep" value="${forumView.fstep}">
-        <input type="hidden" name="fmotherid" value="${forumView.fmotherid}">
-        <input type="hidden" name="fanswernum" value="${forumView.fanswernum}">
-        <input type="submit" value="답글 달기">
-    </form> --%>
+   
     <%@ include file="bottom.jsp" %>
 </body>
 </html>

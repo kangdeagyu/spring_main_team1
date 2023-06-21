@@ -72,7 +72,7 @@
             <td>주문 번호 :</td><td>${param.oid }</td>
         </tr>
         <tr>
-            <td>주문날짜 :</td><td>${param.opaytype }</td>
+            <td>주문날짜 :</td><td>${param.odate }</td>
         </tr>
         <tr>
             <td>상품 :</td><td>${param.pname }</td>
