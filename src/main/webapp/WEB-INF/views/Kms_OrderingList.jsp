@@ -58,22 +58,22 @@
 <main>
     <table border="1">
         <tr>
-            <th>주문 정보</th>
-            <th>상품 이미지</th>
-            <th>주문 내역 </th>
-            <th>주문 금액</th>
-            <th>주문 날짜</th>
-            <th>배송 상태</th>
-            <th>리뷰 쓰기</th>
+            <th style="width: 150px; text-align: center">주문 정보</th>
+            <th style="width: 100px; text-align: center">상품 이미지</th>
+            <th style="width: 200px; text-align: center">주문 내역 </th>
+            <th style="width: 150px; text-align: center">주문 금액</th>
+            <th style="text-align: center">주문 날짜</th>
+            <th style="text-align: center">배송 상태</th>
+            <th style="text-align: center">리뷰 쓰기</th>
         </tr>
 		
-		<c:set var="listSize" value="${fn:length(list)}" />
+		
 
 
 		<c:forEach items="${Olist}" var="dto" varStatus="status">
 				
 			  <tr>
-			   	<td><form action="OrderingView">
+			   	<td style="width: 150px; text-align: center"><form action="OrderingView">
 				   		<input type="hidden" name="oid" value="${dto.oid}">
 	                    <input type="hidden" name="pname" value="${dto.pname}">
 	                    <input type="hidden" name="cname" value="${dto.cname}">
@@ -88,11 +88,11 @@
 	                    <input type="hidden" name="odate" value="${dto.odate}">
 	                    <input type="submit" value="주문정보">
 			   	</form></td>
-			    <td><img src="image/${dto.pfilename }" style="width: 100px; height: 100px; margin-bottom: 10px;"  alt="..."></td>
-			    <td>${dto.pname} X ${dto.oqty}</td>
-			    <td><fmt:formatNumber value="${dto.oprice}" pattern="#,##0원" /></td>
-			    <td>${dto.odate}</td>
-			    <td>
+			    <td style="width: 100px; text-align: center"><img src="image/${dto.pfilename }" style="width: 100px; height: 100px; margin-bottom: 10px;"  alt="..."></td>
+			    <td style="width: 200px; text-align: center">${dto.pname} X ${dto.oqty}</td>
+			    <td style="width: 150px; text-align: center"><fmt:formatNumber value="${dto.oprice}" pattern="#,##0원" /></td>
+			    <td style="text-align: center">${dto.odate}</td>
+			    <td style="text-align: center">
 			     <c:choose>
           			<c:when test="${dto.odelivery == 0}">배송 전</c:when>
           			<c:when test="${dto.odelivery == 1}">배송 중</c:when>
@@ -100,7 +100,7 @@
 		          	<c:when test="${dto.odelivery == 3}">배송 완료</c:when>
 		          	<c:otherwise>환불</c:otherwise>
 		        </c:choose></td>
-		        <td>
+		        <td style="text-align: center">
 		        	<c:choose>
 			        <c:when test="${dto.odelivery == 3}">
 			            작성완료

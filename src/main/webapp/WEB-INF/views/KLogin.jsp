@@ -234,7 +234,7 @@ function kakaoLogin() {
 	  </form>
 	  <div class="logSave">
    		 <input type="checkbox" class="save_id" name="checkId" id="saveId">
-    	<label for="saveId">remember me</label>
+    	<label for="saveId">Remember Me</label>
 </div>
 </div>
 <hr/>

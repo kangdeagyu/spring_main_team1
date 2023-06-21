@@ -17,40 +17,40 @@ public class KJJPurchaseNowController {
 	@Autowired
 	KJJPurchaseNowDaoService service;
 	
-	@RequestMapping("purchase")
+	@RequestMapping("purchaseNow")
 	public String purchase(HttpServletRequest request) throws Exception{
+		System.out.println("들어왔다");
 		HttpSession session = request.getSession(true);
-	
-//		service.purchase((String)session.getAttribute("cid"), ((int)session.getAttribute("pid")),
-//				Integer.parseInt(request.getParameter("oqty")), Integer.parseInt(request.getParameter("oprice")),
-//				request.getParameter("cpostnum"), 
-//				request.getParameter("caddress1"), request.getParameter("caddress2"), request.getParameter("memo"), 
-//				request.getParameter("payment"));
-		
-		
-		String cid = (String) session.getAttribute("cid");
-		int pid = (int) session.getAttribute("pid");
+////	
+////		service.purchaseNow((String)session.getAttribute("cid"), ((int)session.getAttribute("pid")),
+////				Integer.parseInt(request.getParameter("qty")), Integer.parseInt(request.getParameter("price")),
+////				request.getParameter("cpostnum"), 
+////				request.getParameter("caddress1"), request.getParameter("caddress2"), request.getParameter("memo"), 
+////				request.getParameter("payment"));
 
+		String cid = (String) session.getAttribute("cid");
+		int pid = Integer.parseInt(request.getParameter("pid"));
 		int qty = Integer.parseInt(request.getParameter("qty"));
-		int price = Integer.parseInt(request.getParameter("pprice"));
+		int price = Integer.parseInt(request.getParameter("price"));
 		String postnum = request.getParameter("cpostnum");
 		String address1 = request.getParameter("caddress1");
 		String address2 = request.getParameter("caddress2");
 		String memo = request.getParameter("memo");
 		String payment = request.getParameter("payment");
-		
-		session.setAttribute("pid", pid); // pid를 세션에 설정
-		session.setAttribute("cid", cid); // cid를 세션에 설정
-//		for (int i = 0; i <pids.length; i++) {
-//			int pid = Integer.parseInt(pids[i]);
-//			int qty = Integer.parseInt(qtys[i]);
-//			int price = Integer.parseInt(prices[i]);
-			service.purchase(cid, pid, qty, price, postnum, address1, address2, memo, payment);
-//			service.cartDeleteProduct(pid);
-//			service.prodcutQtyModify(pid, qty);
 //		
-			
-			
+		System.out.println(cid);
+		System.out.println(pid);
+		System.out.println(qty);
+		System.out.println(price);
+		System.out.println(postnum);
+		System.out.println(address1);
+		System.out.println(address2);
+		System.out.println(memo);
+		System.out.println(payment);
+//		
+//		
+		service.PurchaseNowDao(cid, pid, qty, price, postnum, address1, address2, memo, payment);
+		service.prodcutQtyModify(pid, qty);
 			return "KOrderCompleted";
 	
 }

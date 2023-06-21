@@ -5,6 +5,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link href="css/admin_kkg.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.rtl.css" rel="stylesheet">
+<link href="css/bootstrap.rtl.min.css" rel="stylesheet">
+
+<link href="css/bootstrap-grid.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+<link href="css/bootstrap-grid.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.rtl.css" rel="stylesheet">
+
+
+<link href="css/bootstrap-reboot.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.rtl.min.css" rel="stylesheet">
+
+<link href="css/bootstrap-utilities.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.min.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.rtl.min.css" rel="stylesheet">
 <style>
 
 .nav-linktwo {
@@ -141,113 +162,23 @@ function userCheck() {
 
 
 
-</script>
-<p>추천상품</p>
-<div id="productImageContainer">
-  <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
-  <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
-  <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
-  <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
-  <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
-  <img class="productImage" style="width: 200px; height: 200px;" alt="제품 사진">
-</div>
-
-<script>
-// 이미지 파일의 배열을 생성합니다.
-var imageFiles = [
-	"image/조명06.png",
-	"image/조명07.png",
-	"image/조명08.png",
-	"image/조명09.png",
-	"image/조명01.png",
-	"image/조명02.png",
-	"image/조명03.png",
-	"image/조명04.png",
-	"image/조명05.png"
-];
 
 
-
-var selectedProductImage =  "image/조명05.jpg";
-imageFiles = imageFiles.filter(function(image) {
-  return image !== selectedProductImage;
-});
-function changeImages() {
-  var productImages = document.getElementsByClassName("productImage");
-  
-  // 이미지를 중복되지 않도록 선택하기 위해 이미지 파일의 복사본을 생성합니다.
-  var remainingImages = imageFiles.slice();
-  
-  // 각 이미지 요소에 대해 반복하여 랜덤한 이미지를 설정합니다.
-  for (var i = 0; i < productImages.length; i++) {
-    // 남은 이미지 파일 중에서 랜덤하게 인덱스를 선택합니다.
-    var randomIndex = Math.floor(Math.random() * remainingImages.length);
-    
-    // 선택된 이미지 파일을 가져와 이미지 요소에 설정합니다.
-    var randomImage = remainingImages[randomIndex];
-    productImages[i].setAttribute("src", randomImage);
-    
-    // 이미 사용한 이미지를 복사본에서 제거합니다.
-    remainingImages.splice(randomIndex, 1);
-    
-    // 남은 이미지가 없을 경우, 다시 모든 이미지 파일을 복사본에 추가합니다.
-    if (remainingImages.length === 0) {
-      remainingImages = imageFiles.slice();
-      var selectedProductImage = "image/조명05.jpg";
-      var productImages = document.getElementsByClassName("productImage");
-
-      for (var i = 0; i < productImages.length; i++) {
-        var image = productImages[i].getAttribute("src");
-
-        if (image !== selectedProductImage) {
-          var randomIndex = Math.floor(Math.random() * imageFiles.length);
-          var randomImage = imageFiles[randomIndex];
-          productImages[i].setAttribute("src", randomImage);
-          imageFiles.splice(randomIndex, 1);
-        } else {
-          productImages[i].remove(); // 선택된 상품 이미지를 삭제합니다.
-        }
-      }
-    }
-  }
-}
-
-// 페이지 로드 시 이미지를 초기화합니다.
-window.onload = changeImages;
 </script>
 
- <div class="detailTab">
-  <a href="#detailGoodsInfo" class="active">DETAIL PRODUCT</a>
-  <a href="#detailReview">REVIEW BOARD</a>
-  <a href="#detailQna">Q&amp;A BOARD</a>                   
-</div>
-<div style="padding-top: 10px;">
- <c:forEach items="${DetailedProduct}" var="dto">
-  <table border="0">
-    <tr>
-      <td align="center">
-        <img src="${dto.pcontentfilename1}" style="width: 500px; height: 500px;" align="absmiddle">
-        <%-- <img src="${dto.pcontentfilename2}"> --%>
-      </td>
-    </tr>
-  </table>
-  </c:forEach>
-</div>
-
-
-
-
-
-<div id="detailGoodsInfo">상세 상품 내용</div>
-<div id="detailReview">
-		<table>
-        		<tr>
-            		<th style="background-color: lavender; color: purple;">ReviewNo.</th>
-            		<th style="background-color: lavender;color: purple;">작성자</th>
-            		<th style="background-color: lavender;color: purple;">제품</th>
-            		<th style="background-color: lavender;color: purple;">제목</th>
-            		<th style="background-color: lavender;color: purple;">작성일</th>
-        	</tr>
+<div id="detailReview" class="table-responsive">
+		 <table class="table table-striped table-sm">
+		  <thead class="thead-light">
+		    <tr>
+		      <th style="width: 100px; text-align: center">
+		       ReviewNo.
+		      </th>
+		      <th style="width: 200px; text-align: center">작성자</th>
+		      <th style="width: 200px; text-align: center">제품</th>
+		      <th style="width: 350px; text-align: center">제목</th>
+		      <th style="width: 300px; text-align: center">작성일</th>
+		    </tr>
+		    </thead>
         	<c:choose>
     <c:when test="${empty Rdto}">
         <tr>
@@ -255,13 +186,15 @@ window.onload = changeImages;
         </tr>
     </c:when>
     <c:otherwise>
+    		<c:set var="a" value="0" />
         	<c:forEach items="${Rdto}" var="dto">
+        	<c:set var="a" value="${a+1}" />
             	<tr>
-                <td><a href="ForumView?fid=${dto.fid}">${dto.fid}</a></td>
-                <td>${dto.cname}</td>
-                <td>${dto.pname}</td>
-                <td>${dto.ftitle}</td>
-                <td>${dto.finsertdate}</td>
+                <td style="text-align: center"><a href="ForumView?fid=${dto.fid}">${a}</a></td>
+                <td style="text-align: center">${dto.cname}</td>
+                <td style="text-align: center">${dto.pname}</td>
+                <td style="text-align: center">${dto.ftitle}</td>
+                <td style="text-align: center">${dto.finsertdate}</td>
             	</tr>
         	</c:forEach>
         	 </c:otherwise>
@@ -269,14 +202,19 @@ window.onload = changeImages;
 		</table>
 	</div>
 
-<div id="detailQna"><table>
-        		<tr>
-            		<th style="background-color: lavender; color: purple;">QnAno.</th>
-            		<th style="background-color: lavender;color: purple;">작성자</th>
-            		<th style="background-color: lavender;color: purple;">제품</th>
-            		<th style="background-color: lavender;color: purple;">제목</th>
-            		<th style="background-color: lavender;color: purple;">작성일</th>
-        	</tr>
+<div id="detailQna" class="table-responsive">
+			<table class="table table-striped table-sm">
+			  <thead class="thead-light">
+			    <tr>
+			      <th style="width: 100px; text-align: center">
+			       QnANo.
+			      </th>
+			      <th style="width: 200px; text-align: center">작성자</th>
+			      <th style="width: 200px; text-align: center">제품</th>
+			      <th style="width: 350px; text-align: center">제목</th>
+			      <th style="width: 300px; text-align: center">작성일</th>
+			    </tr>
+			    </thead>
         	<c:choose>
     <c:when test="${empty Qdto}">
         <tr>
@@ -284,13 +222,15 @@ window.onload = changeImages;
         </tr>
     </c:when>
     <c:otherwise>
+   			<c:set var="b" value="0" />
         	<c:forEach items="${Qdto}" var="dto">
+        	<c:set var="b" value="${b+1}" />
             	<tr>
-                <td><a href="ForumView?fid=${dto.fid}">${dto.fid}</a></td>
-                <td>${dto.cname}</td>
-                <td>${dto.pname}</td>
-                <td>${dto.ftitle}</td>
-                <td>${dto.finsertdate}</td>
+                <td style="text-align: center"><a href="ForumView?fid=${dto.fid}">${b}</a></td>
+                <td style="text-align: center">${dto.cname}</td>
+                <td style="text-align: center">${dto.pname}</td>
+                <td style="text-align: center">${dto.ftitle}</td>
+                <td style="text-align: center">${dto.finsertdate}</td>
             	</tr>
         </c:forEach>
          </c:otherwise>

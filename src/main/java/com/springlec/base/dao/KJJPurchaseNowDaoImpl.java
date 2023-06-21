@@ -8,10 +8,19 @@ public class KJJPurchaseNowDaoImpl implements KJJPurchaseNowDao {
 	SqlSession sqlSession;
 	public static String nameSpace = "com.springlec.base.dao.KJJPurchaseNowDao";
 	@Override
-	public void purchase(String cid, int pid, int oqty, int oprice, String opostnum, String oaddress1, String oaddress2,
-			String omemo, String opaytype) throws Exception {
+	public void PurchaseNowDao(String cid, int pid, int qty, int price, String postnum, String address1,
+			String address2, String memo, String payment) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.insert(nameSpace + ".purchase");
+
+		sqlSession.insert(nameSpace + ".PurchaseNowDao");
+	}
+	
+	@Override
+	public void prodcutQtyModify(int pid, int qty) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".prodcutQtyModify");
+		
+		
 	}
 	
 

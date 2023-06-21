@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/aQnA_style.css">
   <script>
@@ -87,7 +88,7 @@
         // 만약 로그인되어 있지 않으면 아래의 알림 창이 뜨도록 합니다.
         var isLoggedIn = false; // 예시로 로그인 상태를 false로 설정합니다.
 
-        if (!isLoggedIn) {
+        if(${cid == null }){
             alert("로그인 후 이용 가능합니다."); // 알림 창을 띄웁니다.
             return false; // 폼 제출을 중단합니다.
         }
@@ -163,34 +164,33 @@
 <body>
     <table>
         <tr>
-            <td style="width: 100px;"><strong>제목:</strong></td>
+            <td style="width: 100px; text-align: center"><strong>제목:</strong></td>
             <td>${forumView.ftitle}</td>
         </tr>
         <tr>
-            <td><strong>작성자:</strong></td>
-            <td>${forumView.f_cid}</td>
+            <td style="text-align: center"><strong>작성자:</strong></td>
+            <td>${forumView.cname}</td>
         </tr>
         <tr>
-            <td><strong>상품:</strong></td>
+            <td style="text-align: center"><strong>상품:</strong></td>
             <td>${forumView.pname}</td>
         </tr>
         <tr>
-            <td colspan="2"><strong>내용:</strong></td>
+            <td style="text-align: center"><strong>내용:</strong></td>
+            <td>${forumView.fcontent}</td>
         </tr>
-        <tr>
-            <td colspan="2">${forumView.fcontent}</td>
-        </tr>
+        
     </table>
     <br/>
     <h3>댓글 목록</h3>
     <table class="table table-striped table-bordered">
         <thead class="thead-light">
         <tr>
-            <th style="width: 100px;">작성자</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>댓글</th>
-            <th>삭제</th>
+            <th style="width: 100px; text-align: center">작성자</th>
+            <th style="text-align: center">작성일</th>
+            <th style="text-align: center">내용</th>
+            <th style="text-align: center">댓글</th>
+            <th style="text-align: center">삭제</th>
         </tr>
         </thead>
         <tbody id="tableBody">
@@ -201,8 +201,9 @@
 		</c:if>
             <c:forEach items="${Clist}" var="cdto" varStatus="status">
                 <tr class="data-row hidden-row" id="dataRow${status.index}">
-                    <td>${cdto.cname}</td>
-                    <td class="text-left">
+                    <td style="text-align: center">${cdto.cname}</td>
+                    <td>${cdto.finsertdate}</td>
+                    <td class="text-left" style="text-align: left">
 				    <c:choose>
 				        <c:when test="${cdto.fstep eq 0}">
 				            ${cdto.ftitle}
@@ -213,7 +214,6 @@
 				    </c:choose>
 					</td>
 
-                    <td>${cdto.finsertdate}</td>
                     <td>
                         <c:if test="${cdto.fdeletedate eq null}">
                             <form action="bigCommentWrite?page=${forumView.fid}" method="post" onsubmit="return checkLogin()">
@@ -260,15 +260,7 @@
         <ul class="pagination float--right" id="pages">
         </ul>
     </div>
-    <%-- <form action="Kms_WriteReply.jsp" method="post">
-        <input type="hidden" name="fid" value="${forumView.fid}">
-        <input type="hidden" name="fref" value="${forumView.fref}">
-        <input type="hidden" name="freforder" value="${forumView.freforder}">
-        <input type="hidden" name="fstep" value="${forumView.fstep}">
-        <input type="hidden" name="fmotherid" value="${forumView.fmotherid}">
-        <input type="hidden" name="fanswernum" value="${forumView.fanswernum}">
-        <input type="submit" value="답글 달기">
-    </form> --%>
+   
     <%@ include file="bottom.jsp" %>
 </body>
 </html>

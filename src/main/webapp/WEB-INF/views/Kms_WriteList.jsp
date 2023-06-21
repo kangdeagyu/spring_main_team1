@@ -7,6 +7,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/admin_kkg.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.rtl.css" rel="stylesheet">
+<link href="css/bootstrap.rtl.min.css" rel="stylesheet">
+
+<link href="css/bootstrap-grid.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+<link href="css/bootstrap-grid.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.rtl.css" rel="stylesheet">
+
+
+<link href="css/bootstrap-reboot.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.min.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.rtl.min.css" rel="stylesheet">
+
+<link href="css/bootstrap-utilities.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.min.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.rtl.css" rel="stylesheet">
+<link href="css/bootstrap-utilities.rtl.min.css" rel="stylesheet">
 <title>제품 리뷰 목록</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -84,62 +105,49 @@
         });
     </script>
 <style>
-    body {
-        background-color: white;
-        padding: 20px;
-    }
-
-    h1 {
-        color: indigo;
-        margin-bottom: 30px;
+	a.no-underline {
+	    text-decoration: none;
+	  }
+    table {
+        border-collapse: collapse;
+        width: 100%;
     }
 
     th {
-        background-color: indigo;
-        color: white;
-        padding: 10px;
         text-align: center;
+        padding: 10px;
+    }
+
+    th:first-child {
+        text-align: left;
+        width: 50%;
     }
 
     td {
-        padding: 10px;
         text-align: center;
+        padding: 10px;
     }
 
-    a {
-        color: indigo;
-        text-decoration: none;
+    td:first-child {
+        text-align: left;
     }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: #f8f8ff; /* 연보라색과 어울리는 밝은 연보라색 */
-    }
-
-    .table-striped tbody tr:hover {
-        background-color: #f1f1f1; /* 연보라색과 어울리는 더 밝은 연보라색 */
-    }
+	.subscript {
+    	vertical-align: super;
+    	font-size: smaller;
+	}
+  .center-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 
 </head>
 <body>
-	<c:if test="${ftype eq 1}">
-        <h1>리뷰 게시판</h1>
-    </c:if>
 
-    <c:if test="${ftype eq 2}">
+  
         <h1>QnA 게시판</h1>
-    </c:if>
 
-    <%-- <c:if test="${ftype eq 1}">
-        <form action="Kms_WriteForum.jsp">
-            <input type="submit" value="리뷰쓰기">
-        </form>
-    </c:if>
-    <c:if test="${ftype eq 2}">
-        <form action="Kms_WriteForum.jsp">
-            <input type="submit" value="QnA쓰기">
-        </form>
-    </c:if> --%>
 
     <div style="text-align: right;">
         <form action="forumSearch" method="post">
@@ -148,41 +156,43 @@
             <input type="submit" value="검색">
         </form>
     </div>
-
-    <table class="table table-striped table-bordered">
-        <thead class="thead-light">
-            <tr>
-                <th style="width: 100px; background-color: lavender; color: purple;">
-                    <c:if test="${ftype eq 1}">Review No.</c:if>
-                    <c:if test="${ftype eq 2}">QnA No.</c:if>
-                </th>
-                <th style="width: 200px;background-color: lavender;color: purple;">작성자</th>
-                <th style="width: 200px;background-color: lavender;color: purple;">제품</th>
-                <th style="background-color: lavender;color: purple;">제목</th>
-                <th style="width: 300px; background-color: lavender;color: purple;">작성일</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-        	<c:forEach items="${noticelist}" var="noticedto" varStatus="status">
-        	<tr>
-        			<td>${noticedto.nid}</td>       
-                    <td>관리자</td>     
-                    <td>공지사항</td>     
-                    <td><a href="noticeView?nid=${noticedto.nid}">${noticedto.ntitle}</a></td>     
-                    <td>${noticedto.ninsertdate}</td>
-        	</tr>
-        	</c:forEach>
-            <c:forEach items="${RList}" var="dto" varStatus="status">
-            <tr class="data-row hidden-row" id="dataRow${status.index}">
-                <td>${dto.fid}</td>
-                <td>${dto.cname}</td>
-                <td>${dto.pname}</td>
-                <td><a href="ForumView?fid=${dto.fid}">${dto.ftitle}</a></td>
-                <td>${dto.finsertdate}</td>
-            	</tr>
-        </c:forEach>
-        </tbody>
-    </table>
+	<div class="table-responsive">
+    <table class="table table-striped table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th style="width: 100px; text-align: center">
+        No.
+      </th>
+      <th style="width: 200px; text-align: center">작성자</th>
+      <th style="width: 200px; text-align: center">제품</th>
+      <th style="width: 350px; text-align: center">제목</th>
+      <th style="width: 300px; text-align: center">작성일</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <c:forEach items="${noticelist}" var="noticedto" varStatus="status">
+      <tr>
+        <td style="text-align: center">${noticedto.nid}</td>
+        <td style="text-align: center">관리자</td>
+        <td style="text-align: center">공지사항</td>
+        <td style="text-align: center"><a href="noticeView?nid=${noticedto.nid}" style="color: black;">${noticedto.ntitle}</a></td>
+        <td style="text-align: center">${noticedto.ninsertdate}</td>
+      </tr>
+    </c:forEach>
+    <c:set var="a" value="0" />
+    <c:forEach items="${RList}" var="dto" varStatus="status">
+    <c:set var="a" value="${a+1}" />
+      <tr class="data-row hidden-row" id="dataRow${status.index}">
+        <td style="text-align: center">${a}</td>
+        <td style="text-align: center">${dto.cname}</td>
+        <td style="text-align: center">${dto.pname}</td>
+        <td style="text-align: center"><a href="ForumView?fid=${dto.fid}" class="no-underline" style="color: black;">${dto.ftitle}</a></td>
+        <td style="text-align: center">${dto.finsertdate}</td>
+      </tr>
+    </c:forEach>
+  </tbody>
+</table>
+</div>
 
   <div class="pagination-wrapper clearfix">
         <ul class="pagination float--right" id="pages">

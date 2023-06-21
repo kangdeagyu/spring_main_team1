@@ -57,7 +57,7 @@
 
    <div class="col-md-6">
    <!-- ****************** 액션 바꿔주기 ***************** -->
-    <form action="purchase" name="orderForm" id="orderForm" method="post" onsubmit="return check()">
+    <form action="purchaseNow" name="orderForm" id="orderForm" method="post" onsubmit="return check()">
       <h3>주문자 정보</h3>
       <c:forEach items="${userlist}" var="dto">
         <c:set var="name" value="${dto.cname }"></c:set>
@@ -93,7 +93,7 @@
       <c:forEach items="${orderList}" var="dto" varStatus="status">	
         <input type="hidden" name="pid" value="${dto.pid }">
        <input type="hidden" name="qty" value="${qty }">
-        <input type="hidden" name="price" value="${pprice }"> 
+        <input type="hidden" name="price" value="${dto.pprice }"> 
         <c:set var="subtotal" value="${dto.pprice * qty}"></c:set>
         <c:set var="totalprice" value="${totalprice + subtotal}"></c:set>
       </c:forEach>
@@ -116,9 +116,7 @@
       <input type="radio" name="payment" value="카카오페이" > 카카오페이 
       <input type="radio" name="payment" value="삼성페이" > 삼성페이 
       <br/><br/>
-      <form action="KOderCompleted" method="post">
       <input type="submit" class="form-control" value="구매하기">
-      </form>
     </form>
   </div>
   </div>
