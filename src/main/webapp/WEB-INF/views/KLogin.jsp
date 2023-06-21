@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <style>
@@ -132,6 +133,79 @@ function kakaoLogin() {
 }
 
 </script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ 
+ 
+<script type="text/javascript">
+	//페이지가 로드될 때 호출되며, 저장된 쿠키가 있는 경우 해당 쿠키 값을 가져와 입력란에 표시하고 체크박스를 선택  
+     $(function() {
+           fnInit();   
+     });
+     
+     function frm_check(){
+         saveid();
+     }
+ 
+    function fnInit(){
+        var cookieid = getCookie("saveid");
+        console.log(cookieid);
+        if(cookieid !=""){
+            $("input:checkbox[id='saveId']").prop("checked", true);
+            $('#floatingInput').val(cookieid);
+        }
+        
+    }    
+ 	//setCookie(name, value, expiredays) 함수: 쿠키를 설정하는 함수입니다. 쿠키의 이름, 값을, 그리고 만료일을 매개변수로 받습니다. document.cookie를 사용하여 쿠키를 설정하고, 만료일을 설정합니다.
+    function setCookie(name, value, expiredays) {
+        var todayDate = new Date();
+        todayDate.setTime(todayDate.getTime() + 0);
+        if(todayDate > expiredays){
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiredays + ";";
+        }else if(todayDate < expiredays){
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        }
+        
+        
+        console.log(document.cookie);
+    }
+ 	//getCookie(Name) 함수: 주어진 이름에 해당하는 쿠키 값을 검색하는 함수입니다. document.cookie를 사용하여 쿠키 값을 가져옵니다.
+    function getCookie(Name) {
+        var search = Name + "=";
+        console.log("search : " + search);
+        
+        if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면 
+            offset = document.cookie.indexOf(search);
+            console.log("offset : " + offset);
+            if (offset != -1) { // 쿠키가 존재하면 
+                offset += search.length;
+                // set index of beginning of value
+                end = document.cookie.indexOf(";", offset);
+                console.log("end : " + end);
+                // 쿠키 값의 마지막 위치 인덱스 번호 설정 
+                if (end == -1)
+                    end = document.cookie.length;
+                console.log("end위치  : " + end);
+                
+                return unescape(document.cookie.substring(offset, end));
+            }
+        }
+        return "";
+    }
+ 	//saveid() 함수: 입력란의 값을 저장하고 체크박스 상태에 따라 쿠키의 만료일을 설정합니다. 체크박스가 선택된 경우 입력값을 쿠키에 저장하고, 선택되지 않은 경우 쿠키를 삭제합니다.
+    function saveid() {
+        var expdate = new Date();
+        if ($("#saveId").is(":checked")){
+            expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30);
+            setCookie("saveid", $("#floatingInput").val(), expdate);
+            }else{
+            expdate.setTime(expdate.getTime() - 1000 * 3600 * 24 * 30);
+            setCookie("saveid", $("#floatingInput").val(), expdate);
+             
+        }
+    }
+ 
+</script>
 
 
 <div class="container">
@@ -143,7 +217,7 @@ function kakaoLogin() {
 		<hr/>
 		</div>
 	<div id="app">	
-	  <form id="login-form" @submit.prevent="login" method="post">
+	  <form id="login-form" @submit.prevent="login" method="post" onsubmit="return frm_check();">
 	    <h6 class="h6 mb-3 fw-normal">*가입하신 이메일 주소로 로그인 해주세요</h6>
 	
 	    <div class="form-floating">
@@ -158,6 +232,10 @@ function kakaoLogin() {
 	
 	    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
 	  </form>
+	  <div class="logSave">
+   		 <input type="checkbox" class="save_id" name="checkId" id="saveId">
+    	<label for="saveId">remember me</label>
+</div>
 </div>
 <hr/>
 	<div class="d-flex justify-content-between">

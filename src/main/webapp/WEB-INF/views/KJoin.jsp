@@ -10,8 +10,9 @@
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 <link href="css/KJoin.css" rel="stylesheet">
+
+
 
 </head>
 <body>
@@ -43,7 +44,7 @@
 				</c:if>
 				<div id="verificationDiv" style="display: none;">
  					<input type="text" class="form-control" name="verificationCodeCk" id="verificationCodeCk" placeholder="인증번호">
- 					<input type="button" value="인증번호확인" name="codeCheck" onclick="checkVerification()">
+ 					<input type="button" value="인증번호확인" name="codeCheck" onclick="checkVerification()">&nbsp;&nbsp;&nbsp;&nbsp;<label id="timer"></label>
 
 				</div>
 				<label>비밀번호</label>
@@ -231,6 +232,7 @@
 		    if (xhr.readyState === XMLHttpRequest.DONE) {
 		      if (xhr.status === 200) {
 		        alert("인증번호가 발송 되었습니다.");
+		        timerNow()
 		      } else {
 		        alert("이메일 인증 오류");
 		        form.cid.select();
@@ -244,7 +246,7 @@
 		    + "&sendCode=" + verificationCode;
 		  
 		  xhr.send(params);
-		
+		  
 	}
 	
 
@@ -447,7 +449,30 @@ function submitForm() {
 
 </script>
 
+<!-- 시간 -->
+    <script>
+        function timerNow() {
+            var countDownDate = new Date().getTime() + (3 * 60 * 1000); // 현재 시간에서 3분 뒤의 시간을 계산합니다.
 
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // 3분 타이머를 화면에 표시합니다.
+                document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("timer").innerHTML = "";
+                    alert("인증번호 인증 시간이 만료되었습니다.\n 다시 중복체크를 해주세요")
+                    document.getElementById("verificationDiv").style.display = "none";
+                }
+            }, 1000); // 1초마다 타이머를 업데이트합니다.
+        };
+    </script>
 
 
 
