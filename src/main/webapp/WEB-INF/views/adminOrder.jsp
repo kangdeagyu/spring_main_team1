@@ -238,7 +238,19 @@
 
 
 						<div class="btn-toolbar mb-2 mb-md-0">
-							<div class="btn-group me-2"></div>
+							<div class="btn-group me-2">
+							
+								<form name="export" action="saveOrderList" >
+								
+								  <input type="hidden" name="customerId" value="${customerId}"> 
+								  <input type="hidden" name="startDate" value="${startDate}">
+								  <input type="hidden" name="endDate" value="${endDate}">
+								  <input type="submit" class="btn btn-sm btn-outline-secondary" value="Export">
+								
+	
+								</form>
+							
+							</div>
 
 							<form id="myForm" action="Ordermanage.do" method="post">
 								  <input type="hidden" name="customerId" value="${customerId}"> 
@@ -281,10 +293,11 @@
 							</thead>
 							<tbody id="tableBody">
 
-
+								<c:set var="a" value="0" />
 								<c:forEach items="${orderList}" var="order" varStatus="status">
+								<c:set var="a" value="${a+1}" />
 									<tr class="data-row hidden-row" id="dataRow${status.index}">
-										<td style="text-align: center">${order.seq}</td>
+										<td style="text-align: center">${a}</td>
 										<td style="text-align: center">${order.oid}</td>
 										<td style="text-align: center">${order.pname}</td>
 										<td style="text-align: center">${order.oqty}</td>

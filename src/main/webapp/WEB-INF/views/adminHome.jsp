@@ -160,7 +160,7 @@
 							
 							</div>
 
- 							<div>
+ <%-- 							<div>
 								<p>받아온 data 검증하기 위한 파트</p>
 								<p>
 									출력될 날짜 :${requestScope.dailyDate} <input type="hidden"
@@ -191,7 +191,7 @@
 									월별 매출 :${requestScope.monthlySale} <input type="hidden"
 										id="MonthlySale" value="${requestScope.monthlySale}">
 								</p>
-							</div> 
+							</div> --%> 
 
 
 				</main>

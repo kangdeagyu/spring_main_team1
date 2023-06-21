@@ -298,12 +298,64 @@ public class KKG_controller {
 			
 		}
 		
+			
+		
 
 	
 		return "adminOrder";
 	}
 	
+	@RequestMapping("saveOrderList")
+	public String saveOrderList(HttpServletRequest request, Model model) throws Exception{
+		
+		String cid ;
+		Timestamp startday = null;
+		Timestamp endday=null;
+
+		
+		//최초 오픈할때 날짜 데이터 없을테니 그땐 전체 날짜를 지정해준다.
+		if (request.getParameter("startDate") == null ) {
+			List<Timestamp> initTS = exService.wholeTimeStamp();  					// 최근 2주일 날짜를 뽑기위한 14일전 날짜와 오늘 날짜로 이루어진 리스트
+			startday = initTS.get(0);
+			endday = initTS.get(1);
+			
+		}else {
+			startday = exService.getTimestampFromParameterDate(request.getParameter("startDate"));
+			endday = exService.getTimestampFromParameterDate(request.getParameter("endDate"));
+		}
+		
+		// 최초 오픈할때는 (cid 가 없을 때는) default 값 지정.
+		if(request.getParameter("customerId")==null||request.getParameter("customerId").equals("1")) {		
+			cid= "1" ;
+			List<AdminExtra_Dto_kkg> dtos = orderSerivce.getOrderlist_Default(cid, startday, endday);
+			int ListSize = dtos.size();
+			
+			model.addAttribute("orderList", dtos);
+			model.addAttribute("ListSize", ListSize);
+			model.addAttribute("customerId", cid);
+			model.addAttribute("startDate", startday);
+			model.addAttribute("endDate", endday);
+			
+			
+			
+		}else {
+			cid = request.getParameter("customerId");
+			List<AdminExtra_Dto_kkg> dtos = orderSerivce.getOrderlist_Hope(cid, startday, endday);
+			int ListSize = dtos.size();
+			
+			model.addAttribute("orderList", dtos);
+			model.addAttribute("ListSize", ListSize);
+			model.addAttribute("customerId", cid);
+			model.addAttribute("startDate", startday);
+			model.addAttribute("endDate", endday);
+			System.out.println("입력된 값들 : " + cid +" : "+ dtos);
+			
+		}
+		
+
 	
+		return "saveOrderList";
+	}
 	
 
 }

@@ -11,9 +11,10 @@
 <meta charset="UTF-8">
 <title>매출 관리</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+ -->
 <!-- 프로젝트내 js 파일  -->
 <script src="js/admin_kkg_salemanage.js" type="text/javascript"></script>
 <script src="js/admin_kkg_share.js" type="text/javascript"></script>
@@ -127,7 +128,12 @@
 
 
 						<div class="btn-toolbar mb-2 mb-md-0">
-							<div class="btn-group me-2"></div>
+							<div class="btn-group me-2">
+							
+
+							
+							
+							</div>
 							<form id="myForm" action="Salemanage.do" method="post">
 								
 								  <input type="hidden" name="startDate" id="startdayInput">
@@ -271,7 +277,7 @@
 
 					<hr>
 
-					<div>
+	<%-- 				<div>
 
 						<p>데이터 확인 하는 파트</p>
 						<p>시작 날 :${dateList[0]}</p>
@@ -313,7 +319,7 @@
 						<hr>
 
 					</div> 
-
+ --%>
 
 
 				</main>

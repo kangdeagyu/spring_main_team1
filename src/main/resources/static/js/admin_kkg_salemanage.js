@@ -165,6 +165,13 @@ function PieChart(Title, context, xlabel, ydatas_01) {
     tooltips: {
       enabled: false
     },
+
+  };
+
+  var myChart = new Chart(context, {
+    type: 'pie',
+    data: data,
+    options: options,
     plugins: {
       datalabels: {
         formatter: function(value, ctx) {
@@ -182,12 +189,6 @@ function PieChart(Title, context, xlabel, ydatas_01) {
         }
       }
     }
-  };
-
-  var myChart = new Chart(context, {
-    type: 'pie',
-    data: data,
-    options: options
   });
 
   return myChart;
