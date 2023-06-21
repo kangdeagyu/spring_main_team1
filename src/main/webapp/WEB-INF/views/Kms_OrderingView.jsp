@@ -69,24 +69,24 @@
 <main>
     <table border="1">
         <tr>
-            <td>주문 번호 :</td><td>${param.oid }</td>
+            <td style="text-align: center">주문 번호 :</td><td style="text-align: center">${param.oid }</td>
         </tr>
         <tr>
-            <td>주문날짜 :</td><td>${param.odate }</td>
+            <td style="text-align: center">주문날짜 :</td><td>${param.odate }</td>
         </tr>
         <tr>
-            <td>상품 :</td><td>${param.pname }</td>
+            <td style="text-align: center">상품 :</td><td>${param.pname }</td>
         </tr>
         <tr>
-            <td>수량 :</td><td>${param.oqty }</td>
+            <td style="text-align: center">수량 :</td><td>${param.oqty }</td>
         </tr>
         <tr>
-		    <td>금액 :</td>
+		    <td style="text-align: center">금액 :</td>
 		    <td><fmt:formatNumber value="${param.oprice}" pattern="#,##0원" /></td>
 		</tr>
 
         <tr>
-            <td>배송상태 :</td><td><c:choose>
+            <td style="text-align: center">배송상태 :</td><td><c:choose>
           			<c:when test="${param.odelivery == 0}">배송 전</c:when>
           			<c:when test="${param.odelivery == 1}">배송 중</c:when>
 		          	<c:when test="${param.odelivery == 2}">배송 완료</c:when>
@@ -95,19 +95,19 @@
 		        </c:choose></td>
         </tr>
         <tr>
-            <td>우편 번호 :</td><td>${param.opostnum }</td>
+            <td style="text-align: center">우편 번호 :</td><td>${param.opostnum }</td>
         </tr>
         <tr>
-            <td>상세주소 :</td><td>${param.oaddress1 }<br/>${param.oaddress2 }</td>
+            <td style="text-align: center">상세주소 :</td><td>${param.oaddress1 }<br/>${param.oaddress2 }</td>
         </tr>
         <tr>
-            <td>요청사항 :</td><td>${param.omemo }</td>
+            <td style="text-align: center">요청사항 :</td><td>${param.omemo }</td>
         </tr>
         <tr>
-            <td>결제방법 :</td><td>${param.opaytype }</td>
+            <td style="text-align: center">결제방법 :</td><td>${param.opaytype }</td>
         </tr>
         <tr>
-            <td>주문자 :</td><td>${param.cname }</td>
+            <td style="text-align: center">주문자 :</td><td>${param.cname }</td>
         </tr>
 		
 		<c:set var="listSize" value="${fn:length(list)}" />
