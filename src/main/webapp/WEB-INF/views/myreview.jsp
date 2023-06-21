@@ -10,7 +10,38 @@
 
 </head>
 <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    th {
+        text-align: center;
+        padding: 5px;
+    }
+
+    th:first-child {
+        text-align: left;
+        width: 50%;
+    }
+
+    td {
+        text-align: center;
+        padding: 5px;
+    }
+
+    td:first-child {
+        text-align: left;
+    }
+	.subscript {
+    	vertical-align: super;
+    	font-size: smaller;
+	}
+  .center-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 <body>
     <h1>나의 리뷰</h1>
