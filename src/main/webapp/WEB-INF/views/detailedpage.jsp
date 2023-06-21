@@ -298,7 +298,7 @@ window.onload = changeImages;
 
 
 </table></div>
-<form action="QnAWrite" method="get">
+<form action="QnAWrite" method="get" onsubmit="return userCheck()">
 <input type="submit" value="질문작성하기">
 <input type="hidden" name="cid" value="${cid }">
 <input type="hidden" name="pid" value="${param.pid}">

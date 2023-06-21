@@ -81,6 +81,20 @@
             GetTarget(1); // 초기 페이지를 1로 설정
         });
     </script>
+    <script>
+    function checkLogin() {
+        // 여기에 로그인 상태를 확인하는 로직을 구현합니다.
+        // 만약 로그인되어 있지 않으면 아래의 알림 창이 뜨도록 합니다.
+        var isLoggedIn = false; // 예시로 로그인 상태를 false로 설정합니다.
+
+        if (!isLoggedIn) {
+            alert("로그인 후 이용 가능합니다."); // 알림 창을 띄웁니다.
+            return false; // 폼 제출을 중단합니다.
+        }
+
+        return true; // 폼 제출을 진행합니다.
+    }
+</script>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
     table {
@@ -202,7 +216,7 @@
                     <td>${cdto.finsertdate}</td>
                     <td>
                         <c:if test="${cdto.fdeletedate eq null}">
-                            <form action="bigCommentWrite?page=${forumView.fid}">
+                            <form action="bigCommentWrite?page=${forumView.fid}" method="post" onsubmit="return checkLogin()">
                                 <input type="text" name="ftitle" placeholder="댓글을 입력하세요.">
                                 <input type="hidden" name="page" value="${forumView.fid}">
                                 <input type="hidden" name="f_cid" value="${cid}">
@@ -234,14 +248,14 @@
     </table>
 	<br/><br/>
     <div class="center-align">
-    <form action="commentAction" method="post">
-        <input type="hidden" name="f_cid" value="${cid}">
-        <input type="hidden" name="f_pid" value="${forumView.f_pid}">
-        <input type="text" name="ftitle" style="width: 300px;" placeholder="댓글을 입력하세요.">
-        <input type="hidden" name="fid" value="${forumView.fid}">
-        <input type="submit" value="입력">
-    </form>
-</div>
+    <form action="commentAction" method="post" onsubmit="return checkLogin()">
+	    <input type="hidden" name="f_cid" value="${cid}">
+	    <input type="hidden" name="f_pid" value="${forumView.f_pid}">
+	    <input type="text" name="ftitle" style="width: 300px;" placeholder="댓글을 입력하세요.">
+	    <input type="hidden" name="fid" value="${forumView.fid}">
+	    <input type="submit" value="입력">
+	</form>
+	</div>
 <div class="pagination-wrapper clearfix" style="text-align: center;">
         <ul class="pagination float--right" id="pages">
         </ul>
