@@ -30,6 +30,7 @@
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* 부모 요소를 relative로 설정 */
   }
   
   .notice-info span {
@@ -37,8 +38,17 @@
   }
   
   .btn-group {
-    margin-top: 20px;
-    text-align: right;
+   position: absolute; /* 절대 위치로 설정 */
+    bottom: -30px; /* 원하는 위치로 조정 */
+    right: -800px; /* 오른쪽 끝에 정렬 */
+  }
+  
+  .btn-group form {
+    margin-left: 10px;
+  }
+  
+   .btn-group form:first-child {
+    margin-left: auto;
   }
   
   .btn-group input[type="submit"] {

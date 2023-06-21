@@ -171,6 +171,39 @@ public class PJH_ProductDao_Service_Impl implements PJH_ProductDao_Service {
 	}
 
 
+	@Override
+	public List<PJH_ProductDto> search2(String query) throws Exception {
+		// TODO Auto-generated method stub
+		List<PJH_ProductDto> dtos= dao.search2(query);
+		System.out.println(dtos);
+		String uploadPath = "image/";
+		for (PJH_ProductDto dto : dtos) {
+	        int category = dto.getC_num();
+	        String c_name;
+	        switch (category) {
+	            case 0:
+	                c_name = "조명";
+	                break;
+	            case 1:
+	                c_name = "미니어쳐";
+	                break;
+	            case 2:
+	                c_name = "의자";
+	                break;
+	            default:
+	                c_name = "";
+	                break;
+	        }
+	        dto.setC_name(c_name);
+		String fileName = dto.getPfilename();
+	        String imagePath = uploadPath + fileName;
+	        dto.setPfilename(imagePath);
+	        int price = dto.getPprice();
+	    }
+		return dtos;
+	}
+
+
 
 
 

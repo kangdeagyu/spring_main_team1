@@ -127,6 +127,47 @@
     .table-striped tbody tr:hover {
         background-color: #f1f1f1; /* 연보라색과 어울리는 더 밝은 연보라색 */
     }
+    
+    
+   .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination {
+      display: inline-block;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pagination-item {
+      display: inline;
+      margin-right: 5px;
+    }
+
+    .pagination-item a {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #f1f1f1;
+      color: #333;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .pagination-item a.active {
+      background-color: indigo;
+      color: white;
+    }
+
+    .pagination-item a:hover:not(.active) {
+      background-color: #ddd;
+    }
+    
+    
+    
+    
 </style>
 
 <!-- 여기서부터 복사하시면 됩니다~~~~~~~~~!!!! -->
@@ -222,7 +263,7 @@
         </tbody>
     </table>
 	<div class="pagination-wrapper clearfix">
-        <ul class="pagination float--right" id="pages">
+        <ul class="pagination" id="pages">
         </ul>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

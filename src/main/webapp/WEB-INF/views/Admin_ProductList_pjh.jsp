@@ -12,7 +12,116 @@
     <link href="css/modifymodal.css" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
     <title>상품 리스트</title>
-    
+      <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container-fluid {
+            margin-top: 20px;
+        }
+        
+        h3 {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+        
+        .form-select {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        
+        input[type="text"], input[type="file"], textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        
+        .btn {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-content {
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #888;
+            width: 50%;
+            max-width: 800px;
+        }
+        
+        .close {
+            color: #888;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover, .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        #editImageContainer {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        #editImageContainer img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
     <script>
         function selectAll() {
             var checkboxes = document.getElementsByName('selectedItems');
@@ -89,11 +198,12 @@
             imageContainer.innerHTML = ""; // 이미지 컨테이너 초기화
 
             if (product.pfilename) {
-                var image = document.createElement('img');
-                image.src = product.pfilename;
-                image.alt = "Product Image";
-                image.width = 100;
-                imageContainer.appendChild(image);
+            	  var image = document.createElement('img');
+                  image.src = product.pfilename;
+                  image.alt = "Product Image";
+                  image.style.maxWidth = "0%"; // 이미지의 최대 너비를 100%로 설정하여 축소
+                  image.style.maxHeight = "0px"; // 이미지의 최대 높이를 200px로 설정하여 조정
+                  imageContainer.appendChild(image);
             }
         }
 
@@ -146,6 +256,32 @@
             var modal = document.getElementById('myModal');
             modal.style.display = 'none';
         }
+        
+        function validateForm() {
+            var priceInput = document.getElementById('editPprice');
+            var stockInput = document.getElementById('editPstock');
+            var price = priceInput.value.trim();
+            var stock = stockInput.value.trim();
+            var numericRegex = /^[0-9]+$/;
+
+            if (!numericRegex.test(price)) {
+                alert('숫자를 입력해주세요.');
+                priceInput.focus();
+                return false; // Prevent form submission
+            }
+
+            if (!numericRegex.test(stock)) {
+                alert('숫자를 입력해주세요.');
+                stockInput.focus();
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
+        }
+        
+        
+        
+        
     </script>
 <!-- 여기서부터 복사하시면 됩니다~~~~~~~~~!!!! -->
 
@@ -155,99 +291,101 @@
 </head>
 
 <body>
-
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2">
-				<jsp:include page="admin_01_sidebar.jsp" />
-			</div>
-
-			<div class="col-md-10" style="margin-left: 15%;">
-				<main class="ms-sm-auto px-md-4">
-
-					<!-- 요기서부터 본문 내용 입력하면 됩니다아~~!!!!!  하단에  </div> 및 </main> 자리 맞춰서 넣는거만 기억하면 됩니다.-->
-
-        <h3>상품 리스트</h3>
-        <form action="productQuery.do" method="post">
-            <select name="list" class="form-select">
-                <option value="pname" selected="selected">상품명</option>
-                <option value="pcategory">카테고리</option>
-            </select>
-            <input type="text" name="query">
-            <input type="submit" name="action" value="검색">
-        </form>
-        <form action="APinsert.do" method="post" enctype="multipart/form-data">
-            <input type="submit" name="action" value="상품 추가하기">
-        </form>
-        <form>
-		    <input type="checkbox" id="selectAllCheckbox" onchange="selectAll()"> 전체 선택
-		    <input type="button" value="삭제" onclick="deleteSelectedItems()">
-		</form>
-            <table border=1>
-                <tr>
-                    <th>상품선택</th>
-                    <th>사진</th>
-                    <th>카테고리</th>
-                    <th>제품명</th>
-                    <th>가격</th>
-                </tr>
-                <c:forEach items="${list}" var="dto">
-                    <tr>
-                        <td><input type="checkbox" name="selectedItems" value="${dto.pid}"></td>
-                        <td><img src="${dto.pfilename}" alt="Product Image" width="100" /></td>
-                        <td>${dto.c_name }</td>
-                        <td>${dto.pname }</td>
-                        <td>${dto.pprice }</td>
-                        <td>
-                            <button onclick="openEditModal('${dto.pid}', '${dto.pprice}', '${dto.pstock}','${dto.c_name}', '${dto.pname}', '${dto.pcontent}')">편집하기</button>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
-        <br />
-        <hr>
-        <br />
-    </div>
-    <div id="myModal" class="modal">
-    <div id="editImageContainer"></div>
-        <div class="modal-content">
-            <form id="editForm" enctype="multipart/form-data"	>
-                <table border="1">
-                    <tr>
-                        <td>상품번호</td>
-                        <td>
-                            <input type="hidden" id="editPid" name="pid">
-                            <span id="editPidDisplay"></span>
-                        </td>
-                        <td>상품가격</td>
-                        <td><input type="text" id="editPprice" name="pprice"></td>
-                    </tr>
-                    <tr>
-                        <td>종류</td>
-                        <td>
-                            <span id="editCname"></span>
-                        </td>
-                        <td>모델명</td>
-                        <td><input type="text" id="editPname" name="pname"></td>
-                    </tr>
-                    <tr>
-                        <td>재고</td>
-                        <td><input type="text" id="editPstock" name="pstock"></td>
-                        <td>이미지 변경</td>
-                        <td><input type="file" id="pfilename" name="pfilename"></td>
-                    </tr>
-                </table>
-                <p>상세 설명</p>
-                <p><textarea id="editPcontent" id="editPcontent" name="pcontent"></textarea></p>
-                <p><input type="file" id="pcontentfilename1" name="pcontentfilename1"></p>
-                <p><input type="file" id="pcontentfilename2" name="pcontentfilename2"></p>
-                <input type="button" name="action" value="저장" onclick="saveChanges()">
-            </form>
-            <span class="close" onclick="closeModal()">&times;</span>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <%@include file="admin_01_sidebar.jsp" %>
+            </div>
+            <div class="col-md-10" style="margin-left: 15%;">
+                <main class="ms-sm-auto px-md-4">
+                    <h3>상품 리스트</h3>
+                    <form action="productQuery.do" method="post">
+                        <select name="list" class="form-select">
+                            <option value="pname" selected="selected">상품명</option>
+                            <option value="pcategory">카테고리</option>
+                        </select>
+                        <input type="text" name="query">
+                        <input type="submit" name="action" value="검색">
+                    </form>
+                    <form action="APinsert.do" method="post" enctype="multipart/form-data">
+                        <input type="submit" name="action" value="상품 추가하기">
+                    </form>
+                    <form>
+                        <input type="checkbox" id="selectAllCheckbox" onchange="selectAll()"> 전체 선택
+                        <input type="button" value="삭제" onclick="deleteSelectedItems()">
+                    </form>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>상품선택</th>
+                                <th>사진</th>
+                                <th>카테고리</th>
+                                <th>제품명</th>
+                                <th>가격</th>
+                                <th>편집</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${list}" var="dto">
+                                <tr>
+                                    <td><input type="checkbox" name="selectedItems" value="${dto.pid}"></td>
+                                    <td><img src="${dto.pfilename}" alt="Product Image" width="100" /></td>
+                                    <td>${dto.c_name }</td>
+                                    <td>${dto.pname }</td>
+                                    <td>${dto.pprice }</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="openEditModal('${dto.pid}', '${dto.pprice}', '${dto.pstock}','${dto.cname}', '${dto.pname}', '${dto.pcontent}', '${dto.pfilename}')">수정</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </main>
+            </div>
         </div>
     </div>
-    </main>
-    </div>
+
+    <!-- Edit Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>상품 수정</h3>
+            <form id="editForm" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="editPid" name="pid" value="">
+                <p>상품번호: <span id="editPidDisplay"></span></p>
+                <p>
+                    가격:
+                    <input type="text" id="editPprice" name="pprice" value="">
+                </p>
+                <p>
+                    재고:
+                    <input type="text" id="editPstock" name="pstock" value="">
+                </p>
+                <p>카테고리: <span id="editCname"></span></p>
+                <p>
+                    제품명:
+                    <input type="text" id="editPname" name="pname" value="">
+                </p>
+                <p>
+                    제품설명:
+                    <textarea id="editPcontent" name="pcontent"></textarea>
+                </p>
+                <p>
+                    사진:
+                    <input type="file" id="pfilename" name="pfilename">
+                </p>
+                <div id="editImageContainer"></div>
+                <p>
+                    제품설명 사진 1:
+                    <input type="file" id="pcontentfilename1" name="pcontentfilename1">
+                </p>
+                <p>
+                    제품설명 사진 2:
+                    <input type="file" id="pcontentfilename2" name="pcontentfilename2">
+                </p>
+                <input type="button" value="저장" onclick="saveChanges()">
+            </form>
+        </div>
     </div>
 </body>
 </html>

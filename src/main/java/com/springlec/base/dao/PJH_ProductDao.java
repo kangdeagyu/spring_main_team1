@@ -17,4 +17,5 @@ public interface PJH_ProductDao {
 	public void modify1(int pid, int modifiedQty) throws Exception;
 	public int modify2(int pid) throws Exception;
 	public void delete(int pid) throws Exception;
+	public List<PJH_ProductDto> search2(String query) throws Exception;
 }

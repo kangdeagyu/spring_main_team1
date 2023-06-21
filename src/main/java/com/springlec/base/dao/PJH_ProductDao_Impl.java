@@ -52,5 +52,10 @@ public class PJH_ProductDao_Impl implements PJH_ProductDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(nameSpace+".delete");
 	}
+	@Override
+	public List<PJH_ProductDto> search2(String query) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace+".search2");
+	}
 
 }

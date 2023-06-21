@@ -76,17 +76,26 @@ public class PJH_Controller {
 	    }
 		return "redirect:APlist.do";
 	}
+	//상품 삭제
 	@RequestMapping("/deleteProduct.do")
 	public String delete(@RequestParam("pid") int[] pidArray,Model model) throws Exception{
 		service.delete(pidArray);
 		return "redirect:APlist.do";
 	}
 	
+	//리뷰 목록에서 상품 이미지 누르고 상품사진을 눌렀을 때 해당 상품 검색창으로 이동
+	@RequestMapping("/productInformation.do")
+	public String poductinformation(@RequestParam("query") String query, Model model) throws Exception{
+		List<PJH_ProductDto> list = service.search2(query);
+		model.addAttribute("list", list);
+		return "Admin_ProductList_pjh";
+	}
 
 
-
-
-
+	@RequestMapping("/test")
+	public String test(Model model) throws Exception{
+		return "test";
+	}
 
 
 

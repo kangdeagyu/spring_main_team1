@@ -17,7 +17,7 @@ WHERE ${list} LIKE #{query} AND pdeletedate IS NULL
 
 <select id="search2">
 SELECT pfilename, pid, pprice, pname,pstock, pcategory, pcontent, pcontentfilename1, pcontentfilename2 FROM product
-WHERE pname LIKE #{pname} AND pdeletedate IS NULL";
+WHERE pname LIKE #{query} AND pdeletedate IS NULL
 </select>
 
 
