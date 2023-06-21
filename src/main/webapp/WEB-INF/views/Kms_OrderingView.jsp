@@ -113,6 +113,7 @@
 		<c:set var="listSize" value="${fn:length(list)}" />
 </table>
 				<c:choose>
+          			<c:when test="${param.odelivery == 1}">환불 불가</c:when>
           			<c:when test="${param.odelivery == 2}">환불 불가</c:when>
 		          	<c:when test="${param.odelivery == 3}">환불 불가</c:when>
 		          	<c:when test="${param.odelivery == 4}">환불 완료</c:when>
