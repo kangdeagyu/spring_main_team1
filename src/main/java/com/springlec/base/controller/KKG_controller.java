@@ -42,8 +42,7 @@ public class KKG_controller {
 	@RequestMapping("/adminHome.do")
 	public String list(HttpServletRequest request, Model model) throws Exception {
 		
-		
-		
+
 		// 골라쓸 날짜 데이터들 미리 만들어 두기 
 		// 일일날짜 리스트
 		List<Timestamp> initTS = exService.initTimeStamp();  					// 최근 2주일 날짜를 뽑기위한 14일전 날짜와 오늘 날짜로 이루어진 리스트
