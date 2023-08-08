@@ -30,7 +30,7 @@ public class KSendEmailConfig {
 			public void sendEmail(String email, String sendCode) throws Exception {
 				// TODO Auto-generated method stub
 		        final String username = "rkdeorb1478@gmail.com";
-		        final String password = "zulwebgvyrglhsmv";
+		        final String password = "";
 		        String from = "rkdeorb1478@gmail.com";
 		        String to = email;
 		        String ecode = sendCode;
